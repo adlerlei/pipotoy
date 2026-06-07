@@ -1,0 +1,164 @@
+/* =========================================================
+   PipoToy · Design Tokens
+   - 底層命名：--pipotoy-{planet}-{creature}（含星球分類）
+   - 用戶層：--pipo-{creature}（別名，供組件內部與用戶使用）
+   - 規則：禁止直接寫色碼，必須用這裡的變數
+   ========================================================= */
+
+:root,
+[data-theme="light"] {
+  /* ── 底色 / 表面 ── */
+  --pipotoy-bg:        #faf6ee;
+  --pipotoy-surface:   #f8f8f4;
+  --pipotoy-surface-2: #f2ede4;
+  --pipotoy-text:      #3a3a3d;
+  --pipotoy-muted:     #7a7a80;
+  --pipotoy-faint:     #b5b5ba;
+  --pipotoy-line:      rgba(58, 58, 61, 0.06);
+
+  /* =========================================================
+     Pipo 色系（底層 · 帶星球分類）
+     ========================================================= */
+
+  /* Grumglo · 咕嚕格星 */
+  --pipotoy-grumglo-mibble:  #b8d8c8;
+  --pipotoy-grumglo-glumfo:  #a2b29f;
+  --pipotoy-grumglo-slurpo:  #8aaba1;
+
+  /* Drippus · 濕搭星 */
+  --pipotoy-drippus-wibble:  #a3c6de;
+  --pipotoy-drippus-drumko:  #92a8ba;
+  --pipotoy-drippus-blunfix: #7a8b99;
+
+  /* Yumblax · 黏呼星 */
+  --pipotoy-yumblax-blonko:  #f0e0a8;
+  --pipotoy-yumblax-whumpo:  #d6ccaa;
+  --pipotoy-yumblax-squorbo: #dec77e;
+  --pipotoy-yumblax-yumfix:  #d4a86a;
+  --pipotoy-yumblax-blobsko: #e0b094;
+
+  /* Glorfen · 悶嗝星 */
+  --pipotoy-glorfen-grumfo:  #ba8f76;
+  --pipotoy-glorfen-blobko:  #b89982;
+  --pipotoy-glorfen-flonko:  #c5b7a7;
+  --pipotoy-glorfen-dunfix:  #846c5f;
+
+  /* Schmerbia · 噗嗶星 */
+  --pipotoy-schmerbia-plobbo:  #d4a8b0;
+  --pipotoy-schmerbia-schmurp: #c47c76;
+  --pipotoy-schmerbia-blumpo:  #b86f76;
+  --pipotoy-schmerbia-glorix:  #b4a5b3;
+  --pipotoy-schmerbia-mumfix:  #9a8b98;
+
+  /* Blobia · 軟趴星 */
+  --pipotoy-blobia-whibble: #f9f9f8;
+  --pipotoy-blobia-blobpo:  #f4f3ed;
+  --pipotoy-blobia-flimpo:  #f0f3f5;
+  --pipotoy-blobia-whumble: #f2f1ec;
+  --pipotoy-blobia-crumfo:  #ebe6dd;
+  --pipotoy-blobia-glorpo:  #eae8e3;
+  --pipotoy-blobia-blumfix: #dfd5c5;
+
+  /* Flumpor · 灰噗星 */
+  --pipotoy-flumpor-wumble:  #eaeceb;
+  --pipotoy-flumpor-flumpo:  #d8d6d0;
+  --pipotoy-flumpor-glumpo:  #c2bfb8;
+  --pipotoy-flumpor-snorfix: #a5a39d;
+  --pipotoy-flumpor-drubko:  #8c8d91;
+
+  /* Dunkvon · 嗡嗡星 */
+  --pipotoy-dunkvon-dunko:   #828588;
+  --pipotoy-dunkvon-grumbox: #797c80;
+  --pipotoy-dunkvon-blunkfo: #74818b;
+  --pipotoy-dunkvon-glumork: #756c69;
+  --pipotoy-dunkvon-blornko: #67717d;
+
+  /* =========================================================
+     Pipo 色系（用戶層 · 別名 · 短命名）
+     用戶與組件統一使用 --pipo-{creature}
+     ========================================================= */
+  --pipo-mibble:   var(--pipotoy-grumglo-mibble);
+  --pipo-glumfo:   var(--pipotoy-grumglo-glumfo);
+  --pipo-slurpo:   var(--pipotoy-grumglo-slurpo);
+
+  --pipo-wibble:   var(--pipotoy-drippus-wibble);
+  --pipo-drumko:   var(--pipotoy-drippus-drumko);
+  --pipo-blunfix:  var(--pipotoy-drippus-blunfix);
+
+  --pipo-blonko:   var(--pipotoy-yumblax-blonko);
+  --pipo-whumpo:   var(--pipotoy-yumblax-whumpo);
+  --pipo-squorbo:  var(--pipotoy-yumblax-squorbo);
+  --pipo-yumfix:   var(--pipotoy-yumblax-yumfix);
+  --pipo-blobsko:  var(--pipotoy-yumblax-blobsko);
+
+  --pipo-grumfo:   var(--pipotoy-glorfen-grumfo);
+  --pipo-blobko:   var(--pipotoy-glorfen-blobko);
+  --pipo-flonko:   var(--pipotoy-glorfen-flonko);
+  --pipo-dunfix:   var(--pipotoy-glorfen-dunfix);
+
+  --pipo-plobbo:   var(--pipotoy-schmerbia-plobbo);
+  --pipo-schmurp:  var(--pipotoy-schmerbia-schmurp);
+  --pipo-blumpo:   var(--pipotoy-schmerbia-blumpo);
+  --pipo-glorix:   var(--pipotoy-schmerbia-glorix);
+  --pipo-mumfix:   var(--pipotoy-schmerbia-mumfix);
+
+  --pipo-whibble:  var(--pipotoy-blobia-whibble);
+  --pipo-blobpo:   var(--pipotoy-blobia-blobpo);
+  --pipo-flimpo:   var(--pipotoy-blobia-flimpo);
+  --pipo-whumble:  var(--pipotoy-blobia-whumble);
+  --pipo-crumfo:   var(--pipotoy-blobia-crumfo);
+  --pipo-glorpo:   var(--pipotoy-blobia-glorpo);
+  --pipo-blumfix:  var(--pipotoy-blobia-blumfix);
+
+  --pipo-wumble:   var(--pipotoy-flumpor-wumble);
+  --pipo-flumpo:   var(--pipotoy-flumpor-flumpo);
+  --pipo-glumpo:   var(--pipotoy-flumpor-glumpo);
+  --pipo-snorfix:  var(--pipotoy-flumpor-snorfix);
+  --pipo-drubko:   var(--pipotoy-flumpor-drubko);
+
+  --pipo-dunko:    var(--pipotoy-dunkvon-dunko);
+  --pipo-grumbox:  var(--pipotoy-dunkvon-grumbox);
+  --pipo-blunkfo:  var(--pipotoy-dunkvon-blunkfo);
+  --pipo-glumork:  var(--pipotoy-dunkvon-glumork);
+  --pipo-blornko:  var(--pipotoy-dunkvon-blornko);
+
+  /* =========================================================
+     陰影（黏土感，三層結構：外陰影 + inset 頂部高光 + inset 底部厚度）
+     ========================================================= */
+  --pipotoy-shadow-1:
+    0 2px 6px rgba(58, 58, 61, 0.04),
+    inset 0 2px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -2px 0 rgba(58, 58, 61, 0.07);
+  --pipotoy-shadow-2:
+    0 4px 10px rgba(58, 58, 61, 0.04),
+    inset 0 3px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 0 rgba(58, 58, 61, 0.08);
+  --pipotoy-shadow-3:
+    0 8px 20px rgba(58, 58, 61, 0.06),
+    inset 0 4px 0 rgba(255, 255, 255, 1),
+    inset 0 -5px 0 rgba(58, 58, 61, 0.1);
+  --pipotoy-shadow-press:
+    0 1px 2px rgba(58, 58, 61, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 4px 6px rgba(0, 0, 0, 0.12);
+
+  /* =========================================================
+     圓角 / 動畫
+     ========================================================= */
+  --pipotoy-round-sm:    10px;
+  --pipotoy-round:       16px;
+  --pipotoy-round-lg:    24px;
+  --pipotoy-round-pill:  999px;
+  --pipotoy-spring:      380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pipotoy-ease:        200ms ease;
+}
+
+/* =========================================================
+   全站字體（強制 · 禁用其他字體）
+   - 主字體：Nunito（英文/數字 · 圓潤活力）
+   - 中文：Noto Sans TC
+   - 不使用等寬字體；代碼/數字/Token 名稱以 Nunito + 字距微調呈現
+   ========================================================= */
+:root {
+  --pipotoy-font-sans: 'Nunito', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
