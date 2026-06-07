@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creature Compendium · 跟班圖鑑</title>
+  <style>
+    :root,
+    [data-theme="light"] {
+      --pipotoy-bg:              #faf6ee;
+      --pipotoy-surface:         #f8f8f4;
+      --pipotoy-line:            rgba(58, 58, 61, 0.06);
+      --pipotoy-text:            #3a3a3d;
+      --pipotoy-muted:           #7a7a80;
+
+      /* Grumglo · 咕嚕格星 */
+      --pipotoy_grumglo_mibble:     #b8d8c8;
+      --pipotoy_grumglo_glumfo:   #a2b29f;
+      --pipotoy_grumglo_slurpo:   #8aaba1;
+
+      /* Drippus · 濕搭星 */
+      --pipotoy_drippus_wibble:    #a3c6de;
+      --pipotoy_drippus_drumko:    #92a8ba;
+      --pipotoy_drippus_blunfix:    #7a8b99;
+
+      /* Yumblax · 黏呼星 */
+      --pipotoy_yumblax_blonko:   #f0e0a8;
+      --pipotoy_yumblax_whumpo:      #d6ccaa;
+      --pipotoy_yumblax_squorbo:    #dec77e;
+      --pipotoy_yumblax_yumfix:     #d4a86a;
+      --pipotoy_yumblax_blobsko:  #e0b094;
+
+      /* Glorfen · 悶嗝星 */
+      --pipotoy_glorfen_grumfo:      #ba8f76;
+      --pipotoy_glorfen_blobko: #b89982;
+      --pipotoy_glorfen_flonko:    #c5b7a7;
+      --pipotoy_glorfen_dunfix: #846c5f;
+
+      /* Schmerbia · 噗嗶星 */
+      --pipotoy_schmerbia_plobbo: #d4a8b0;
+      --pipotoy_schmerbia_schmurp: #c47c76;
+      --pipotoy_schmerbia_blumpo:  #b86f76;
+      --pipotoy_schmerbia_glorix: #b4a5b3;
+      --pipotoy_schmerbia_mumfix: #9a8b98;
+
+      /* Blobia · 軟趴星 */
+      --pipotoy_blobia_whibble: #f9f9f8;
+      --pipotoy_blobia_blobpo: #f4f3ed;
+      --pipotoy_blobia_flimpo:#f0f3f5;
+      --pipotoy_blobia_whumble: #f2f1ec;
+      --pipotoy_blobia_crumfo: #ebe6dd;
+      --pipotoy_blobia_glorpo:  #eae8e3;
+      --pipotoy_blobia_blumfix: #dfd5c5;
+
+      /* Flumpor · 灰噗星 */
+      --pipotoy_flumpor_wumble: #eaeceb;
+      --pipotoy_flumpor_flumpo: #d8d6d0;
+      --pipotoy_flumpor_glumpo:    #c2bfb8;
+      --pipotoy_flumpor_snorfix:  #a5a39d;
+      --pipotoy_flumpor_drubko: #8c8d91;
+
+      /* Dunkvon · 嗡嗡星 */
+      --pipotoy_dunkvon_dunko:  #828588;
+      --pipotoy_dunkvon_grumbox: #797c80;
+      --pipotoy_dunkvon_blunkfo: #74818b;
+      --pipotoy_dunkvon_glumork:  #756c69;
+      --pipotoy_dunkvon_blornko:   #67717d;
+
+      --pipotoy-primary:         #8fb8c8;
+      --pipotoy-primary-soft:    #b8d4e0;
+      --pipotoy-shadow-2: 0 4px 10px rgba(58, 58, 61, 0.04), inset 0 3px 0 rgba(255, 255, 255, 0.9), inset 0 -3px 0 rgba(58, 58, 61, 0.08);
+      --pipotoy-shadow-3: 0 8px 20px rgba(58, 58, 61, 0.06), inset 0 4px 0 rgba(255, 255, 255, 1), inset 0 -5px 0 rgba(58, 58, 61, 0.1);
+      --pipotoy-shadow-4: 0 16px 36px rgba(58, 58, 61, 0.08), inset 0 5px 0 rgba(255, 255, 255, 1), inset 0 -7px 0 rgba(58, 58, 61, 0.12);
+      
+      --pipotoy-round-3: 20px; --pipotoy-round-pill: 999px;
+      --pipotoy-pad-2: 8px; --pipotoy-pad-3: 12px; --pipotoy-pad-4: 16px; --pipotoy-pad-5: 24px; --pipotoy-pad-6: 32px;
+      --pipotoy-font-1: 11px; --pipotoy-font-3: 13px; --pipotoy-font-5: 15px; --pipotoy-font-7: 32px;
+      --pipotoy-spring-1: 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Plus Jakarta Sans", "Noto Sans TC", -apple-system, sans-serif; background: var(--pipotoy-bg); color: var(--pipotoy-text); padding: var(--pipotoy-pad-6) var(--pipotoy-pad-5) 96px; transition: background 400ms ease, color 400ms ease; -webkit-font-smoothing: antialiased; }
+    h1 { font-weight: 700; letter-spacing: -0.01em; }
+    
+    .toy-box { max-width: 1080px; margin: 0 auto; }
+    .toy-hero { margin-bottom: var(--pipotoy-pad-6); }
+    .toy-hero h1 { font-size: var(--pipotoy-font-7); margin-bottom: var(--pipotoy-pad-2); }
+    .toy-hero p { color: var(--pipotoy-muted); font-size: var(--pipotoy-font-5); max-width: 580px; line-height: 1.6; }
+
+    .toy-category { margin-bottom: var(--pipotoy-pad-6); }
+    .toy-category-title { font-size: var(--pipotoy-font-3); color: var(--pipotoy-muted); margin-bottom: var(--pipotoy-pad-3); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; padding-left: 4px; }
+
+    .toy-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--pipotoy-pad-4); }
+    
+    .toy-crayon { background: var(--pipotoy-surface); border-radius: var(--pipotoy-round-3); overflow: hidden; border: 1px solid var(--pipotoy-line); box-shadow: var(--pipotoy-shadow-2); transition: transform var(--pipotoy-spring-1), box-shadow var(--pipotoy-spring-1); }
+    .toy-crayon:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--pipotoy-shadow-3); }
+    .toy-crayon-chip { height: 80px; }
+    .toy-crayon-meta { padding: var(--pipotoy-pad-3) var(--pipotoy-pad-4) var(--pipotoy-pad-4); }
+    .toy-crayon-name { font-size: var(--pipotoy-font-3); font-weight: 600; color: var(--pipotoy-text); }
+    .toy-crayon-hex { display: none; }
+
+    /* RWD */
+    @media (max-width: 1024px) { .toy-row { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 768px) { .toy-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 480px) { .toy-row { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+
+<body>
+
+  <div class="toy-box">
+    <header class="toy-hero">
+      <h1>Creature Compendium · 跟班圖鑑</h1>
+      <p>HeianPipo 想打造有趣的工具，需要顏色，就順手把這群小跟班拿來用了。他們現在是色票。<br><em>HeianPipo needed colors to build something fun, so he did what any reasonable intergalactic traveler would do: he turned his little followers into swatches. They are the color system now.</em></p>
+    </header>
+
+    <!-- 01. Greens (綠色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Grumglo · 咕嚕格星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_grumglo_mibble)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Mibble · 咪嚕</div><div class="toy-crayon-hex">#b8d8c8</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_grumglo_glumfo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Glumfo · 格姆</div><div class="toy-crayon-hex">#a2b29f</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_grumglo_slurpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Slurpo · 嚕波</div><div class="toy-crayon-hex">#8aaba1</div></div></div>
+      </div>
+    </div>
+
+    <!-- 02. Blues (藍色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Drippus · 濕搭星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_drippus_wibble)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Wibble · 威嚕</div><div class="toy-crayon-hex">#a3c6de</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_drippus_drumko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Drumko · 嗡布</div><div class="toy-crayon-hex">#92a8ba</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_drippus_blunfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blunfix · 嗝諾</div><div class="toy-crayon-hex">#7a8b99</div></div></div>
+      </div>
+    </div>
+
+    <!-- 03. Yellows & Oranges (黃橘色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Yumblax · 黏呼星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_yumblax_blonko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blonko · 嗶諾</div><div class="toy-crayon-hex">#f0e0a8</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_yumblax_whumpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Whumpo · 呼嗝</div><div class="toy-crayon-hex">#d6ccaa</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_yumblax_squorbo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Squorbo · 軟嗝</div><div class="toy-crayon-hex">#dec77e</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_yumblax_yumfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Yumfix · 嗶洛</div><div class="toy-crayon-hex">#d4a86a</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_yumblax_blobsko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blobsko · 噗諾</div><div class="toy-crayon-hex">#e0b094</div></div></div>
+      </div>
+    </div>
+
+    <!-- 04. Browns & Earth (大地棕色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Glorfen · 悶嗝星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_glorfen_grumfo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Grumfo · 悶皮</div><div class="toy-crayon-hex">#ba8f76</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_glorfen_blobko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blobko · 嗝布</div><div class="toy-crayon-hex">#b89982</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_glorfen_flonko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Flonko · 噗嚕</div><div class="toy-crayon-hex">#c5b7a7</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_glorfen_dunfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Dunfix · 悶達</div><div class="toy-crayon-hex">#846c5f</div></div></div>
+      </div>
+    </div>
+
+    <!-- 05. Reds & Purples (紅紫色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Schmerbia · 噗嗶星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_schmerbia_plobbo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Plobbo · 噗洛</div><div class="toy-crayon-hex">#d4a8b0</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_schmerbia_schmurp)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Schmurp · 嗶格</div><div class="toy-crayon-hex">#c47c76</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_schmerbia_blumpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blumpo · 噗嗒</div><div class="toy-crayon-hex">#b86f76</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_schmerbia_glorix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Glorix · 嚕嗶</div><div class="toy-crayon-hex">#b4a5b3</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_schmerbia_mumfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Mumfix · 嗝嚕</div><div class="toy-crayon-hex">#9a8b98</div></div></div>
+      </div>
+    </div>
+
+    <!-- 06. Whites & Creams (白與奶油系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Blobia · 軟趴星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_whibble)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Whibble · 呼嚕</div><div class="toy-crayon-hex">#f9f9f8</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_blobpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blobpo · 嗶嗶</div><div class="toy-crayon-hex">#f4f3ed</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_flimpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Flimpo · 咪布</div><div class="toy-crayon-hex">#f0f3f5</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_whumble)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Whumble · 呼波</div><div class="toy-crayon-hex">#f2f1ec</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_crumfo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Crumfo · 嗝嗝</div><div class="toy-crayon-hex">#ebe6dd</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_glorpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Glorpo · 嚕格</div><div class="toy-crayon-hex">#eae8e3</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_blobia_blumfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blumfix · 噗格</div><div class="toy-crayon-hex">#dfd5c5</div></div></div>
+      </div>
+    </div>
+
+    <!-- 07. Light Greys (淺灰色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Flumpor · 灰噗星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_flumpor_wumble)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Wumble · 呱呱</div><div class="toy-crayon-hex">#eaeceb</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_flumpor_flumpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Flumpo · 噗嗡</div><div class="toy-crayon-hex">#d8d6d0</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_flumpor_glumpo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Glumpo · 嗡嗝</div><div class="toy-crayon-hex">#c2bfb8</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_flumpor_snorfix)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Snorfix · 嗤格</div><div class="toy-crayon-hex">#a5a39d</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_flumpor_drubko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Drubko · 嗶嗡</div><div class="toy-crayon-hex">#8c8d91</div></div></div>
+      </div>
+    </div>
+
+    <!-- 08. Dark Greys (深灰色系) -->
+    <div class="toy-category">
+      <div class="toy-category-title">Dunkvon · 嗡嗡星</div>
+      <div class="toy-row">
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_dunkvon_dunko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Dunko · 嗡達</div><div class="toy-crayon-hex">#828588</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_dunkvon_grumbox)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Grumbox · 格嗡</div><div class="toy-crayon-hex">#797c80</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_dunkvon_blunkfo)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blunkfo · 布嗡</div><div class="toy-crayon-hex">#74818b</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_dunkvon_glumork)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Glumork · 悶嗡</div><div class="toy-crayon-hex">#756c69</div></div></div>
+        <div class="toy-crayon"><div class="toy-crayon-chip" style="background: var(--pipotoy_dunkvon_blornko)"></div><div class="toy-crayon-meta"><div class="toy-crayon-name">Blornko · 嗝嗚</div><div class="toy-crayon-hex">#67717d</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

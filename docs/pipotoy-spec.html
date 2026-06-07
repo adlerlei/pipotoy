@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PipoToy · 元件視覺規範</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* ── 底色 / 表面 ── */
+      --pipotoy-bg:       #faf6ee;
+      --pipotoy-surface:  #f8f8f4;
+      --pipotoy-surface-2:#f2ede4;
+      --pipotoy-text:     #3a3a3d;
+      --pipotoy-muted:    #7a7a80;
+      --pipotoy-faint:    #b5b5ba;
+      --pipotoy-line:     rgba(58,58,61,0.06);
+
+      /* ── Grumglo · 咕嚕格星 ── */
+      --pipotoy-grumglo-mibble:  #b8d8c8;
+      --pipotoy-grumglo-glumfo:  #a2b29f;
+      --pipotoy-grumglo-slurpo:  #8aaba1;
+
+      /* ── Drippus · 濕搭星 ── */
+      --pipotoy-drippus-wibble:  #a3c6de;
+      --pipotoy-drippus-drumko:  #92a8ba;
+      --pipotoy-drippus-blunfix: #7a8b99;
+
+      /* ── Yumblax · 黏呼星 ── */
+      --pipotoy-yumblax-blonko:  #f0e0a8;
+      --pipotoy-yumblax-whumpo:  #d6ccaa;
+      --pipotoy-yumblax-squorbo: #dec77e;
+      --pipotoy-yumblax-yumfix:  #d4a86a;
+      --pipotoy-yumblax-blobsko: #e0b094;
+
+      /* ── Glorfen · 悶嗝星 ── */
+      --pipotoy-glorfen-grumfo:  #ba8f76;
+      --pipotoy-glorfen-blobko:  #b89982;
+      --pipotoy-glorfen-flonko:  #c5b7a7;
+      --pipotoy-glorfen-dunfix:  #846c5f;
+
+      /* ── Schmerbia · 噗嗶星 ── */
+      --pipotoy-schmerbia-plobbo:  #d4a8b0;
+      --pipotoy-schmerbia-schmurp: #c47c76;
+      --pipotoy-schmerbia-blumpo:  #b86f76;
+      --pipotoy-schmerbia-glorix:  #b4a5b3;
+      --pipotoy-schmerbia-mumfix:  #9a8b98;
+
+      /* ── Blobia · 軟趴星 ── */
+      --pipotoy-blobia-whibble: #f9f9f8;
+      --pipotoy-blobia-blobpo:  #f4f3ed;
+      --pipotoy-blobia-flimpo:  #f0f3f5;
+      --pipotoy-blobia-whumble: #f2f1ec;
+      --pipotoy-blobia-crumfo:  #ebe6dd;
+      --pipotoy-blobia-glorpo:  #eae8e3;
+      --pipotoy-blobia-blumfix: #dfd5c5;
+
+      /* ── Flumpor · 灰噗星 ── */
+      --pipotoy-flumpor-wumble:  #eaeceb;
+      --pipotoy-flumpor-flumpo:  #d8d6d0;
+      --pipotoy-flumpor-glumpo:  #c2bfb8;
+      --pipotoy-flumpor-snorfix: #a5a39d;
+      --pipotoy-flumpor-drubko:  #8c8d91;
+
+      /* ── Dunkvon · 嗡嗡星 ── */
+      --pipotoy-dunkvon-dunko:   #828588;
+      --pipotoy-dunkvon-grumbox: #797c80;
+      --pipotoy-dunkvon-blunkfo: #74818b;
+      --pipotoy-dunkvon-glumork: #756c69;
+      --pipotoy-dunkvon-blornko: #67717d;
+
+      /* ── 陰影 ── */
+      --pipotoy-shadow-1:
+        0 2px 6px rgba(58,58,61,0.04),
+        inset 0 2px 0 rgba(255,255,255,0.85),
+        inset 0 -2px 0 rgba(58,58,61,0.07);
+      --pipotoy-shadow-2:
+        0 4px 10px rgba(58,58,61,0.04),
+        inset 0 3px 0 rgba(255,255,255,0.9),
+        inset 0 -3px 0 rgba(58,58,61,0.08);
+      --pipotoy-shadow-3:
+        0 8px 20px rgba(58,58,61,0.06),
+        inset 0 4px 0 rgba(255,255,255,1),
+        inset 0 -5px 0 rgba(58,58,61,0.1);
+      --pipotoy-shadow-press:
+        0 1px 2px rgba(58,58,61,0.04),
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 4px 6px rgba(0,0,0,0.12);
+
+      /* ── 圓角 / 動畫 ── */
+      --pipotoy-round-sm:  10px;
+      --pipotoy-round:     16px;
+      --pipotoy-round-lg:  24px;
+      --pipotoy-round-pill:999px;
+      --pipotoy-spring:    380ms cubic-bezier(0.34,1.56,0.64,1);
+      --pipotoy-ease:      200ms ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      background: var(--pipotoy-bg);
+      color: var(--pipotoy-text);
+      padding: 0 0 100px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .page-header { padding: 48px 40px 36px; border-bottom: 1px solid var(--pipotoy-line); margin-bottom: 56px; }
+    .page-header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .brand-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--pipotoy-grumglo-mibble); box-shadow: var(--pipotoy-shadow-2); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .brand-name { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; }
+    .brand-name span { color: var(--pipotoy-grumglo-slurpo); }
+    .page-subtitle { font-size: 12px; font-weight: 700; color: var(--pipotoy-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .version-badge { font-size: 11px; font-weight: 800; letter-spacing: 0.02em; background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round-pill); padding: 5px 12px; color: var(--pipotoy-muted); box-shadow: var(--pipotoy-shadow-1); }
+
+    /* ── Layout ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+    .section { margin-bottom: 64px; }
+    .section-label { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pipotoy-faint); margin-bottom: 4px; }
+    .section-title { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .section-desc { font-size: 13px; color: var(--pipotoy-muted); margin-bottom: 24px; line-height: 1.6; }
+    .section-divider { border: none; border-top: 1px dashed rgba(58,58,61,0.12); margin: 0 0 56px; }
+
+    /* ── Spec Card ── */
+    .spec-card { background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round-lg); box-shadow: var(--pipotoy-shadow-2); overflow: hidden; }
+    .spec-preview { padding: 36px 28px; background: var(--pipotoy-bg); border-bottom: 1px solid var(--pipotoy-line); display: flex; align-items: flex-start; justify-content: flex-start; flex-wrap: wrap; gap: 16px; }
+    .spec-preview.center { justify-content: center; align-items: center; }
+
+    /* ── Token Grid ── */
+    .token-section { margin-bottom: 20px; }
+    .token-section-title { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pipotoy-muted); margin-bottom: 8px; padding-left: 2px; display: flex; align-items: center; gap: 8px; }
+    .token-section-title::after { content: ''; flex: 1; height: 1px; background: var(--pipotoy-line); }
+    .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+    .token-row { background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round); box-shadow: var(--pipotoy-shadow-1); padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+    .token-swatch { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(58,58,61,0.1); flex-shrink: 0; }
+    .token-name { font-size: 10px; font-weight: 700; color: var(--pipotoy-text); }
+    .token-var { font-size: 9px; font-weight: 700; letter-spacing: 0.01em; color: var(--pipotoy-grumglo-slurpo); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .token-hex { font-size: 9px; font-weight: 700; letter-spacing: 0.01em; color: var(--pipotoy-muted); }
+
+    /* ── Shadow / Radius / Type ── */
+    .shadow-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .shadow-box { width: 110px; height: 72px; background: var(--pipotoy-surface); border-radius: var(--pipotoy-round); border: 1px solid var(--pipotoy-line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--pipotoy-muted); }
+    .shadow-box span { font-size: 9px; font-weight: 700; letter-spacing: 0.01em; color: var(--pipotoy-faint); }
+    .radius-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .radius-box { background: var(--pipotoy-grumglo-mibble); border: 1px solid rgba(138,171,161,0.4); width: 64px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #2d6655; gap: 2px; }
+    .radius-box span { font-size: 10px; font-weight: 800; }
+    .type-stack { display: flex; flex-direction: column; gap: 14px; }
+    .type-item { display: flex; align-items: baseline; gap: 16px; }
+    .type-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; color: var(--pipotoy-faint); width: 72px; flex-shrink: 0; }
+    .t-display { font-size: 32px; font-weight: 900; letter-spacing: -0.02em; }
+    .t-title   { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+    .t-heading { font-size: 17px; font-weight: 700; }
+    .t-body    { font-size: 14px; font-weight: 600; line-height: 1.6; }
+    .t-small   { font-size: 12px; font-weight: 600; color: var(--pipotoy-muted); }
+    .t-micro   { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pipotoy-faint); }
+
+    /* ── pipo-bar ── */
+    .demo-bar { background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round); box-shadow: var(--pipotoy-shadow-2); padding: 0 20px; height: 54px; display: flex; align-items: center; width: 100%; }
+    .demo-bar-brand { font-weight: 800; font-size: 16px; color: var(--pipotoy-text); display: flex; align-items: center; gap: 8px; margin-right: auto; }
+    .demo-bar-logo { width: 26px; height: 26px; background: var(--pipotoy-grumglo-mibble); border-radius: 8px; box-shadow: var(--pipotoy-shadow-1); }
+    .demo-bar-links { display: flex; gap: 2px; }
+    .demo-bar-link { font-size: 13px; font-weight: 600; color: var(--pipotoy-muted); padding: 6px 12px; border-radius: var(--pipotoy-round-pill); cursor: pointer; transition: background var(--pipotoy-ease), color var(--pipotoy-ease); }
+    .demo-bar-link:hover { background: var(--pipotoy-surface-2); color: var(--pipotoy-text); }
+    .demo-bar-link.active { background: var(--pipotoy-grumglo-mibble); color: #2d6655; }
+
+    /* ── 按鈕通用 ── */
+    .btn-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .btn-group:last-child { margin-bottom: 0; }
+    .btn-group-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pipotoy-faint); width: 100%; margin-bottom: -4px; }
+
+    /* tap 款 */
+    .demo-tap { display: inline-flex; align-items: center; justify-content: center; padding: 9px 20px; border-radius: var(--pipotoy-round-pill); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; border: 1px solid transparent; cursor: pointer; transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring); box-shadow: var(--pipotoy-shadow-2); user-select: none; }
+    .demo-tap:hover  { transform: translateY(-3px); box-shadow: var(--pipotoy-shadow-3); }
+    .demo-tap:active { transform: translateY(1px);  box-shadow: var(--pipotoy-shadow-1); }
+    .demo-tap.default  { background: var(--pipotoy-surface); color: var(--pipotoy-text); border-color: var(--pipotoy-line); }
+    .demo-tap.mint     { background: var(--pipotoy-grumglo-mibble);    color: #2d6655; }
+    .demo-tap.sky      { background: var(--pipotoy-drippus-wibble);    color: #1e4f6a; }
+    .demo-tap.butter   { background: var(--pipotoy-yumblax-blonko);    color: #6a5010; }
+    .demo-tap.apricot  { background: var(--pipotoy-yumblax-blobsko);   color: #6a3818; }
+    .demo-tap.rose     { background: var(--pipotoy-schmerbia-plobbo);  color: #6a2e40; }
+    .demo-tap.taro     { background: var(--pipotoy-schmerbia-glorix);  color: #3e2e50; }
+
+    /* push 款 */
+    .demo-push { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transform: translateY(0); transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring), background 200ms; user-select: none; }
+    .demo-push.primary { background: var(--pipotoy-grumglo-slurpo); color: #fff; border-color: rgba(58,58,61,0.1); box-shadow: 0 4px 8px rgba(58,58,61,0.06), inset 0 3px 0 rgba(255,255,255,0.4), inset 0 -5px 0 rgba(0,0,0,0.15); }
+    .demo-push.primary:hover  { transform: translateY(-2px) scale(1.03); box-shadow: 0 6px 12px rgba(58,58,61,0.08), inset 0 3px 0 rgba(255,255,255,0.4), inset 0 -7px 0 rgba(0,0,0,0.18); }
+    .demo-push.primary:active { transform: translateY(4px) scale(0.97); box-shadow: var(--pipotoy-shadow-press); }
+    .demo-push.ghost { background: var(--pipotoy-surface); color: var(--pipotoy-muted); box-shadow: 0 2px 4px rgba(58,58,61,0.03), inset 0 2px 0 rgba(255,255,255,0.8), inset 0 -3px 0 rgba(58,58,61,0.06); }
+    .demo-push.ghost:hover  { transform: translateY(-1px) scale(1.02); box-shadow: 0 4px 8px rgba(58,58,61,0.05), inset 0 2px 0 rgba(255,255,255,0.8), inset 0 -4px 0 rgba(58,58,61,0.08); }
+    .demo-push.ghost:active { transform: translateY(2px) scale(0.98); box-shadow: inset 0 3px 5px rgba(58,58,61,0.08); }
+    .demo-push.p-mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; box-shadow: 0 3px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -4px 0 rgba(58,58,61,0.08); }
+    .demo-push.p-butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; box-shadow: 0 3px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -4px 0 rgba(58,58,61,0.08); }
+    .demo-push.p-rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; box-shadow: 0 3px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -4px 0 rgba(58,58,61,0.08); }
+    .demo-push.p-sky    { background: var(--pipotoy-drippus-wibble);   color: #1e4f6a; box-shadow: 0 3px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -4px 0 rgba(58,58,61,0.08); }
+    .demo-push.p-mint:hover,.demo-push.p-butter:hover,.demo-push.p-rose:hover,.demo-push.p-sky:hover { transform: translateY(-2px) scale(1.04) rotate(-1deg); box-shadow: 0 5px 10px rgba(58,58,61,0.06), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -5px 0 rgba(58,58,61,0.1); }
+    .demo-push.p-mint:active,.demo-push.p-butter:active,.demo-push.p-rose:active,.demo-push.p-sky:active { transform: translateY(3px) scale(0.97); box-shadow: inset 0 3px 5px rgba(58,58,61,0.12); }
+
+    /* ── pipo-tile ── */
+    .tile-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; width: 100%; }
+    .demo-tile { background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line); border-radius: var(--pipotoy-round); box-shadow: var(--pipotoy-shadow-2); overflow: hidden; transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring); cursor: default; }
+    .demo-tile:hover { transform: translateY(-5px) rotate(-0.5deg); box-shadow: var(--pipotoy-shadow-3); }
+    .demo-tile-thumb { height: 72px; }
+    .demo-tile-body  { padding: 12px 14px 14px; }
+    .demo-tile-tag   { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pipotoy-muted); margin-bottom: 3px; }
+    .demo-tile-title { font-size: 14px; font-weight: 800; margin-bottom: 3px; }
+    .demo-tile-desc  { font-size: 11px; color: var(--pipotoy-muted); line-height: 1.6; }
+
+    /* ── pipo-dot ── */
+    .demo-dot { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px 3px 8px; border-radius: var(--pipotoy-round-pill); font-size: 11px; font-weight: 700; border: 1px solid transparent; }
+    .demo-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: currentColor; opacity: 0.7; }
+    .demo-dot.mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; border-color: rgba(138,171,161,0.4); }
+    .demo-dot.butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; border-color: rgba(210,168,106,0.4); }
+    .demo-dot.rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; border-color: rgba(180,130,142,0.4); }
+    .demo-dot.sky    { background: var(--pipotoy-drippus-wibble);   color: #1e4f6a; border-color: rgba(122,139,153,0.4); }
+    .demo-dot.latte  { background: var(--pipotoy-glorfen-flonko);   color: #4a3828; border-color: rgba(197,183,167,0.4); }
+
+    /* ── 表單 ── */
+    .form-group { display: flex; flex-direction: column; gap: 5px; width: 260px; }
+    .form-label { font-size: 12px; font-weight: 700; color: var(--pipotoy-text); }
+    .demo-write { width: 100%; padding: 10px 14px; background: var(--pipotoy-surface); border: 1.5px solid var(--pipotoy-line); border-radius: var(--pipotoy-round-sm); box-shadow: var(--pipotoy-shadow-1); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 600; color: var(--pipotoy-text); outline: none; transition: border-color var(--pipotoy-ease), box-shadow var(--pipotoy-ease); }
+    .demo-write::placeholder { color: var(--pipotoy-faint); font-weight: 500; }
+    .demo-write:focus { border-color: var(--pipotoy-grumglo-slurpo); box-shadow: 0 0 0 3px rgba(138,171,161,0.2), var(--pipotoy-shadow-1); }
+    textarea.demo-write { min-height: 80px; resize: vertical; }
+    .demo-carve { width: 100%; padding: 10px 14px; background: var(--pipotoy-surface-2); border: 1.5px solid var(--pipotoy-line); border-radius: var(--pipotoy-round-sm); box-shadow: inset 0 2px 4px rgba(58,58,61,0.06), 0 1px 0 rgba(255,255,255,0.7); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 600; color: var(--pipotoy-text); outline: none; transition: border-color var(--pipotoy-ease), box-shadow var(--pipotoy-ease), background var(--pipotoy-ease); }
+    .demo-carve::placeholder { color: var(--pipotoy-faint); font-weight: 500; }
+    .demo-carve:focus { background: var(--pipotoy-surface); border-color: var(--pipotoy-grumglo-slurpo); box-shadow: inset 0 4px 8px rgba(58,58,61,0.08), 0 0 0 3px rgba(138,171,161,0.15); }
+    textarea.demo-carve { min-height: 80px; resize: vertical; }
+
+    /* ── pipo-stick ── */
+    .demo-stick { display: inline-block; padding: 6px 12px; border-radius: var(--pipotoy-round-sm); font-size: 12px; font-weight: 700; border: 1px solid rgba(58,58,61,0.04); box-shadow: 0 2px 4px rgba(58,58,61,0.03), inset 0 1.5px 0 rgba(255,255,255,0.4), inset 0 -2px 0 rgba(58,58,61,0.08); transition: transform var(--pipotoy-spring); cursor: default; }
+    .demo-stick:hover { transform: translateY(-2px) scale(1.05) rotate(1deg); }
+    .demo-stick.sky    { background: var(--pipotoy-drippus-wibble);   color: #1e4f6a; transform: rotate(-1deg); }
+    .demo-stick.rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; transform: rotate(1deg); }
+    .demo-stick.butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; transform: rotate(-0.5deg); }
+    .demo-stick.mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; transform: rotate(0.5deg); }
+    .demo-stick.taro   { background: var(--pipotoy-schmerbia-glorix); color: #3e2e50; transform: rotate(-1.5deg); }
+    .demo-stick.honey  { background: var(--pipotoy-yumblax-squorbo);  color: #6a4a00; transform: rotate(1.5deg); }
+
+    /* ── pipo-shout ── */
+    .demo-shout { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: var(--pipotoy-round); border: 1px solid transparent; box-shadow: var(--pipotoy-shadow-1); width: 100%; }
+    .demo-shout-icon  { font-size: 16px; flex-shrink: 0; margin-top: 1px; font-weight: 800; }
+    .demo-shout-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .demo-shout-desc  { font-size: 12px; opacity: 0.7; line-height: 1.5; }
+    .demo-shout.mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; border-color: rgba(138,171,161,0.35); }
+    .demo-shout.butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; border-color: rgba(210,168,106,0.35); }
+    .demo-shout.rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; border-color: rgba(180,130,142,0.35); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 32px 20px 24px; }
+      .container { padding: 0 20px; }
+      .tile-grid { grid-template-columns: 1fr 1fr; }
+      .form-group { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div>
+        <div class="brand">
+          <div class="brand-icon">🧸</div>
+          <div class="brand-name">Pipo<span>Toy</span></div>
+        </div>
+        <div class="page-subtitle">元件視覺規範 · UI Visual Spec</div>
+      </div>
+      <div class="version-badge">v0.1.0-alpha · 2026.06</div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 01 · Tokens 色系 -->
+    <section class="section">
+      <div class="section-label">01 · Design Tokens</div>
+      <div class="section-title">Pipo 色系</div>
+      <div class="section-desc">所有元件只使用以下 CSS 變數，禁止直接寫色碼。</div>
+
+      <div class="token-section">
+        <div class="token-section-title">Grumglo · 咕嚕格星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#b8d8c8"></div><div><div class="token-name">mibble</div><div class="token-var">--pipotoy-grumglo-mibble</div><div class="token-hex">#b8d8c8</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#a2b29f"></div><div><div class="token-name">glumfo</div><div class="token-var">--pipotoy-grumglo-glumfo</div><div class="token-hex">#a2b29f</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#8aaba1"></div><div><div class="token-name">slurpo</div><div class="token-var">--pipotoy-grumglo-slurpo</div><div class="token-hex">#8aaba1</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Drippus · 濕搭星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#a3c6de"></div><div><div class="token-name">wibble</div><div class="token-var">--pipotoy-drippus-wibble</div><div class="token-hex">#a3c6de</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#92a8ba"></div><div><div class="token-name">drumko</div><div class="token-var">--pipotoy-drippus-drumko</div><div class="token-hex">#92a8ba</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#7a8b99"></div><div><div class="token-name">blunfix</div><div class="token-var">--pipotoy-drippus-blunfix</div><div class="token-hex">#7a8b99</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Yumblax · 黏呼星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#f0e0a8"></div><div><div class="token-name">blonko</div><div class="token-var">--pipotoy-yumblax-blonko</div><div class="token-hex">#f0e0a8</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d6ccaa"></div><div><div class="token-name">whumpo</div><div class="token-var">--pipotoy-yumblax-whumpo</div><div class="token-hex">#d6ccaa</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dec77e"></div><div><div class="token-name">squorbo</div><div class="token-var">--pipotoy-yumblax-squorbo</div><div class="token-hex">#dec77e</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d4a86a"></div><div><div class="token-name">yumfix</div><div class="token-var">--pipotoy-yumblax-yumfix</div><div class="token-hex">#d4a86a</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#e0b094"></div><div><div class="token-name">blobsko</div><div class="token-var">--pipotoy-yumblax-blobsko</div><div class="token-hex">#e0b094</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Glorfen · 悶嗝星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#ba8f76"></div><div><div class="token-name">grumfo</div><div class="token-var">--pipotoy-glorfen-grumfo</div><div class="token-hex">#ba8f76</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#b89982"></div><div><div class="token-name">blobko</div><div class="token-var">--pipotoy-glorfen-blobko</div><div class="token-hex">#b89982</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#c5b7a7"></div><div><div class="token-name">flonko</div><div class="token-var">--pipotoy-glorfen-flonko</div><div class="token-hex">#c5b7a7</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#846c5f"></div><div><div class="token-name">dunfix</div><div class="token-var">--pipotoy-glorfen-dunfix</div><div class="token-hex">#846c5f</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Schmerbia · 噗嗶星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#d4a8b0"></div><div><div class="token-name">plobbo</div><div class="token-var">--pipotoy-schmerbia-plobbo</div><div class="token-hex">#d4a8b0</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#c47c76"></div><div><div class="token-name">schmurp</div><div class="token-var">--pipotoy-schmerbia-schmurp</div><div class="token-hex">#c47c76</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#b86f76"></div><div><div class="token-name">blumpo</div><div class="token-var">--pipotoy-schmerbia-blumpo</div><div class="token-hex">#b86f76</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#b4a5b3"></div><div><div class="token-name">glorix</div><div class="token-var">--pipotoy-schmerbia-glorix</div><div class="token-hex">#b4a5b3</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#9a8b98"></div><div><div class="token-name">mumfix</div><div class="token-var">--pipotoy-schmerbia-mumfix</div><div class="token-hex">#9a8b98</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Blobia · 軟趴星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#f9f9f8;border:1px solid #eee"></div><div><div class="token-name">whibble</div><div class="token-var">--pipotoy-blobia-whibble</div><div class="token-hex">#f9f9f8</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f4f3ed;border:1px solid #eee"></div><div><div class="token-name">blobpo</div><div class="token-var">--pipotoy-blobia-blobpo</div><div class="token-hex">#f4f3ed</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f0f3f5;border:1px solid #eee"></div><div><div class="token-name">flimpo</div><div class="token-var">--pipotoy-blobia-flimpo</div><div class="token-hex">#f0f3f5</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f2f1ec;border:1px solid #eee"></div><div><div class="token-name">whumble</div><div class="token-var">--pipotoy-blobia-whumble</div><div class="token-hex">#f2f1ec</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ebe6dd"></div><div><div class="token-name">crumfo</div><div class="token-var">--pipotoy-blobia-crumfo</div><div class="token-hex">#ebe6dd</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#eae8e3"></div><div><div class="token-name">glorpo</div><div class="token-var">--pipotoy-blobia-glorpo</div><div class="token-hex">#eae8e3</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dfd5c5"></div><div><div class="token-name">blumfix</div><div class="token-var">--pipotoy-blobia-blumfix</div><div class="token-hex">#dfd5c5</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Flumpor · 灰噗星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#eaeceb"></div><div><div class="token-name">wumble</div><div class="token-var">--pipotoy-flumpor-wumble</div><div class="token-hex">#eaeceb</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d8d6d0"></div><div><div class="token-name">flumpo</div><div class="token-var">--pipotoy-flumpor-flumpo</div><div class="token-hex">#d8d6d0</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#c2bfb8"></div><div><div class="token-name">glumpo</div><div class="token-var">--pipotoy-flumpor-glumpo</div><div class="token-hex">#c2bfb8</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#a5a39d"></div><div><div class="token-name">snorfix</div><div class="token-var">--pipotoy-flumpor-snorfix</div><div class="token-hex">#a5a39d</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#8c8d91"></div><div><div class="token-name">drubko</div><div class="token-var">--pipotoy-flumpor-drubko</div><div class="token-hex">#8c8d91</div></div></div>
+        </div>
+      </div>
+
+      <div class="token-section">
+        <div class="token-section-title">Dunkvon · 嗡嗡星</div>
+        <div class="token-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#828588"></div><div><div class="token-name">dunko</div><div class="token-var">--pipotoy-dunkvon-dunko</div><div class="token-hex">#828588</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#797c80"></div><div><div class="token-name">grumbox</div><div class="token-var">--pipotoy-dunkvon-grumbox</div><div class="token-hex">#797c80</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#74818b"></div><div><div class="token-name">blunkfo</div><div class="token-var">--pipotoy-dunkvon-blunkfo</div><div class="token-hex">#74818b</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#756c69"></div><div><div class="token-name">glumork</div><div class="token-var">--pipotoy-dunkvon-glumork</div><div class="token-hex">#756c69</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#67717d"></div><div><div class="token-name">blornko</div><div class="token-var">--pipotoy-dunkvon-blornko</div><div class="token-hex">#67717d</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 02 · 陰影 -->
+    <section class="section">
+      <div class="section-label">02 · Design Tokens</div>
+      <div class="section-title">陰影</div>
+      <div class="section-desc">黏土感三層結構：外陰影 + inset 頂部高光 + inset 底部厚度。</div>
+      <div class="shadow-row">
+        <div><div class="shadow-box" style="box-shadow:var(--pipotoy-shadow-1);">shadow-1<span>小元件</span></div></div>
+        <div><div class="shadow-box" style="box-shadow:var(--pipotoy-shadow-2);">shadow-2<span>一般元件</span></div></div>
+        <div><div class="shadow-box" style="box-shadow:var(--pipotoy-shadow-3);">shadow-3<span>hover 狀態</span></div></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 03 · 圓角 -->
+    <section class="section">
+      <div class="section-label">03 · Design Tokens</div>
+      <div class="section-title">圓角</div>
+      <div class="section-desc">元件越小圓角越小，容器越大圓角越大。</div>
+      <div class="radius-row">
+        <div class="radius-box" style="border-radius:10px"><span>sm</span>10px</div>
+        <div class="radius-box" style="border-radius:16px"><span>—</span>16px</div>
+        <div class="radius-box" style="border-radius:24px"><span>lg</span>24px</div>
+        <div class="radius-box" style="border-radius:999px;width:80px"><span>pill</span>999px</div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 04 · 字體 -->
+    <section class="section">
+      <div class="section-label">04 · Design Tokens</div>
+      <div class="section-title">字體層級</div>
+      <div class="section-desc">主字體 Nunito（圓潤活力）搭配 Noto Sans TC（中文）。</div>
+      <div class="type-stack">
+        <div class="type-item"><div class="type-tag">display</div><div class="t-display">PipoToy</div></div>
+        <div class="type-item"><div class="type-tag">title</div><div class="t-title">拿起來就能玩</div></div>
+        <div class="type-item"><div class="type-tag">heading</div><div class="t-heading">元件視覺規範</div></div>
+        <div class="type-item"><div class="type-tag">body</div><div class="t-body">不需要學 CSS，不需要學 JavaScript。你只需要告訴它你要什麼。</div></div>
+        <div class="type-item"><div class="type-tag">small</div><div class="t-small">版本說明 · 2026.06</div></div>
+        <div class="type-item"><div class="type-tag">micro</div><div class="t-micro">Design Tokens · Pipo 色系</div></div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 05 · 導覽列 -->
+    <section class="section">
+      <div class="section-label">05 · Component</div>
+      <div class="section-title">PipoToy · 導覽列</div>
+      <div class="section-desc">surface 底色、shadow-2、round 圓角。active 連結套 grumglo-mibble 底色。</div>
+      <div class="spec-card">
+        <div class="spec-preview" style="padding:24px;">
+          <div class="demo-bar">
+            <div class="demo-bar-brand"><div class="demo-bar-logo"></div>PipoToy</div>
+            <nav class="demo-bar-links">
+              <div class="demo-bar-link active">首頁</div>
+              <div class="demo-bar-link">元件</div>
+              <div class="demo-bar-link">色盤</div>
+              <div class="demo-bar-link">文件</div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 06 · 按鈕 -->
+    <section class="section">
+      <div class="section-label">06 · Component</div>
+      <div class="section-title">PipoToy · 按鈕</div>
+      <div class="section-desc">兩種款式：漂浮彈跳（pill 圓角）與實體按壓（方圓角）。兩款都支援 Pipo 色系。</div>
+      <div class="spec-card">
+        <div class="spec-preview" style="flex-direction:column; gap:24px;">
+          <div>
+            <div class="btn-group-label">漂浮彈跳款 — hover 上浮，點下彈回</div>
+            <div class="btn-group">
+              <button class="demo-tap default">預設</button>
+              <button class="demo-tap mint">確認</button>
+              <button class="demo-tap sky">查看</button>
+              <button class="demo-tap butter">編輯</button>
+              <button class="demo-tap apricot">警告</button>
+              <button class="demo-tap rose">刪除</button>
+              <button class="demo-tap taro">神秘</button>
+            </div>
+          </div>
+          <div>
+            <div class="btn-group-label">實體按壓款 — 有底部厚度，按下去會下沉</div>
+            <div class="btn-group">
+              <button class="demo-push primary">主要動作</button>
+              <button class="demo-push ghost">次要動作</button>
+              <button class="demo-push p-mint">確認</button>
+              <button class="demo-push p-butter">編輯</button>
+              <button class="demo-push p-sky">查看</button>
+              <button class="demo-push p-rose">刪除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 07 · 卡片 -->
+    <section class="section">
+      <div class="section-label">07 · Component</div>
+      <div class="section-title">PipoToy · 卡片</div>
+      <div class="section-desc">round 圓角、shadow-2。hover 時微微上移並略轉。縮圖區填 Pipo 色系。</div>
+      <div class="spec-card">
+        <div class="spec-preview">
+          <div class="tile-grid">
+            <div class="demo-tile"><div class="demo-tile-thumb" style="background:var(--pipotoy-grumglo-mibble)"></div><div class="demo-tile-body"><div class="demo-tile-tag">元件</div><div class="demo-tile-title">導覽列</div><div class="demo-tile-desc">頁面頂部的導覽</div></div></div>
+            <div class="demo-tile"><div class="demo-tile-thumb" style="background:var(--pipotoy-yumblax-blonko)"></div><div class="demo-tile-body"><div class="demo-tile-tag">佈局</div><div class="demo-tile-title">排版容器</div><div class="demo-tile-desc">自動排列子元件</div></div></div>
+            <div class="demo-tile"><div class="demo-tile-thumb" style="background:var(--pipotoy-schmerbia-plobbo)"></div><div class="demo-tile-body"><div class="demo-tile-tag">表單</div><div class="demo-tile-title">輸入欄位</div><div class="demo-tile-desc">文字輸入與互動</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 08 · 狀態標籤 -->
+    <section class="section">
+      <div class="section-label">08 · Component</div>
+      <div class="section-title">PipoToy · 狀態標籤</div>
+      <div class="section-desc">pill 圓角、shadow-1，左側小圓點代表狀態顏色。</div>
+      <div class="spec-card">
+        <div class="spec-preview center" style="gap:8px;">
+          <span class="demo-dot mint">已完成</span>
+          <span class="demo-dot butter">進行中</span>
+          <span class="demo-dot rose">已封存</span>
+          <span class="demo-dot sky">新功能</span>
+          <span class="demo-dot latte">草稿</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 09 · 表單輸入 -->
+    <section class="section">
+      <div class="section-label">09 · Component</div>
+      <div class="section-title">PipoToy · 表單輸入</div>
+      <div class="section-desc">兩種款式：凸起款有黏土陰影感；雕刻款像在黏土上挖出的凹槽。點進去試試看 focus 效果。</div>
+      <div class="spec-card">
+        <div class="spec-preview" style="flex-direction:column; gap:28px; align-items:flex-start;">
+          <div>
+            <div class="btn-group-label" style="margin-bottom:12px;">凸起款 — 有物理高度感</div>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <div class="form-group"><label class="form-label">你的名字</label><input class="demo-write" type="text" placeholder="輸入你的名字…"></div>
+              <div class="form-group"><label class="form-label">電子信箱</label><input class="demo-write" type="email" placeholder="hello@example.com"></div>
+              <div class="form-group" style="width:100%;max-width:536px;"><label class="form-label">留言</label><textarea class="demo-write" placeholder="在這裡寫點什麼…"></textarea></div>
+            </div>
+          </div>
+          <div>
+            <div class="btn-group-label" style="margin-bottom:12px;">雕刻款 — 凹陷鑿入感，focus 時鑿更深</div>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <div class="form-group"><label class="form-label">你的名字</label><input class="demo-carve" type="text" placeholder="輸入你的名字…"></div>
+              <div class="form-group"><label class="form-label">電子信箱</label><input class="demo-carve" type="email" placeholder="hello@example.com"></div>
+              <div class="form-group" style="width:100%;max-width:536px;"><label class="form-label">留言</label><textarea class="demo-carve" placeholder="在這裡寫點什麼…"></textarea></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 10 · 便利貼 -->
+    <section class="section">
+      <div class="section-label">10 · Component</div>
+      <div class="section-title">PipoToy · 便利貼</div>
+      <div class="section-desc">每張有微微的傾斜角度，hover 時跳起來反向旋轉。</div>
+      <div class="spec-card">
+        <div class="spec-preview center" style="gap:10px; min-height:80px;">
+          <span class="demo-stick sky">濕搭星</span>
+          <span class="demo-stick rose">噗嗶星</span>
+          <span class="demo-stick butter">黏呼星</span>
+          <span class="demo-stick mint">咕嚕格星</span>
+          <span class="demo-stick taro">噗嗶紫</span>
+          <span class="demo-stick honey">黏呼金</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 11 · 通知訊息 -->
+    <section class="section">
+      <div class="section-label">11 · Component</div>
+      <div class="section-title">PipoToy · 通知訊息</div>
+      <div class="section-desc">三種語意色：grumglo-mibble（成功）、yumblax-blonko（注意）、schmerbia-plobbo（警告）。</div>
+      <div class="spec-card">
+        <div class="spec-preview" style="flex-direction:column; gap:10px; align-items:stretch;">
+          <div class="demo-shout mint"><div class="demo-shout-icon">✓</div><div><div class="demo-shout-title">儲存成功！</div><div class="demo-shout-desc">你的作品已經安全存好了。</div></div></div>
+          <div class="demo-shout butter"><div class="demo-shout-icon">!</div><div><div class="demo-shout-title">注意一下</div><div class="demo-shout-desc">有些設定還沒完成，記得去看看。</div></div></div>
+          <div class="demo-shout rose"><div class="demo-shout-icon">✕</div><div><div class="demo-shout-title">出了點問題</div><div class="demo-shout-desc">請重新試一次，或是聯絡我們。</div></div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
