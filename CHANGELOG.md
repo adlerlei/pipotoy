@@ -7,6 +7,39 @@
 
 ---
 
+## [0.1.1-alpha] · 2026-06-09
+
+### 新增 · Added
+- **新角色「背卜 pibg」進色票**（Blobia · 軟趴星，第 4 色，預設背景色）
+  *New creature "pibg" (背卜) added to the color system as the default background*
+  - 底層：`--pipotoy-blobia-pibg: #faf6ee`
+  - 用戶層：`--pipo-pibg: var(--pipotoy-blobia-pibg)`
+  - 整個色系：37 色 → **38 色**
+- **工具 token 擴充** `src/pipotoy-tokens.css`
+  *Utility tokens expanded in `src/pipotoy-tokens.css`*
+  - 品牌色：`--pipotoy-primary` / `--pipotoy-primary-soft`
+  - 陰影第四層：`--pipotoy-shadow-4`（最大立體，hover 容器用）
+  - 圓角：`--pipotoy-round-3: 20px`（介於 round 跟 round-lg 之間）
+  - 間距尺度：`--pipotoy-pad-2/3/4/5/6`（8 / 12 / 16 / 24 / 32）
+  - 字級尺度：`--pipotoy-font-1/3/5/7`（11 / 13 / 15 / 32）
+  - 動畫別名：`--pipotoy-spring-1: var(--pipotoy-spring)`
+
+### 修正 · Fixed
+- `docs/pipotoy-compendium.html` token 命名統一為連字符，與 tokens.css 對齊
+  *Compendium token names standardized to hyphens to match `tokens.css`*
+- `docs/pipotoy-compendium.html` 字體改用 `var(--pipotoy-font-sans)`，不再用外部的 Plus Jakarta Sans
+  *Compendium body font switched to `var(--pipotoy-font-sans)` (Nunito + Noto Sans TC)*
+- `docs/pipotoy-compendium.html` Blobia 中文名「滑趴星」→「軟趴星」，與 tokens.css 統一
+  *Compendium Blobia Chinese name unified to 「軟趴星」*
+- `pipo-world-spec.md` 備註更新：pibg 對應的 token 名從下劃線版改為連字符版
+  *`pipo-world-spec.md` note updated to use hyphen-form token name for pibg*
+
+### 文件 · Docs
+- `agent.md` 規格書同步：色票數 37→38、Blobia 列表補 pibg、section 七版本號更新
+  *`agent.md` spec updated: 37→38 colors, Blobia list updated, section 7 state refreshed*
+
+---
+
 ## [0.1.0-alpha] · 2026-06-08
 
 ### 新增 · Added

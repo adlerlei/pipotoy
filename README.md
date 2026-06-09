@@ -2,7 +2,7 @@
 
 **The friendliest UI Toy Kit — 拿起來就能玩的網頁玩具**
 
-[Changelog](CHANGELOG.md) · v0.1.0-alpha · 2026.06.08 · MIT License
+[Changelog](CHANGELOG.md) · v0.1.1-alpha · 2026.06.09 · MIT License
 
 > 版本號以 `src/version.js` 為單一真實來源，HTML 頁面執行時自動讀取。
 > *Version comes from `src/version.js` (single source of truth).*
