@@ -7,10 +7,28 @@
 
 ---
 
+## [0.1.2-alpha] · 2026-06-10
+
+### 變更 · Changed
+- **Blobia 星球中文名統一為「滑趴星」**（全站 tokens.css / spec / compendium / index / agent.md）
+  *Blobia Chinese name unified to 「滑趴星」 across all docs and tokens*
+- **`--pipotoy-bg` 改為別名**指向 `--pipotoy-blobia-pibg`，單一真實來源
+  *`--pipotoy-bg` is now an alias of `--pipotoy-blobia-pibg` (single source of truth)*
+  - `src/pipotoy-tokens.css`：`--pipotoy-bg: var(--pipotoy-blobia-pibg)`
+  - 其他檔案 `var(--pipotoy-bg)` 呼叫端零修改
+- **`docs/pipotoy-compendium.html` token 命名 38 處**從下劃線改為連字符，與 tokens.css 對齊
+  *All 38 token names in compendium switched from underscore to hyphen, aligned with `tokens.css`*
+
+### 修正 · Fixed
+- `docs/pipotoy-compendium.html` 第 46 行 CSS 註解「滑趴星」已對齊 HTML 標題
+  *Compendium Blobia CSS comment now matches the HTML heading*
+
+---
+
 ## [0.1.1-alpha] · 2026-06-09
 
 ### 新增 · Added
-- **新角色「背卜 pibg」進色票**（Blobia · 軟趴星，第 4 色，預設背景色）
+- **新角色「背卜 pibg」進色票**（Blobia · 滑趴星，第 4 色，預設背景色）
   *New creature "pibg" (背卜) added to the color system as the default background*
   - 底層：`--pipotoy-blobia-pibg: #faf6ee`
   - 用戶層：`--pipo-pibg: var(--pipotoy-blobia-pibg)`
@@ -29,8 +47,8 @@
   *Compendium token names standardized to hyphens to match `tokens.css`*
 - `docs/pipotoy-compendium.html` 字體改用 `var(--pipotoy-font-sans)`，不再用外部的 Plus Jakarta Sans
   *Compendium body font switched to `var(--pipotoy-font-sans)` (Nunito + Noto Sans TC)*
-- `docs/pipotoy-compendium.html` Blobia 中文名「滑趴星」→「軟趴星」，與 tokens.css 統一
-  *Compendium Blobia Chinese name unified to 「軟趴星」*
+- `docs/pipotoy-compendium.html` Blobia 中文名統一為「滑趴星」（先前曾為「軟趴星」），與 tokens.css 對齊
+  *Compendium Blobia Chinese name unified to 「滑趴星」 to match `tokens.css`*
 - `pipo-world-spec.md` 備註更新：pibg 對應的 token 名從下劃線版改為連字符版
   *`pipo-world-spec.md` note updated to use hyphen-form token name for pibg*
 
