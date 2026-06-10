@@ -345,6 +345,56 @@
     .color-link:hover { gap: 10px; }
 
     /* ════════════════════════════════
+       COMPONENTS 元件入口
+    ════════════════════════════════ */
+    .components { background: var(--pipotoy-bg); }
+    .component-list {
+      display: flex; flex-direction: column; gap: 14px;
+      max-width: 640px;
+    }
+    .component-card {
+      display: flex; align-items: center; gap: 20px;
+      background: var(--pipotoy-surface);
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-lg);
+      box-shadow: var(--pipotoy-shadow-2);
+      padding: 22px 26px;
+      text-decoration: none; color: var(--pipotoy-text);
+      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
+    }
+    .component-card:hover {
+      transform: translateX(6px) translateY(-2px);
+      box-shadow: var(--pipotoy-shadow-3);
+    }
+    .component-icon {
+      width: 64px; height: 64px; border-radius: var(--pipotoy-round);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; flex-shrink: 0;
+      box-shadow: var(--pipotoy-shadow-2);
+    }
+    .component-card-body { flex: 1; min-width: 0; }
+    .component-name {
+      font-size: 18px; font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--pipotoy-grumglo-slurpo);
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+    .component-name-zh { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .component-desc-zh { font-size: 12px; color: var(--pipotoy-muted); line-height: 1.5; }
+    .component-desc-en { font-size: 10px; color: var(--pipotoy-faint); font-style: italic; line-height: 1.4; margin-top: 2px; }
+    .component-arrow {
+      font-size: 22px; font-weight: 900;
+      color: var(--pipotoy-faint);
+      transition: transform var(--pipotoy-spring), color var(--pipotoy-ease);
+      flex-shrink: 0;
+    }
+    .component-card:hover .component-arrow {
+      transform: translateX(4px);
+      color: var(--pipotoy-grumglo-slurpo);
+    }
+
+    /* ════════════════════════════════
        QUOTE 引言
     ════════════════════════════════ */
     .quote {
@@ -571,6 +621,28 @@
         <br><span>你不需要記 #b8d8c8，你只需要知道你喜歡 grumglo-mibble。</span>
       </p>
       <a class="color-link" href="docs/palette.html">View Full Palette · 查看完整色系圖鑑 →</a>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section class="components" id="components">
+    <div class="section-inner">
+      <div class="section-eyebrow">Components · 元件</div>
+      <h2 class="section-heading">One tag per idea.<br>Just write what you need.</h2>
+      <p class="section-heading-en">一個標籤一種功能，寫你要的就好。</p>
+
+      <div class="component-list">
+        <a class="component-card" href="examples/pipo-world.html">
+          <div class="component-icon" style="background:var(--pipotoy-blobia-pibg)">🌍</div>
+          <div class="component-card-body">
+            <div class="component-name">pipo-world</div>
+            <div class="component-name-zh">網頁世界容器</div>
+            <div class="component-desc-zh">整個網頁的最外層包覆殼 — 背景色、圖片、影片全部用 attribute 宣告。</div>
+            <div class="component-desc-en">The outermost wrapper. Background, image, video — all in one tag.</div>
+          </div>
+          <div class="component-arrow">→</div>
+        </a>
+      </div>
     </div>
   </section>
 

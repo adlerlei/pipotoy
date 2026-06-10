@@ -6,14 +6,16 @@
    ========================================================= */
 
 import './pipotoy-tokens.css';
-
-// ── 元件註冊（待補）──
-// 範例：import './components/pipo-tap.js';
+import './components/pipo-world.js';
 
 // 對外暴露：方便除錯與擴充
 window.PipoToy = window.PipoToy || {
-  version: '0.1.0-alpha',
+  version: (typeof PIPO_VERSION !== 'undefined') ? PIPO_VERSION : 'dev',
   ready: true,
 };
 
-console.log('%c🧸 PipoToy v0.1.0-alpha', 'font-weight:800; font-size:14px; color:#8aaba1;', '— UI Toy Kit ready');
+console.log(
+  '%c🧸 PipoToy v' + (typeof PIPO_VERSION !== 'undefined' ? PIPO_VERSION : 'dev'),
+  'font-weight:800; font-size:14px; color:#8aaba1;',
+  '— UI Toy Kit ready'
+);

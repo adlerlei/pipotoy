@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-world · 範例 · PipoToy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pipotoy-bg:        #faf6ee;
+      --pipotoy-surface:   #f8f8f4;
+      --pipotoy-text:      #3a3a3d;
+      --pipotoy-muted:     #7a7a80;
+      --pipotoy-faint:     #b5b5ba;
+      --pipotoy-line:      rgba(58, 58, 61, 0.06);
+      --pipotoy-grumglo-mibble:   #b8d8c8;
+      --pipotoy-grumglo-slurpo:   #8aaba1;
+      --pipotoy-drippus-wibble:   #a3c6de;
+      --pipotoy-yumblax-blonko:   #f0e0a8;
+      --pipotoy-yumblax-whumpo:   #d6ccaa;
+      --pipotoy-yumblax-blobsko:  #e0b094;
+      --pipotoy-schmerbia-plobbo: #d4a8b0;
+      --pipotoy-blobia-pibg:      #faf6ee;
+      --pipotoy-dunkvon-dunko:    #828588;
+
+      --pipotoy-shadow-1: 0 2px 6px rgba(58, 58, 61, 0.04), inset 0 2px 0 rgba(255, 255, 255, 0.85), inset 0 -2px 0 rgba(58, 58, 61, 0.07);
+      --pipotoy-shadow-2: 0 4px 10px rgba(58, 58, 61, 0.05), inset 0 3px 0 rgba(255, 255, 255, 0.9), inset 0 -3px 0 rgba(58, 58, 61, 0.08);
+      --pipotoy-shadow-3: 0 8px 20px rgba(58, 58, 61, 0.06), inset 0 4px 0 rgba(255, 255, 255, 1), inset 0 -5px 0 rgba(58, 58, 61, 0.1);
+      --pipotoy-round-sm:    10px;
+      --pipotoy-round:       16px;
+      --pipotoy-round-lg:    24px;
+      --pipotoy-round-pill:  999px;
+      --pipotoy-spring:      380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      --pipotoy-ease:        200ms ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      background: var(--pipotoy-bg);
+      color: var(--pipotoy-text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 100; width: calc(100% - 40px); max-width: 900px;
+      background: rgba(248, 248, 244, 0.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-pill);
+      box-shadow: var(--pipotoy-shadow-2);
+      padding: 0 20px; height: 52px;
+      display: flex; align-items: center;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 16px; font-weight: 900; letter-spacing: -0.01em;
+      text-decoration: none; color: var(--pipotoy-text); margin-right: auto;
+    }
+    .nav-logo {
+      width: 26px; height: 26px; border-radius: 8px;
+      background: var(--pipotoy-grumglo-mibble);
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+      box-shadow: var(--pipotoy-shadow-1);
+    }
+    .nav-brand span { color: var(--pipotoy-grumglo-slurpo); }
+    .nav-back {
+      font-size: 12px; font-weight: 700; color: var(--pipotoy-muted);
+      text-decoration: none; padding: 6px 14px;
+      border-radius: var(--pipotoy-round-pill);
+      border: 1px solid var(--pipotoy-line);
+      background: var(--pipotoy-surface);
+      box-shadow: var(--pipotoy-shadow-1);
+      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
+    }
+    .nav-back:hover { transform: translateY(-2px); box-shadow: var(--pipotoy-shadow-2); color: var(--pipotoy-text); }
+
+    main { max-width: 880px; margin: 0 auto; padding: 120px 24px 80px; }
+
+    /* ── Page header ── */
+    .page-header { text-align: center; margin-bottom: 64px; }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-pill); padding: 4px 14px;
+      font-size: 11px; font-weight: 700; color: var(--pipotoy-muted);
+      box-shadow: var(--pipotoy-shadow-1); margin-bottom: 18px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 56px); font-weight: 900;
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 6px;
+    }
+    .page-title code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--pipotoy-surface);
+      padding: 2px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--pipotoy-line);
+      box-shadow: var(--pipotoy-shadow-1);
+    }
+    .page-zh { font-size: clamp(16px, 2.5vw, 22px); font-weight: 700; color: var(--pipotoy-faint); font-style: italic; margin-bottom: 14px; }
+    .page-en { font-size: 14px; color: var(--pipotoy-muted); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── Demo block ── */
+    .demo { margin-bottom: 56px; }
+    .demo-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .demo-num {
+      width: 34px; height: 34px; border-radius: 11px;
+      background: var(--pipotoy-grumglo-mibble); color: #2d6655;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 14px;
+      box-shadow: var(--pipotoy-shadow-1);
+      flex-shrink: 0;
+    }
+    .demo-name { font-size: 19px; font-weight: 800; line-height: 1.2; }
+    .demo-zh { font-size: 12px; color: var(--pipotoy-muted); font-weight: 600; margin-top: 2px; }
+
+    .demo-code {
+      background: var(--pipotoy-text); color: #f8f8f4;
+      border-radius: 14px; padding: 14px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; line-height: 1.7;
+      overflow-x: auto;
+      margin-bottom: 14px;
+      box-shadow: var(--pipotoy-shadow-2);
+    }
+    .demo-code .tag     { color: #d4a8b0; }
+    .demo-code .attr    { color: #f0e0a8; }
+    .demo-code .val     { color: #b8d8c8; }
+    .demo-code .comment { color: #7a7a80; font-style: italic; }
+
+    .demo-stage {
+      height: 280px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--pipotoy-shadow-2);
+      border: 1px solid var(--pipotoy-line);
+    }
+    .demo-stage--tall { height: 380px; }
+
+    .demo-content {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 16px 22px;
+      font-size: 14px; font-weight: 700;
+      box-shadow: var(--pipotoy-shadow-1);
+      max-width: 420px;
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--pipotoy-line);
+      padding: 32px 24px; text-align: center; margin-top: 32px;
+    }
+    .footer-brand { font-size: 15px; font-weight: 900; margin-bottom: 6px; }
+    .footer-brand span { color: var(--pipotoy-grumglo-slurpo); }
+    .footer-copy { font-size: 11px; color: var(--pipotoy-faint); margin-top: 6px; }
+
+    @media (max-width: 600px) {
+      .demo-stage, .demo-stage--tall { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <a class="nav-back" href="../index.html">← Back · 回首頁</a>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <span class="page-eyebrow">Component · 元件</span>
+      <h1 class="page-title"><code>pipo-world</code></h1>
+      <div class="page-zh">網頁世界容器</div>
+      <p class="page-en">整個網頁的最外層包覆殼 — 背景色、圖片、影片，全部用 attribute 宣告。</p>
+    </header>
+
+    <!-- DEMO A · 最簡 -->
+    <section class="demo">
+      <div class="demo-head">
+        <div class="demo-num">A</div>
+        <div>
+          <div class="demo-name">最簡寫法</div>
+          <div class="demo-zh">什麼 attr 都不填 — 預設使用 --pipotoy-bg 底色、內容全寬、占滿視窗高度</div>
+        </div>
+      </div>
+      <pre class="demo-code"><span class="tag">&lt;pipo-world&gt;</span>
+  <span class="comment">&lt;!-- 內容放這裡 --&gt;</span>
+<span class="tag">&lt;/pipo-world&gt;</span></pre>
+      <div class="demo-stage">
+        <pipo-world>
+          <div class="demo-content">Hello from pipo-world 🌱<br>什麼都沒填，照樣能用</div>
+        </pipo-world>
+      </div>
+    </section>
+
+    <!-- DEMO B · 背景顏色 -->
+    <section class="demo">
+      <div class="demo-head">
+        <div class="demo-num">B</div>
+        <div>
+          <div class="demo-name">設定背景顏色</div>
+          <div class="demo-zh">color 填 Pipo 色系 token 名稱（不含前綴），例如 "mibble"、"dunko"</div>
+        </div>
+      </div>
+      <pre class="demo-code"><span class="tag">&lt;pipo-world</span> <span class="attr">color</span>=<span class="val">"mibble"</span><span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- 內容放這裡 --&gt;</span>
+<span class="tag">&lt;/pipo-world&gt;</span></pre>
+      <div class="demo-stage">
+        <pipo-world color="mibble">
+          <div class="demo-content">color="mibble"（Grumglo · 綠）<br>底色來自 <code>--pipo-mibble</code></div>
+        </pipo-world>
+      </div>
+    </section>
+
+    <!-- DEMO C · 背景圖片 -->
+    <section class="demo">
+      <div class="demo-head">
+        <div class="demo-num">C</div>
+        <div>
+          <div class="demo-name">設定背景圖片</div>
+          <div class="demo-zh">image-light 調暗一點讓前景更好讀，image-sticky 製造視差</div>
+        </div>
+      </div>
+      <pre class="demo-code"><span class="tag">&lt;pipo-world</span>
+  <span class="attr">image</span>=<span class="val">"https://picsum.photos/seed/pipotoy/1200/600"</span>
+  <span class="attr">image-light</span>=<span class="val">"60"</span>
+  <span class="attr">image-sticky</span>=<span class="val">"true"</span>
+<span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- 內容放這裡 --&gt;</span>
+<span class="tag">&lt;/pipo-world&gt;</span></pre>
+      <div class="demo-stage">
+        <pipo-world
+          image="https://picsum.photos/seed/pipotoy/1200/600"
+          image-light="60"
+          image-sticky="true"
+        >
+          <div class="demo-content">背景圖 + image-light=60（蓋黑 40%）<br>image-sticky 行動裝置會自動降級</div>
+        </pipo-world>
+      </div>
+    </section>
+
+    <!-- DEMO D · 影片結構（無真實影片） -->
+    <section class="demo">
+      <div class="demo-head">
+        <div class="demo-num">D</div>
+        <div>
+          <div class="demo-name">設定背景影片</div>
+          <div class="demo-zh">video 填 mp4 URL、video-light 調暗、color 永遠當 fallback 底色</div>
+        </div>
+      </div>
+      <pre class="demo-code"><span class="tag">&lt;pipo-world</span>
+  <span class="attr">video</span>=<span class="val">"https://your-cdn.com/bg.mp4"</span>
+  <span class="attr">video-light</span>=<span class="val">"50"</span>
+  <span class="attr">color</span>=<span class="val">"dunko"</span>
+<span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- 內容放這裡 --&gt;</span>
+<span class="tag">&lt;/pipo-world&gt;</span></pre>
+      <div class="demo-stage" style="background:var(--pipotoy-dunkvon-dunko);">
+        <pipo-world color="dunko">
+          <div class="demo-content">結構展示（無真實影片時只顯示底色 dunko）<br>把 video 屬性換成你的 mp4 URL 就會自動播放</div>
+        </pipo-world>
+      </div>
+    </section>
+
+    <!-- DEMO E · 完整場景 -->
+    <section class="demo">
+      <div class="demo-head">
+        <div class="demo-num">E</div>
+        <div>
+          <div class="demo-name">完整使用</div>
+          <div class="demo-zh">背景圖 + 全螢幕 + 垂直置中 — 適合登入頁、錯誤頁這類單一焦點場景</div>
+        </div>
+      </div>
+      <pre class="demo-code"><span class="tag">&lt;pipo-world</span>
+  <span class="attr">color</span>=<span class="val">"pibg"</span>
+  <span class="attr">image</span>=<span class="val">"https://picsum.photos/seed/pipotoy2/1200/600"</span>
+  <span class="attr">image-light</span>=<span class="val">"80"</span>
+  <span class="attr">fill</span>=<span class="val">"screen"</span>
+  <span class="attr">middle</span>=<span class="val">"true"</span>
+<span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- 內容放這裡 --&gt;</span>
+<span class="tag">&lt;/pipo-world&gt;</span></pre>
+      <div class="demo-stage demo-stage--tall">
+        <pipo-world
+          color="pibg"
+          image="https://picsum.photos/seed/pipotoy2/1200/600"
+          image-light="80"
+          fill="screen"
+          middle="true"
+        >
+          <div class="demo-content">fill=screen + middle=true<br>垂直置中、占滿視窗</div>
+        </pipo-world>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-copy"><span id="footer-version">v0.1.1-alpha</span> · PipoToy</p>
+  </footer>
+
+  <script src="../src/version.js"></script>
+  <script>
+    document.getElementById('footer-version').textContent = 'v' + PIPO_VERSION;
+  </script>
+  <script type="module" src="../src/pipotoy.js"></script>
+</body>
+</html>
