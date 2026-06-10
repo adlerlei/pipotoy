@@ -8,7 +8,7 @@
 :root,
 [data-theme="light"] {
   /* ── 底色 / 表面 ── */
-  --pipotoy-bg:        #faf6ee;
+  --pipotoy-bg:        var(--pipotoy-blobia-pibg);
   --pipotoy-surface:   #f8f8f4;
   --pipotoy-surface-2: #f2ede4;
   --pipotoy-text:      #3a3a3d;
@@ -54,7 +54,7 @@
   --pipotoy-schmerbia-glorix:  #b4a5b3;
   --pipotoy-schmerbia-mumfix:  #9a8b98;
 
-  /* Blobia · 軟趴星 */
+  /* Blobia · 滑趴星 */
   --pipotoy-blobia-whibble: #f9f9f8;
   --pipotoy-blobia-blobpo:  #f4f3ed;
   --pipotoy-blobia-flimpo:  #f0f3f5;
