@@ -26,6 +26,7 @@
       --pipotoy-schmerbia-plobbo:  #d4a8b0;
       --pipotoy-schmerbia-glorix:  #b4a5b3;
       --pipotoy-blobia-crumfo:     #ebe6dd;
+      --pipotoy-blobia-pibg:       #faf6ee;
       --pipotoy-dunkvon-dunko:     #828588;
 
       --pipotoy-shadow-1: 0 2px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.85), inset 0 -2px 0 rgba(58,58,61,0.07);
@@ -104,7 +105,29 @@
       font-size: 15px;
     }
     .nav-brand span { color: var(--pipotoy-grumglo-slurpo); }
-    .nav-links { display: flex; gap: 2px; }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+    .nav-burger {
+      display: none;
+      width: 34px; height: 34px;
+      margin-left: 8px;
+      border-radius: var(--pipotoy-round-sm);
+      background: var(--pipotoy-surface-2);
+      border: 1px solid var(--pipotoy-line);
+      box-shadow: var(--pipotoy-shadow-1);
+      cursor: pointer;
+      flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      transition: transform var(--pipotoy-spring);
+    }
+    .nav-burger:active { transform: scale(0.92); }
+    .nav-burger span {
+      width: 14px; height: 2px; border-radius: 2px;
+      background: var(--pipotoy-muted);
+      transition: transform var(--pipotoy-spring), opacity var(--pipotoy-ease);
+    }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     .nav-link {
       font-size: 13px; font-weight: 600; color: var(--pipotoy-muted);
       padding: 6px 12px; border-radius: var(--pipotoy-round-pill);
@@ -441,15 +464,70 @@
     .footer-brand span { color: var(--pipotoy-grumglo-slurpo); }
     .footer-desc { font-size: 12px; color: var(--pipotoy-faint); margin-bottom: 16px; }
     .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-    .footer-link { font-size: 12px; font-weight: 600; color: var(--pipotoy-muted); text-decoration: none; transition: color var(--pipotoy-ease); }
+    .footer-link { font-size: 12px; font-weight: 600; color: var(--pipotoy-muted); text-decoration: none; transition: color var(--pipotoy-ease); position: relative; }
     .footer-link:hover { color: var(--pipotoy-text); }
+    .footer-link::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      background: var(--pipotoy-text);
+      color: #fff;
+      font-size: 11px; font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--pipotoy-round-pill);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 150ms ease, transform 150ms ease;
+      transform: translateX(-50%) translateY(4px);
+      z-index: 200;
+    }
+    .footer-link:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
     .footer-copy { margin-top: 20px; font-size: 11px; color: var(--pipotoy-faint); }
 
     /* ════════════════════════════════
        RWD
     ════════════════════════════════ */
     @media (max-width: 720px) {
-      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: flex; flex-direction: column; gap: 4px;
+        position: absolute;
+        top: calc(100% + 10px); left: 0; right: 0;
+        background: rgba(248,248,244,0.97);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--pipotoy-line);
+        border-radius: var(--pipotoy-round-lg);
+        box-shadow: var(--pipotoy-shadow-3);
+        padding: 10px;
+        align-items: stretch;
+        opacity: 0; transform: translateY(-8px) scale(0.98);
+        pointer-events: none;
+        transition: opacity var(--pipotoy-ease), transform var(--pipotoy-spring);
+      }
+      .nav-toggle:checked ~ .nav-links {
+        opacity: 1; transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+      .nav-link, .nav-cta {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 11px 16px; font-size: 14px;
+        border-radius: var(--pipotoy-round);
+      }
+      .nav-cta { margin-left: 0; margin-top: 4px; }
+      /* tooltip 在手機改為內嵌中文標籤(觸控沒有 hover) */
+      .nav-link::after, .nav-cta::after {
+        position: static;
+        opacity: 1; transform: none;
+        background: none; color: var(--pipotoy-muted);
+        font-size: 12px; font-weight: 500; padding: 0;
+        pointer-events: none;
+      }
+      .nav-cta::after { color: #2d6655; opacity: 0.75; }
       .why-grid { grid-template-columns: 1fr; }
       .hero-blob-3, .hero-blob-4 { display: none; }
     }
@@ -466,12 +544,16 @@
       <div class="nav-logo">🧸</div>
       Pipo<span>Toy</span>
     </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <div class="nav-links">
       <a class="nav-link" href="#why" data-label="為什麼選 PipoToy">Why</a>
       <a class="nav-link" href="#how" data-label="怎麼開始">How to Start</a>
       <a class="nav-link" href="#colors" data-label="色系">Colors</a>
+      <a class="nav-cta" href="examples/components.html" data-label="看元件展示">View Components →</a>
     </div>
-    <a class="nav-cta" href="docs/spec.html" data-label="看元件展示">View Components →</a>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
   </nav>
 
   <!-- HERO -->
@@ -502,7 +584,7 @@
 
     <div class="hero-btns">
       <a class="btn-primary" href="docs/spec.html">🧸 Start Playing · 開始玩</a>
-      <a class="btn-ghost"   href="https://github.com/yourname/pipotoy" target="_blank">GitHub →</a>
+      <a class="btn-ghost"   href="https://github.com/adlerlei/pipotoy" target="_blank">GitHub →</a>
     </div>
 
     <div class="hero-chips">
@@ -620,31 +702,12 @@
         You don't need to remember #b8d8c8. You just need to know you like <strong>grumglo-mibble</strong>.
         <br><span>你不需要記 #b8d8c8，你只需要知道你喜歡 grumglo-mibble。</span>
       </p>
-      <a class="color-link" href="docs/palette.html">View Full Palette · 查看完整色系圖鑑 →</a>
+      <a class="color-link" href="docs/pipotoy-compendium.html">View Full Palette · 查看完整色系圖鑑 →</a>
     </div>
   </section>
 
   <!-- COMPONENTS -->
-  <section class="components" id="components">
-    <div class="section-inner">
-      <div class="section-eyebrow">Components · 元件</div>
-      <h2 class="section-heading">One tag per idea.<br>Just write what you need.</h2>
-      <p class="section-heading-en">一個標籤一種功能，寫你要的就好。</p>
-
-      <div class="component-list">
-        <a class="component-card" href="examples/pipo-world.html">
-          <div class="component-icon" style="background:var(--pipotoy-blobia-pibg)">🌍</div>
-          <div class="component-card-body">
-            <div class="component-name">pipo-world</div>
-            <div class="component-name-zh">網頁世界容器</div>
-            <div class="component-desc-zh">整個網頁的最外層包覆殼 — 背景色、圖片、影片全部用 attribute 宣告。</div>
-            <div class="component-desc-en">The outermost wrapper. Background, image, video — all in one tag.</div>
-          </div>
-          <div class="component-arrow">→</div>
-        </a>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- QUOTE -->
   <div class="quote">
@@ -664,8 +727,8 @@
       <p class="cta-desc-zh">No preparation needed. Just pick it up and play.</p>
       <p class="cta-desc-en">不需要任何準備，拿起來就能玩。</p>
       <div class="cta-btns">
-        <a class="btn-primary" href="docs/spec.html">View Components · 看元件展示</a>
-        <a class="btn-ghost"   href="docs/palette.html">Pipo Colors · Pipo 色系</a>
+        <a class="btn-primary" href="examples/components.html">View Components · 看元件展示</a>
+        <a class="btn-ghost"   href="docs/pipotoy-compendium.html">Pipo Colors · Pipo 色系</a>
       </div>
     </div>
   </section>
@@ -675,19 +738,28 @@
     <div class="footer-brand">Pipo<span>Toy</span></div>
     <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
     <div class="footer-links">
-      <a class="footer-link" href="docs/spec.html">Components</a>
-      <a class="footer-link" href="docs/palette.html">Pipo Colors</a>
-      <a class="footer-link" href="https://github.com/yourname/pipotoy" target="_blank">GitHub</a>
-      <a class="footer-link" href="agent.md">agent.md</a>
+      <a class="footer-link" href="examples/components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" data-label="程式碼倉庫">GitHub</a>
     </div>
     <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
   </footer>
 
   <script src="./src/version.js"></script>
   <script>
-    document.getElementById('hero-version').textContent = 'v' + PIPO_VERSION;
-    document.getElementById('footer-version').textContent = 'v' + PIPO_VERSION;
-    document.getElementById('footer-date').textContent = PIPO_DATE.slice(0, 4);
+    // 手機選單:點選任何連結後自動收合
+    document.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        document.getElementById('nav-toggle').checked = false;
+      });
+    });
+
+    // 版本號:version.js 沒載入時保留 HTML 預設文字,不報錯
+    if (typeof PIPO_VERSION !== 'undefined') {
+      document.getElementById('hero-version').textContent = 'v' + PIPO_VERSION;
+      document.getElementById('footer-version').textContent = 'v' + PIPO_VERSION;
+      document.getElementById('footer-date').textContent = PIPO_DATE.slice(0, 4);
+    }
   </script>
 </body>
 </html>

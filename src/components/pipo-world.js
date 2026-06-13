@@ -82,7 +82,7 @@ const TPL = `
       content: '';
       position: absolute;
       inset: 0;
-      background: #000;
+      background: var(--pipotoy-text);
       opacity: calc(1 - var(--pw-image-light, 100) / 100);
     }
 
@@ -91,7 +91,7 @@ const TPL = `
       content: '';
       position: absolute;
       inset: 0;
-      background: #000;
+      background: var(--pipotoy-text);
       opacity: calc(1 - var(--pw-video-light, 100) / 100);
     }
 
