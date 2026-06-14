@@ -7,6 +7,51 @@
 
 ---
 
+## [0.1.3-alpha] · 2026-06-14
+
+### 重構 · Refactored
+- **HTML 全面重構：所有用戶面向頁面收進 `site/` 目錄**
+  *Major refactor: all user-facing pages moved into `site/`*
+  - `changelog.html` → `site/changelog.html`
+  - `docs/pipotoy-compendium.html` → `site/docs/pipotoy-compendium.html`
+  - `examples/pipo-world.html` → `site/examples/pipo-world.html`
+  - `examples/components.html`（空殼）→ `site/examples/components.html`
+  - `index.html` 保留在根目錄（靜態託管慣例）
+  - `CHANGELOG.md` 保留在根目錄（GitHub / npm 慣例）
+  - `docs/pipotoy-spec.html` 保留原位不動（設計師藍圖，自有設計系統）
+- **新建立 `site/site.css`（51 KB）+ `site/site.js`（2 KB）**：所有 HTML 共用
+  *New shared `site/site.css` (51 KB) + `site/site.js` (2 KB) for all HTML pages*
+  - 抽出原本散落在 4 個 HTML 的 ~71 KB inline CSS
+  - 抽出重複的版本注入 + 手機選單 JS 邏輯
+- **Nav 與 Footer 全站統一**
+  *Nav and Footer unified across all pages*
+  - 4 個 site-level 連結：Components / Colors / Changelog / GitHub
+  - 當前頁 nav 連結有薄荷綠 `is-active` 指示器
+  - 桌面：hover 顯示中文 tooltip（`data-label` + `::after`，純 CSS）
+  - 手機：漢英並列（`@media (max-width: 720px)` 改為 inline）
+- **GitHub URL 統一為 `adlerlei/pipotoy`**
+  *GitHub URL unified to `adlerlei/pipotoy`*（原 changelog 用 `yourname/pipotoy` 假連結）
+
+### 新增 · Added
+- **`site/examples/components.html` 空殼**
+  *Empty shell for `site/examples/components.html`* — 統一 Nav/Footer 引用已就緒，等待 `components-page-spec.md` 規格任務填實
+
+### 修正 · Fixed
+- **`pipotoy-compendium.html` 標題被 fixed nav 遮擋** — 在 `.toy-hero` 加 `padding-top: 120px`
+  *`pipotoy-compendium.html` title was hidden by the fixed nav — added `padding-top: 120px` to `.toy-hero`*
+- **`pipo-world.html` hero-crumb 麵包屑路徑錯誤** — `../index.html` → `../../index.html`
+  *`pipo-world.html` hero-crumb breadcrumb had wrong path — `../index.html` → `../../index.html`*
+- **`site.css` `.hero-sub` 衝突** — index 與 pipo-world 兩處定義不同；給 pipo-world hero 加 `.hero-pipo-world` 修飾類，將覆寫 scoped 起來
+  *`site.css` `.hero-sub` definition conflict — index and pipo-world had different values; scoped the override with `.hero-pipo-world` modifier class*
+
+### 文件 · Docs
+- **`agent.md` 字體規則更新**
+  *`agent.md` font rules updated*
+  - 統一全站 Google Fonts `<link>` 一次載入三個字體（Nunito 400-1000 / Noto Sans TC 400-900 / JetBrains Mono 400-600）
+  - 明確用途分配：Nunito 主體、Noto Sans TC 中文、JetBrains Mono 限定用於 code / Token 名稱 / 版本號等技術標籤
+
+---
+
 ## [0.1.2-alpha] · 2026-06-10
 
 ### 變更 · Changed
