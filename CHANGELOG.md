@@ -43,6 +43,8 @@
   *`pipo-world.html` hero-crumb breadcrumb had wrong path — `../index.html` → `../../index.html`*
 - **`site.css` `.hero-sub` 衝突** — index 與 pipo-world 兩處定義不同；給 pipo-world hero 加 `.hero-pipo-world` 修飾類，將覆寫 scoped 起來
   *`site.css` `.hero-sub` definition conflict — index and pipo-world had different values; scoped the override with `.hero-pipo-world` modifier class*
+- **`pipo-world` `image-fit` 切換未重置 `background-repeat`** — 從 `tile` 切回 `cover` / `contain` 時圖片殘留重複平鋪；切換時同步重設 `background-repeat`（`tile` → `repeat`，其他 → `no-repeat`）
+  *`pipo-world` `image-fit` switch did not reset `background-repeat` — image remained tiled when switching from `tile` back to `cover` / `contain`; `background-repeat` is now reset on every switch (`tile` → `repeat`, otherwise → `no-repeat`)*
 
 ### 文件 · Docs
 - **`agent.md` 字體規則更新**
