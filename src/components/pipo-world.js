@@ -187,7 +187,14 @@ class PipoWorld extends HTMLElement {
         break;
       }
       case 'image-fit': {
-        $('.pw-image').style.backgroundSize = val || 'cover';
+        const el = $('.pw-image');
+        if (val === 'tile') {
+          el.style.backgroundSize = 'auto';
+          el.style.backgroundRepeat = 'repeat';
+        } else {
+          el.style.backgroundSize = val || 'cover';
+          el.style.backgroundRepeat = 'no-repeat'; // 從 tile 切換回來時重置
+        }
         break;
       }
       case 'image-align': {
