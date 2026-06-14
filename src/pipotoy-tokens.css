@@ -78,6 +78,25 @@
   --pipotoy-dunkvon-glumork: #756c69;
   --pipotoy-dunkvon-blornko: #67717d;
 
+  /* Mistoria · 霧紗星（高維意識 · 15 位守護者）
+     不屬於八星球，跟隨 HeianPipo 來地球，
+     默默守護其他 38 隻的防禦色狀態，等待 pipo 遇見大哥。 */
+  --pipotoy-mistoria-naya:    #e4eee4; /* 翠 · mint dawn */
+  --pipotoy-mistoria-iro:     #dce0d5; /* 蘚 · sage moss */
+  --pipotoy-mistoria-sorae:   #d3ded6; /* 涯 · jade fog */
+  --pipotoy-mistoria-hii:     #dde7ec; /* 曦 · sky dawn */
+  --pipotoy-mistoria-nimu:    #d6dddf; /* 霽 · cleared cloud */
+  --pipotoy-mistoria-aer:     #ced3d4; /* 弦 · steel air */
+  --pipotoy-mistoria-washi:   #f8f0d9; /* 紙 · paper cream */
+  --pipotoy-mistoria-hush:    #eee9da; /* 寂 · oat silence */
+  --pipotoy-mistoria-hone:    #eeddc3; /* 蜜 · honey wax */
+  --pipotoy-mistoria-yumeko:  #f2e0d2; /* 桃 · dream peach */
+  --pipotoy-mistoria-akeno:   #eedcdb; /* 朝 · dawn rose */
+  --pipotoy-mistoria-glaze:   #e8cdc8; /* 緋 · coral glaze */
+  --pipotoy-mistoria-wisp:    #e2dcdc; /* 紫 · lilac wisp */
+  --pipotoy-mistoria-mu:      #d9d3d3; /* 默 · silent ash */
+  --pipotoy-mistoria-suna:    #e4d8cc; /* 沙 · driftwood sand */
+
   /* =========================================================
      Pipo 色系（用戶層 · 別名 · 短命名）
      用戶與組件統一使用 --pipo-{creature}
@@ -127,6 +146,22 @@
   --pipo-blunkfo:  var(--pipotoy-dunkvon-blunkfo);
   --pipo-glumork:  var(--pipotoy-dunkvon-glumork);
   --pipo-blornko:  var(--pipotoy-dunkvon-blornko);
+
+  --pipo-naya:     var(--pipotoy-mistoria-naya);
+  --pipo-iro:      var(--pipotoy-mistoria-iro);
+  --pipo-sorae:    var(--pipotoy-mistoria-sorae);
+  --pipo-hii:      var(--pipotoy-mistoria-hii);
+  --pipo-nimu:     var(--pipotoy-mistoria-nimu);
+  --pipo-aer:      var(--pipotoy-mistoria-aer);
+  --pipo-washi:    var(--pipotoy-mistoria-washi);
+  --pipo-hush:     var(--pipotoy-mistoria-hush);
+  --pipo-hone:     var(--pipotoy-mistoria-hone);
+  --pipo-yumeko:   var(--pipotoy-mistoria-yumeko);
+  --pipo-akeno:    var(--pipotoy-mistoria-akeno);
+  --pipo-glaze:    var(--pipotoy-mistoria-glaze);
+  --pipo-wisp:     var(--pipotoy-mistoria-wisp);
+  --pipo-mu:       var(--pipotoy-mistoria-mu);
+  --pipo-suna:     var(--pipotoy-mistoria-suna);
 
   /* =========================================================
      陰影（黏土感，三層結構：外陰影 + inset 頂部高光 + inset 底部厚度）

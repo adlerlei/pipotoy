@@ -2,7 +2,7 @@
 
 **The friendliest UI Toy Kit — 拿起來就能玩的網頁玩具**
 
-[Changelog](CHANGELOG.md) · v0.1.3-alpha · 2026.06.14 · MIT License
+[Changelog](CHANGELOG.md) · v0.1.6-alpha · 2026.06.15 · MIT License
 
 > 版本號以 `src/version.js` 為單一真實來源，HTML 頁面執行時自動讀取。
 > *Version comes from `src/version.js` (single source of truth).*
@@ -36,6 +36,28 @@
 *That's not their true form. That's camouflage.*
 
 *When they finally adapt to Earth — that's when things get interesting.*
+
+---
+
+## 關於 Mistoria · 霧紗星
+
+當 HeianPipo 帶著八星球的小跟班來到地球時，還有 15 位安靜的訪客也一起來了。他們來自意識維度更高的星球——**Mistoria · 霧紗星**——外表柔軟、近乎透明，像和紙過濾過的光。
+
+他們不參與防禦色的偽裝。他們本來就是這樣的存在。
+
+他們默默地幫助人類，守在每個角落，也看顧著八星球的跟班們安睡在保護色裡。
+
+沒人知道他們在等什麼。但他們知道：總有一天，pipo 會遇到大哥。在那一天到來之前，他們什麼都不說，只是把世界輕輕擦亮一點。
+
+---
+
+*When HeianPipo arrived on Earth with his eight-planet crew, fifteen quiet visitors came too. They are from a planet of higher consciousness — **Mistoria** — soft, nearly translucent, like light filtered through washi paper.*
+
+*They take no part in the camouflage. They have always been this way.*
+
+*They help humans in silence, watching over every corner, keeping the eight-planet creatures safe in their sleeping disguise.*
+
+*No one knows what they're waiting for. But they know: one day, pipo will meet the Elder. Until then, they say nothing — they just brighten the world, very gently.*
 
 ---
 
