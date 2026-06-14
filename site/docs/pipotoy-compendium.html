@@ -4,111 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creature Compendium · 跟班圖鑑</title>
-  <style>
-    :root,
-    [data-theme="light"] {
-      --pipotoy-bg:              #faf6ee;
-      --pipotoy-surface:         #f8f8f4;
-      --pipotoy-line:            rgba(58, 58, 61, 0.06);
-      --pipotoy-text:            #3a3a3d;
-      --pipotoy-muted:           #7a7a80;
-
-      /* Grumglo · 咕嚕格星 */
-      --pipotoy-grumglo-mibble:     #b8d8c8;
-      --pipotoy-grumglo-glumfo:   #a2b29f;
-      --pipotoy-grumglo-slurpo:   #8aaba1;
-
-      /* Drippus · 濕搭星 */
-      --pipotoy-drippus-wibble:    #a3c6de;
-      --pipotoy-drippus-drumko:    #92a8ba;
-      --pipotoy-drippus-blunfix:    #7a8b99;
-
-      /* Yumblax · 黏呼星 */
-      --pipotoy-yumblax-blonko:   #f0e0a8;
-      --pipotoy-yumblax-whumpo:      #d6ccaa;
-      --pipotoy-yumblax-squorbo:    #dec77e;
-      --pipotoy-yumblax-yumfix:     #d4a86a;
-      --pipotoy-yumblax-blobsko:  #e0b094;
-
-      /* Glorfen · 悶嗝星 */
-      --pipotoy-glorfen-grumfo:      #ba8f76;
-      --pipotoy-glorfen-blobko: #b89982;
-      --pipotoy-glorfen-flonko:    #c5b7a7;
-      --pipotoy-glorfen-dunfix: #846c5f;
-
-      /* Schmerbia · 噗嗶星 */
-      --pipotoy-schmerbia-plobbo: #d4a8b0;
-      --pipotoy-schmerbia-schmurp: #c47c76;
-      --pipotoy-schmerbia-blumpo:  #b86f76;
-      --pipotoy-schmerbia-glorix: #b4a5b3;
-      --pipotoy-schmerbia-mumfix: #9a8b98;
-
-      /* Blobia · 滑趴星 */
-      --pipotoy-blobia-pibg: #faf6ee; /* 角色名稱：背卜（預設背景色） */
-      --pipotoy-blobia-whibble: #f9f9f8;
-      --pipotoy-blobia-blobpo: #f4f3ed;
-      --pipotoy-blobia-flimpo:#f0f3f5;
-      --pipotoy-blobia-whumble: #f2f1ec;
-      --pipotoy-blobia-crumfo: #ebe6dd;
-      --pipotoy-blobia-glorpo:  #eae8e3;
-      --pipotoy-blobia-blumfix: #dfd5c5;
-
-      /* Flumpor · 灰噗星 */
-      --pipotoy-flumpor-wumble: #eaeceb;
-      --pipotoy-flumpor-flumpo: #d8d6d0;
-      --pipotoy-flumpor-glumpo:    #c2bfb8;
-      --pipotoy-flumpor-snorfix:  #a5a39d;
-      --pipotoy-flumpor-drubko: #8c8d91;
-
-      /* Dunkvon · 嗡嗡星 */
-      --pipotoy-dunkvon-dunko:  #828588;
-      --pipotoy-dunkvon-grumbox: #797c80;
-      --pipotoy-dunkvon-blunkfo: #74818b;
-      --pipotoy-dunkvon-glumork:  #756c69;
-      --pipotoy-dunkvon-blornko:   #67717d;
-
-      --pipotoy-primary:         #8fb8c8;
-      --pipotoy-primary-soft:    #b8d4e0;
-      --pipotoy-shadow-2: 0 4px 10px rgba(58, 58, 61, 0.04), inset 0 3px 0 rgba(255, 255, 255, 0.9), inset 0 -3px 0 rgba(58, 58, 61, 0.08);
-      --pipotoy-shadow-3: 0 8px 20px rgba(58, 58, 61, 0.06), inset 0 4px 0 rgba(255, 255, 255, 1), inset 0 -5px 0 rgba(58, 58, 61, 0.1);
-      --pipotoy-shadow-4: 0 16px 36px rgba(58, 58, 61, 0.08), inset 0 5px 0 rgba(255, 255, 255, 1), inset 0 -7px 0 rgba(58, 58, 61, 0.12);
-      
-      --pipotoy-round-3: 20px; --pipotoy-round-pill: 999px;
-      --pipotoy-pad-2: 8px; --pipotoy-pad-3: 12px; --pipotoy-pad-4: 16px; --pipotoy-pad-5: 24px; --pipotoy-pad-6: 32px;
-      --pipotoy-font-1: 11px; --pipotoy-font-3: 13px; --pipotoy-font-5: 15px; --pipotoy-font-7: 32px;
-      --pipotoy-spring-1: 38
-      0ms cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--pipotoy-font-sans); background: var(--pipotoy-bg); color: var(--pipotoy-text); padding: var(--pipotoy-pad-6) var(--pipotoy-pad-5) 96px; transition: background 400ms ease, color 400ms ease; -webkit-font-smoothing: antialiased; }
-    h1 { font-weight: 700; letter-spacing: -0.01em; }
-    
-    .toy-box { max-width: 1080px; margin: 0 auto; }
-    .toy-hero { margin-bottom: var(--pipotoy-pad-6); }
-    .toy-hero h1 { font-size: var(--pipotoy-font-7); margin-bottom: var(--pipotoy-pad-2); }
-    .toy-hero p { color: var(--pipotoy-muted); font-size: var(--pipotoy-font-5); max-width: 580px; line-height: 1.6; }
-
-    .toy-category { margin-bottom: var(--pipotoy-pad-6); }
-    .toy-category-title { font-size: var(--pipotoy-font-3); color: var(--pipotoy-muted); margin-bottom: var(--pipotoy-pad-3); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; padding-left: 4px; }
-
-    .toy-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--pipotoy-pad-4); }
-    
-    .toy-crayon { background: var(--pipotoy-surface); border-radius: var(--pipotoy-round-3); overflow: hidden; border: 1px solid var(--pipotoy-line); box-shadow: var(--pipotoy-shadow-2); transition: transform var(--pipotoy-spring-1), box-shadow var(--pipotoy-spring-1); }
-    .toy-crayon:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--pipotoy-shadow-3); }
-    .toy-crayon-chip { height: 80px; }
-    .toy-crayon-meta { padding: var(--pipotoy-pad-3) var(--pipotoy-pad-4) var(--pipotoy-pad-4); }
-    .toy-crayon-name { font-size: var(--pipotoy-font-3); font-weight: 600; color: var(--pipotoy-text); }
-    .toy-crayon-hex { display: none; }
-
-    /* RWD */
-    @media (max-width: 1024px) { .toy-row { grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width: 768px) { .toy-row { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 480px) { .toy-row { grid-template-columns: repeat(2, 1fr); } }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
 </head>
-
 <body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="../examples/components.html" data-label="元件展示">Components</a>
+      <a class="nav-link is-active" href="./pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
 
   <div class="toy-box">
     <header class="toy-hero">
@@ -211,5 +129,22 @@
     </div>
 
   </div>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="../examples/components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="./pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
 </body>
 </html>

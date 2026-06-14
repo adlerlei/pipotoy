@@ -4,239 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PipoToy · Changelog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --pipotoy-bg:       #faf6ee;
-      --pipotoy-surface:  #f8f8f4;
-      --pipotoy-surface-2:#f2ede4;
-      --pipotoy-text:     #3a3a3d;
-      --pipotoy-muted:    #7a7a80;
-      --pipotoy-faint:    #b5b5ba;
-      --pipotoy-line:     rgba(58,58,61,0.07);
-      --pipotoy-grumglo-mibble:   #b8d8c8;
-      --pipotoy-grumglo-slurpo:   #8aaba1;
-      --pipotoy-drippus-wibble:   #a3c6de;
-      --pipotoy-yumblax-blonko:   #f0e0a8;
-      --pipotoy-yumblax-blobsko:  #e0b094;
-      --pipotoy-schmerbia-plobbo: #d4a8b0;
-      --pipotoy-schmerbia-glorix: #b4a5b3;
-      --pipotoy-glorfen-flonko:   #c5b7a7;
-      --pipotoy-shadow-1: 0 2px 6px rgba(58,58,61,0.04), inset 0 2px 0 rgba(255,255,255,0.85), inset 0 -2px 0 rgba(58,58,61,0.07);
-      --pipotoy-shadow-2: 0 4px 10px rgba(58,58,61,0.05), inset 0 3px 0 rgba(255,255,255,0.9), inset 0 -3px 0 rgba(58,58,61,0.08);
-      --pipotoy-shadow-3: 0 8px 24px rgba(58,58,61,0.08), inset 0 4px 0 rgba(255,255,255,1), inset 0 -5px 0 rgba(58,58,61,0.10);
-      --pipotoy-round-sm:  10px;
-      --pipotoy-round:     16px;
-      --pipotoy-round-lg:  24px;
-      --pipotoy-round-pill:999px;
-      --pipotoy-spring:    380ms cubic-bezier(0.34,1.56,0.64,1);
-      --pipotoy-ease:      220ms ease;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
-      background: var(--pipotoy-bg);
-      color: var(--pipotoy-text);
-      -webkit-font-smoothing: antialiased;
-      padding-bottom: 100px;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      z-index: 100; width: calc(100% - 40px); max-width: 900px;
-      background: rgba(248,248,244,0.88);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--pipotoy-line);
-      border-radius: var(--pipotoy-round-pill);
-      box-shadow: var(--pipotoy-shadow-2);
-      padding: 0 20px; height: 52px;
-      display: flex; align-items: center;
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 17px; font-weight: 900; letter-spacing: -0.02em;
-      text-decoration: none; color: var(--pipotoy-text); margin-right: auto;
-    }
-    .nav-logo { width: 26px; height: 26px; border-radius: 8px; background: var(--pipotoy-grumglo-mibble); box-shadow: var(--pipotoy-shadow-1); display: flex; align-items: center; justify-content: center; font-size: 14px; }
-    .nav-brand span { color: var(--pipotoy-grumglo-slurpo); }
-    .nav-back {
-      font-size: 12px; font-weight: 700; color: var(--pipotoy-muted);
-      text-decoration: none; padding: 6px 14px;
-      border-radius: var(--pipotoy-round-pill);
-      border: 1px solid var(--pipotoy-line);
-      background: var(--pipotoy-surface);
-      box-shadow: var(--pipotoy-shadow-1);
-      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
-    }
-    .nav-back:hover { transform: translateY(-2px); box-shadow: var(--pipotoy-shadow-2); color: var(--pipotoy-text); }
-
-    /* ── Header ── */
-    .page-header {
-      max-width: 720px; margin: 0 auto;
-      padding: 120px 24px 64px;
-      text-align: center;
-    }
-    .header-eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--pipotoy-surface); border: 1px solid var(--pipotoy-line);
-      border-radius: var(--pipotoy-round-pill); padding: 4px 14px;
-      font-size: 11px; font-weight: 700; color: var(--pipotoy-muted);
-      box-shadow: var(--pipotoy-shadow-1); margin-bottom: 24px;
-      letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .header-title-en { font-size: clamp(36px, 6vw, 56px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
-    .header-title-zh { font-size: clamp(16px, 2.5vw, 22px); font-weight: 700; color: var(--pipotoy-faint); font-style: italic; margin-bottom: 16px; }
-    .header-desc-en  { font-size: 14px; color: var(--pipotoy-muted); line-height: 1.7; margin-bottom: 4px; }
-    .header-desc-zh  { font-size: 12px; color: var(--pipotoy-faint); font-style: italic; line-height: 1.6; }
-
-    /* ── Timeline ── */
-    .timeline {
-      max-width: 720px; margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-    }
-    /* 垂直軸線 */
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 24px; top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--pipotoy-grumglo-mibble), var(--pipotoy-drippus-wibble), var(--pipotoy-schmerbia-plobbo));
-      border-radius: 2px;
-      margin-left: 19px;
-    }
-
-    /* ── Timeline Entry ── */
-    .entry {
-      position: relative;
-      padding-left: 56px;
-      margin-bottom: 48px;
-    }
-    /* 時間軸圓點 */
-    .entry-dot {
-      position: absolute;
-      left: 10px; top: 18px;
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      border: 3px solid var(--pipotoy-bg);
-      box-shadow: var(--pipotoy-shadow-1);
-      z-index: 1;
-    }
-
-    /* 版本卡片 */
-    .entry-card {
-      background: var(--pipotoy-surface);
-      border: 1px solid var(--pipotoy-line);
-      border-radius: var(--pipotoy-round-lg);
-      box-shadow: var(--pipotoy-shadow-2);
-      overflow: hidden;
-      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
-    }
-    .entry-card:hover { transform: translateY(-4px); box-shadow: var(--pipotoy-shadow-3); }
-
-    /* 卡片頂部 */
-    .entry-head {
-      padding: 20px 24px 16px;
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-      border-bottom: 1px solid var(--pipotoy-line);
-    }
-    .entry-version {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; font-weight: 700;
-      color: var(--pipotoy-text);
-      background: var(--pipotoy-bg);
-      border: 1px solid var(--pipotoy-line);
-      border-radius: var(--pipotoy-round-sm);
-      padding: 3px 10px;
-      box-shadow: var(--pipotoy-shadow-1);
-    }
-    .entry-date {
-      font-size: 12px; font-weight: 600; color: var(--pipotoy-muted);
-    }
-    .entry-badge {
-      margin-left: auto;
-      font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 3px 10px;
-      border-radius: var(--pipotoy-round-pill);
-      border: 1px solid transparent;
-    }
-    .badge-alpha  { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; border-color: rgba(210,168,106,0.3); }
-    .badge-beta   { background: var(--pipotoy-drippus-wibble);   color: #1e4f6a; border-color: rgba(122,139,153,0.3); }
-    .badge-stable { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; border-color: rgba(138,171,161,0.3); }
-
-    /* 卡片內容 */
-    .entry-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 20px; }
-
-    .entry-section-title {
-      font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .entry-section-title::after { content: ''; flex: 1; height: 1px; background: var(--pipotoy-line); }
-
-    .entry-items { display: flex; flex-direction: column; gap: 8px; }
-    .entry-item {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 10px 12px;
-      background: var(--pipotoy-bg);
-      border: 1px solid var(--pipotoy-line);
-      border-radius: var(--pipotoy-round-sm);
-      transition: transform var(--pipotoy-spring);
-    }
-    .entry-item:hover { transform: translateX(4px); }
-    .entry-item-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .entry-item-en { font-size: 13px; font-weight: 600; color: var(--pipotoy-text); line-height: 1.5; }
-    .entry-item-zh { font-size: 11px; color: var(--pipotoy-faint); font-style: italic; line-height: 1.5; margin-top: 1px; }
-    .entry-item-code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; font-weight: 600;
-      background: var(--pipotoy-surface);
-      color: var(--pipotoy-grumglo-slurpo);
-      border: 1px solid var(--pipotoy-line);
-      border-radius: 4px; padding: 1px 5px;
-    }
-
-    /* ── 未來區塊 ── */
-    .entry-upcoming .entry-card {
-      border-style: dashed;
-      opacity: 0.6;
-    }
-    .entry-upcoming .entry-dot {
-      background: var(--pipotoy-surface-2);
-      border-color: var(--pipotoy-line);
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--pipotoy-line);
-      padding: 32px 24px; text-align: center; margin-top: 32px;
-    }
-    .footer-brand { font-size: 15px; font-weight: 900; margin-bottom: 6px; }
-    .footer-brand span { color: var(--pipotoy-grumglo-slurpo); }
-    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
-    .footer-link { font-size: 12px; font-weight: 600; color: var(--pipotoy-muted); text-decoration: none; transition: color var(--pipotoy-ease); }
-    .footer-link:hover { color: var(--pipotoy-text); }
-    .footer-copy { font-size: 11px; color: var(--pipotoy-faint); }
-
-    @media (max-width: 600px) {
-      .timeline::before { left: 20px; }
-      .entry { padding-left: 48px; }
-      .entry-dot { left: 8px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="./site.css">
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV (unified) -->
   <nav>
     <a class="nav-brand" href="../index.html">
       <div class="nav-logo">🧸</div>
       Pipo<span>Toy</span>
     </a>
-    <a class="nav-back" href="../index.html">← Back · 回首頁</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./examples/components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="./docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link is-active" href="./changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
   </nav>
 
   <!-- HEADER -->
@@ -487,22 +276,20 @@
 
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (unified) -->
   <footer>
     <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
     <div class="footer-links">
-      <a class="footer-link" href="../index.html">首頁 · Home</a>
-      <a class="footer-link" href="spec.html">元件規範 · Spec</a>
-      <a class="footer-link" href="palette.html">Pipo 色系 · Colors</a>
-      <a class="footer-link" href="https://github.com/yourname/pipotoy" target="_blank">GitHub</a>
+      <a class="footer-link" href="../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./examples/components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="./docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
     </div>
     <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
   </footer>
 
-  <script src="./src/version.js"></script>
-  <script>
-    document.getElementById('footer-version').textContent = 'v' + PIPO_VERSION;
-    document.getElementById('footer-date').textContent = PIPO_DATE.slice(0, 4);
-  </script>
+  <script src="../src/version.js" defer></script>
+  <script src="./site.js" defer></script>
 </body>
 </html>
