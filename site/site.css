@@ -1543,7 +1543,7 @@ section:not(.alt) .rwd-table { background: var(--pipotoy-surface); }
 }
 .toy-hero {
   margin-bottom: var(--pipotoy-pad-6);
-  padding-top: 120px;  /* 避開 fixed nav (16 + 52 + ~40 gap) */
+  padding-top: 88px;  /* 避開 fixed nav (16 + 52 + ~20 gap)；外層 .toy-box 已 32px */
 }
 .toy-hero h1 { font-size: var(--pipotoy-font-7); margin-bottom: var(--pipotoy-pad-2); font-weight: 700; letter-spacing: -0.01em; }
 .toy-hero p { color: var(--pipotoy-muted); font-size: var(--pipotoy-font-5); max-width: 580px; line-height: 1.6; }
