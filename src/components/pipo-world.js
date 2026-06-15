@@ -82,7 +82,7 @@ const TPL = `
       content: '';
       position: absolute;
       inset: 0;
-      background: #000;
+      background: var(--pipotoy-text);
       opacity: calc(1 - var(--pw-image-light, 100) / 100);
     }
 
@@ -91,7 +91,7 @@ const TPL = `
       content: '';
       position: absolute;
       inset: 0;
-      background: #000;
+      background: var(--pipotoy-text);
       opacity: calc(1 - var(--pw-video-light, 100) / 100);
     }
 
@@ -187,7 +187,14 @@ class PipoWorld extends HTMLElement {
         break;
       }
       case 'image-fit': {
-        $('.pw-image').style.backgroundSize = val || 'cover';
+        const el = $('.pw-image');
+        if (val === 'tile') {
+          el.style.backgroundSize = 'auto';
+          el.style.backgroundRepeat = 'repeat';
+        } else {
+          el.style.backgroundSize = val || 'cover';
+          el.style.backgroundRepeat = 'no-repeat'; // 從 tile 切換回來時重置
+        }
         break;
       }
       case 'image-align': {

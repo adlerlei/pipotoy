@@ -9,9 +9,7 @@
 【頁面結構】
 
   ① Nav（頂部導覽列）
-     · 與 index.html 相同風格的懸浮膠囊導覽列
-     · 左側：PipoToy logo + 品牌名稱
-     · 右側：「← Back · 回首頁」返回按鈕
+     · 已經有共用UI
 
   ② Hero（頁首）
      · 標題：Components · 元件
@@ -38,8 +36,7 @@
      · 點擊整張卡片跳到對應教學頁
 
   ⑤ Footer
-     · 與 index.html 相同風格
-     · 顯示版本號（從 src/version.js 讀取）
+     · 已經有共用UI
 
 【目前元件清單（第一版只有這一個，其餘卡片用「即將推出」狀態顯示）】
 
@@ -76,9 +73,6 @@
   圓角：--pipotoy-round-lg（24px）
   動畫：--pipotoy-spring（380ms cubic-bezier(0.34,1.56,0.64,1)）
 
-  字體：Nunito + Noto Sans TC，禁止使用其他字體
-  （JetBrains Mono 只用於元件名稱的 code 標籤）
-
 【Coming Soon 卡片樣式】
   · 預覽區加半透明遮罩（rgba 白色 0.5）
   · 右上角顯示「Coming Soon」小標籤
@@ -95,15 +89,6 @@
   · 桌機（> 1024px）：3 欄
   · 平板（768px ~ 1024px）：2 欄
   · 手機（< 768px）：1 欄
-
-【檔案位置】
-  · 輸出：docs/components.html 或根目錄 components.html（依現有專案結構決定）
-  · 引用：src/version.js、src/pipotoy-tokens.css
-
-【備註】
-  · 卡片預覽區的元件縮圖用靜態 HTML/CSS 模擬即可，不需要真實 Web Component
-  · 之後每完成一個新元件，只需要在卡片清單加一筆，改成可點擊狀態
-  · 頁面本身不引用 pipotoy.js，避免還沒完成的元件造成錯誤
 
 ══════════════════════════════════════════
 狀態：✅ 定案，可交付開發 AI

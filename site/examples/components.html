@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components · PipoToy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link is-active" href="./components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <header class="cmp-hero">
+      <div class="cmp-hero-eyebrow">Toy Cabinet · 玩具櫃</div>
+      <h1 class="cmp-hero-title"><span class="nm">Components</span></h1>
+      <p class="cmp-hero-zh">元件 · 拿起來就能用的玩具</p>
+      <p class="cmp-hero-sub-en">Every tag is a toy. Pick one, drop it in your HTML — done.</p>
+      <p class="cmp-hero-sub-zh">每一個標籤都是玩具。挑一個丟進 HTML 就能用，不需要 class、不需要 flex。</p>
+    </header>
+
+    <!-- LIST -->
+    <section class="cmp-list">
+
+      <!-- FILTER BAR -->
+      <div class="cmp-filters" role="tablist" aria-label="元件分類 Filter">
+        <button class="cmp-filter is-on" type="button" data-filter="all">All <span class="zh">全部</span></button>
+        <button class="cmp-filter" type="button" data-filter="structure">Structure <span class="zh">結構</span></button>
+        <button class="cmp-filter" type="button" data-filter="background">Background <span class="zh">背景</span></button>
+        <button class="cmp-filter" type="button" data-filter="nav">Nav <span class="zh">導覽</span></button>
+        <button class="cmp-filter" type="button" data-filter="content">Content <span class="zh">內容</span></button>
+        <button class="cmp-filter" type="button" data-filter="action">Action <span class="zh">互動</span></button>
+      </div>
+
+      <!-- CARDS GRID -->
+      <div class="cmp-grid" id="cmp-grid">
+
+        <!-- pipo-world（已完成） -->
+        <a class="cmp-card" href="./pipo-world.html" data-cat="structure">
+          <div class="cmp-preview cmp-preview--mibble">
+            <div class="shape shape-world"></div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-world&gt;</span>
+              <span class="cmp-card-cat">Structure<span class="zh">結構</span></span>
+            </div>
+            <div class="cmp-card-zh">網頁世界容器</div>
+            <p class="cmp-card-desc-en">The outermost shell — color, image, video, width, spacing, all in one tag.</p>
+            <p class="cmp-card-desc-zh">最外層的殼。背景、寬度、留白，一個標籤包辦。</p>
+          </div>
+        </a>
+
+        <!-- pipo-bar（Coming Soon） -->
+        <div class="cmp-card is-soon" data-cat="nav" aria-disabled="true">
+          <div class="cmp-preview cmp-preview--wibble">
+            <div class="shape shape-bar"><i></i><em></em></div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-bar&gt;</span>
+              <span class="cmp-card-cat">Nav<span class="zh">導覽</span></span>
+            </div>
+            <div class="cmp-card-zh">頂端導覽列</div>
+            <p class="cmp-card-desc-en">Sticky top nav with logo, links, and a friendly capsule shape.</p>
+            <p class="cmp-card-desc-zh">膠囊狀的懸浮導覽列，放 logo 跟連結就完成。</p>
+          </div>
+        </div>
+
+        <!-- pipo-tap（Coming Soon） -->
+        <div class="cmp-card is-soon" data-cat="action" aria-disabled="true">
+          <div class="cmp-preview cmp-preview--blonko">
+            <div class="shape shape-tap">Tap me</div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-tap&gt;</span>
+              <span class="cmp-card-cat">Action<span class="zh">互動</span></span>
+            </div>
+            <div class="cmp-card-zh">點下去的按鈕</div>
+            <p class="cmp-card-desc-en">A clay-soft button that squishes when you press it.</p>
+            <p class="cmp-card-desc-zh">會被按扁的黏土按鈕，按下去有彈性。</p>
+          </div>
+        </div>
+
+        <!-- pipo-tile（Coming Soon） -->
+        <div class="cmp-card is-soon" data-cat="content" aria-disabled="true">
+          <div class="cmp-preview cmp-preview--plobbo">
+            <div class="shape shape-tile">
+              <div class="shape-tile-body"><i></i><em></em><em></em></div>
+            </div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-tile&gt;</span>
+              <span class="cmp-card-cat">Content<span class="zh">內容</span></span>
+            </div>
+            <div class="cmp-card-zh">資訊卡片</div>
+            <p class="cmp-card-desc-en">A picture-and-text card for blogs, products, anything tileable.</p>
+            <p class="cmp-card-desc-zh">圖配字的方塊卡，部落格、商品、什麼都能放。</p>
+          </div>
+        </div>
+
+        <!-- pipo-stick（Coming Soon） -->
+        <div class="cmp-card is-soon" data-cat="content" aria-disabled="true">
+          <div class="cmp-preview cmp-preview--squorbo">
+            <div class="shape-stick"><i></i><i></i><em></em></div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-stick&gt;</span>
+              <span class="cmp-card-cat">Content<span class="zh">內容</span></span>
+            </div>
+            <div class="cmp-card-zh">便利貼</div>
+            <p class="cmp-card-desc-en">A tilted sticky note for memos, quotes, or playful asides.</p>
+            <p class="cmp-card-desc-zh">歪歪的便利貼，貼提醒、貼名言都可以。</p>
+          </div>
+        </div>
+
+        <!-- pipo-shout（Coming Soon） -->
+        <div class="cmp-card is-soon" data-cat="content" aria-disabled="true">
+          <div class="cmp-preview cmp-preview--glorix">
+            <div class="shape shape-shout">
+              <div class="shape-shout-body"><i></i><em></em></div>
+            </div>
+          </div>
+          <div class="cmp-card-body">
+            <div class="cmp-card-head">
+              <span class="cmp-card-name">&lt;pipo-shout&gt;</span>
+              <span class="cmp-card-cat">Content<span class="zh">內容</span></span>
+            </div>
+            <div class="cmp-card-zh">通知提示</div>
+            <p class="cmp-card-desc-en">Pop-up toasts that say hi, warn, or cheer you on.</p>
+            <p class="cmp-card-desc-zh">會跳出來的小通知，提示、警告、鼓勵都行。</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script>
+    (function () {
+      const filters = document.querySelectorAll('.cmp-filter');
+      const cards   = document.querySelectorAll('.cmp-card');
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const f = btn.dataset.filter;
+          filters.forEach(function (b) { b.classList.remove('is-on'); });
+          btn.classList.add('is-on');
+          cards.forEach(function (c) {
+            const show = (f === 'all') || (c.dataset.cat === f);
+            c.classList.toggle('is-hidden', !show);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
