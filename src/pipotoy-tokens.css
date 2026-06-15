@@ -5,8 +5,7 @@
    - 規則：禁止直接寫色碼，必須用這裡的變數
    ========================================================= */
 
-:root,
-[data-theme="light"] {
+:root {
   /* ── 底色 / 表面 ── */
   --pipotoy-bg:        var(--pipotoy-blobia-pibg);
   --pipotoy-surface:   #f8f8f4;

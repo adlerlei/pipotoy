@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-tap — PipoToy Component Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* 頁面層的 live demo 排版（不含任何色碼，色彩全由 pipo-tap 自理） */
+    .tap-demo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 28px 18px;
+    }
+    .tap-demo.col { flex-direction: column; }
+    .tap-demo.tall { min-height: 120px; }
+    .tap-cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .tap-cell .demo-cell-label { margin-top: 0; }
+    .tap-demo-full { padding: 24px 18px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <span class="nav-tag">&lt;pipo-tap&gt;</span>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-tap</div>
+
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-tap</span><span class="lt">&gt;</span></h1>
+    <p class="hero-zh">點下去的按鈕</p>
+
+    <p class="hero-sub">
+      A clay-soft button that floats when you hover<br>
+      and squishes when you press it. One tag, no CSS.
+    </p>
+    <p class="hero-sub-zh">
+      一顆黏土感的按鈕,滑過去會浮起來,按下去會被壓扁。<br>
+      一個標籤就好,不用寫任何 CSS。
+    </p>
+
+    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>確認<span class="tg">&lt;/pipo-tap&gt;</span></pre></div>
+
+    <div class="tap-demo" style="margin-top:24px">
+      <pipo-tap color="blonko">確認</pipo-tap>
+      <pipo-tap color="mibble" anim="tilt">Tilt me!</pipo-tap>
+      <pipo-tap color="plobbo" shape="square">立即開始</pipo-tap>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <section class="alt" id="reference">
+    <div class="section-inner">
+      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
+      <h2 class="section-heading">9 attributes. All optional.</h2>
+      <p class="section-heading-zh">9 個屬性,全部可不填——什麼都不填,就是一顆好看的黃色膠囊按鈕。</p>
+
+      <table class="rwd-table quick-table" style="max-width:680px">
+        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
+        <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
+        <tr><td><a href="#attr-color">color</a></td><td>Background color (Pipo token) · 背景顏色</td><td>"blonko"</td></tr>
+        <tr><td><a href="#attr-size">size</a></td><td>How big it is · 大小</td><td>"md"</td></tr>
+        <tr><td><a href="#attr-shape">shape</a></td><td>Rounded pill or soft square · 形狀</td><td>"pill"</td></tr>
+        <tr><td><a href="#attr-full">full</a></td><td>Stretch to full width · 滿版寬度</td><td>false</td></tr>
+        <tr class="quick-group"><td colspan="3">Motion · 動作</td></tr>
+        <tr><td><a href="#attr-anim">anim</a></td><td>Hover animation style · 滑過動畫</td><td>"float"</td></tr>
+        <tr class="quick-group"><td colspan="3">Behavior · 行為</td></tr>
+        <tr><td><a href="#attr-href">href</a></td><td>Make it a link · 變成連結</td><td>""</td></tr>
+        <tr><td><a href="#attr-target">target</a></td><td>Open link in a new tab · 開新分頁</td><td>""</td></tr>
+        <tr><td><a href="#attr-type">type</a></td><td>Button type (form use) · 按鈕類型</td><td>"button"</td></tr>
+        <tr><td><a href="#attr-disabled">disabled</a></td><td>Turn it off · 停用</td><td>false</td></tr>
+      </table>
+
+      <p class="attr-desc">Hover any button below — it floats up. Press and hold — it squishes down. That clay feeling is built in; you never style it yourself.</p>
+      <p class="attr-desc-zh">滑過下面任何一顆按鈕,它會浮起來;按住不放,它會被壓扁。那種黏土的手感是內建的,你永遠不用自己刻。</p>
+    </div>
+  </section>
+
+  <!-- LOOK -->
+  <section id="look">
+    <div class="section-inner">
+      <div class="section-eyebrow">Look · 外觀</div>
+      <h2 class="section-heading">Pick a color, a size, a shape.</h2>
+      <p class="section-heading-zh">挑一個顏色、一個大小、一個形狀。</p>
+
+      <!-- color -->
+      <div class="attr" id="attr-color">
+        <div class="attr-head">
+          <code class="attr-name">color</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"blonko"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何 Pipo 顏色名字 any Pipo color name</b></span></span>
+        </div>
+        <h3 class="attr-title">Background color <span>背景顏色</span></h3>
+        <p class="attr-desc">Fill in a Pipo color token — like <code>mibble</code>, <code>wibble</code>, or <code>plobbo</code>. No hex codes, ever. The text color stays the same friendly dark tone on every color. Type a name that doesn't exist and it quietly falls back to <code>blonko</code>.</p>
+        <p class="attr-desc-zh">填一個 Pipo 色系 token——像 mibble、wibble、plobbo。永遠不用色碼。文字顏色在每個底色上都維持同一種友善的深色。填了不存在的名字也不會壞,會安靜退回 blonko。</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>按我<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">color — real buttons, hover & press them! 真的按鈕,滑過、按下試試!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <pipo-tap color="mibble">mibble</pipo-tap>
+              <pipo-tap color="wibble">wibble</pipo-tap>
+              <pipo-tap color="blonko">blonko</pipo-tap>
+              <pipo-tap color="plobbo">plobbo</pipo-tap>
+              <pipo-tap color="squorbo">squorbo</pipo-tap>
+              <pipo-tap color="dunko">dunko</pipo-tap>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- size -->
+      <div class="attr" id="attr-size">
+        <div class="attr-head">
+          <code class="attr-name">size</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"md"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>xs / sm / md / lg</b></span></span>
+        </div>
+        <h3 class="attr-title">How big it is <span>大小</span></h3>
+        <p class="attr-desc">Four sizes, from a tiny <code>xs</code> chip to a chunky <code>lg</code> call-to-action. The padding and font scale together so every size stays nicely proportioned.</p>
+        <p class="attr-desc-zh">四種大小,從小巧的 xs 一路到厚實的 lg 主行動鈕。內距和字級會一起縮放,每個尺寸的比例都剛剛好。</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">size</span>=<span class="vl">"lg"</span><span class="tg">&gt;</span>立即開始<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">size</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <span class="tap-cell"><pipo-tap color="blonko" size="xs">xs</pipo-tap><span class="demo-cell-label">"xs"</span></span>
+              <span class="tap-cell"><pipo-tap color="blonko" size="sm">sm</pipo-tap><span class="demo-cell-label">"sm"</span></span>
+              <span class="tap-cell"><pipo-tap color="blonko" size="md">md</pipo-tap><span class="demo-cell-label">"md"</span></span>
+              <span class="tap-cell"><pipo-tap color="blonko" size="lg">lg</pipo-tap><span class="demo-cell-label">"lg"</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="height:20px"></div>
+        <table class="rwd-table">
+          <tr><th>size</th><th>padding</th><th>font-size</th></tr>
+          <tr><td>xs</td><td>11px</td><td>15px</td></tr>
+          <tr><td>sm</td><td>7px 16px</td><td>13px</td></tr>
+          <tr><td>md</td><td>11px 26px</td><td>15px</td></tr>
+          <tr><td>lg</td><td>15px 36px</td><td>17px</td></tr>
+        </table>
+      </div>
+
+      <!-- shape -->
+      <div class="attr" id="attr-shape">
+        <div class="attr-head">
+          <code class="attr-name">shape</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"pill"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>pill / square</b></span></span>
+        </div>
+        <h3 class="attr-title">Pill or soft square <span>形狀</span></h3>
+        <p class="attr-desc"><code>pill</code> is fully rounded — the classic friendly capsule. <code>square</code> keeps gently rounded corners for a more structured look. (When <code>full</code> is on, the shape is always square — see below.)</p>
+        <p class="attr-desc-zh">pill 是完全的圓角,經典又友善的膠囊形。square 是帶點圓角的方形,看起來更工整。(開了 full 時,形狀一律是 square——見下方。)</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">shape</span>=<span class="vl">"square"</span><span class="tg">&gt;</span>方形按鈕<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">shape</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <span class="tap-cell"><pipo-tap color="wibble" shape="pill">pill</pipo-tap><span class="demo-cell-label">"pill" <i>999px</i></span></span>
+              <span class="tap-cell"><pipo-tap color="wibble" shape="square">square</pipo-tap><span class="demo-cell-label">"square" <i>10px</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- full -->
+      <div class="attr" id="attr-full">
+        <div class="attr-head">
+          <code class="attr-name">full</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>false(關)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>加上就開 add it to turn on</b></span></span>
+        </div>
+        <h3 class="attr-title">Full width <span>滿版寬度</span></h3>
+        <p class="attr-desc">Add <code>full</code> and the button stretches to fill its container — perfect for forms and mobile screens. A full-width button is always <code>square</code>, so even if you write <code>shape="pill"</code>, it renders square.</p>
+        <p class="attr-desc-zh">加上 full,按鈕就會撐滿整個容器寬度——表單和手機畫面最適合。滿版按鈕一律是 square,所以就算你寫了 shape="pill",也會以方形呈現。</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">size</span>=<span class="vl">"lg"</span> <span class="at">full</span><span class="tg">&gt;</span>立即開始<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">full — stretches edge to edge · 撐滿整個寬度</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo-full">
+              <pipo-tap color="mibble" size="lg" full>立即開始</pipo-tap>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section class="alt" id="motion">
+    <div class="section-inner">
+      <div class="section-eyebrow">Motion · 動作</div>
+      <h2 class="section-heading">Two ways to come alive.</h2>
+      <p class="section-heading-zh">兩種活起來的方式。</p>
+
+      <!-- anim -->
+      <div class="attr" id="attr-anim">
+        <div class="attr-head">
+          <code class="attr-name">anim</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"float"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>float / tilt</b></span></span>
+        </div>
+        <h3 class="attr-title">Hover animation <span>滑過動畫</span></h3>
+        <p class="attr-desc"><code>float</code> lifts the button straight up when you hover. <code>tilt</code> tips it playfully to one side. Both squish down with a springy bounce when pressed — and <code>tilt</code> stays tilted while you hold it.</p>
+        <p class="attr-desc-zh">float 是滑過時筆直浮起來。tilt 是俏皮地往一邊歪。兩種按下去都會帶著彈簧感壓扁——而且 tilt 按住時會保持傾斜,不會歸正。</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">anim</span>=<span class="vl">"tilt"</span><span class="tg">&gt;</span>歪歪的<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">anim — hover and press to feel the difference! 滑過、按住感受差別!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo tall">
+              <span class="tap-cell"><pipo-tap color="squorbo" size="lg" anim="float">float</pipo-tap><span class="demo-cell-label">"float" <i>lifts straight up 筆直浮起</i></span></span>
+              <span class="tap-cell"><pipo-tap color="squorbo" size="lg" anim="tilt">tilt</pipo-tap><span class="demo-cell-label">"tilt" <i>tips to one side 往旁邊歪</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BEHAVIOR -->
+  <section id="behavior">
+    <div class="section-inner">
+      <div class="section-eyebrow">Behavior · 行為</div>
+      <h2 class="section-heading">Button or link — it knows.</h2>
+      <p class="section-heading-zh">按鈕還是連結——它自己會判斷。</p>
+
+      <!-- href -->
+      <div class="attr" id="attr-href">
+        <div class="attr-head">
+          <code class="attr-name">href</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(是按鈕)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何網址 any URL</b></span></span>
+        </div>
+        <h3 class="attr-title">Make it a link <span>變成連結</span></h3>
+        <p class="attr-desc">Leave <code>href</code> empty and you get a real <code>&lt;button&gt;</code>. Give it a URL and the very same tag becomes a real <code>&lt;a&gt;</code> link — same look, same feel, but it navigates. You write one tag; PipoToy picks the right element.</p>
+        <p class="attr-desc-zh">href 留空,你得到一顆真正的 &lt;button&gt;。填上網址,同一個標籤就變成真正的 &lt;a&gt; 連結——外觀手感一模一樣,但它會跳轉。你只寫一個標籤,PipoToy 幫你選對的元素。</p>
+        <pre class="code"><span class="cm">&lt;!-- 按鈕 button --&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>送出<span class="tg">&lt;/pipo-tap&gt;</span>
+
+<span class="cm">&lt;!-- 連結 link --&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>了解更多<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">href — the right one really navigates! 右邊那顆真的會跳頁!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <span class="tap-cell"><pipo-tap color="blonko">送出</pipo-tap><span class="demo-cell-label">no href <i>&lt;button&gt;</i></span></span>
+              <span class="tap-cell"><pipo-tap color="wibble" href="./components.html">了解更多</pipo-tap><span class="demo-cell-label">href="…" <i>&lt;a&gt;</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- target -->
+      <div class="attr" id="attr-target">
+        <div class="attr-head">
+          <code class="attr-name">target</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(原分頁)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>blank</b></span></span>
+        </div>
+        <h3 class="attr-title">Open in a new tab <span>開新分頁</span></h3>
+        <p class="attr-desc">By default a link opens in the same tab. Add <code>target="blank"</code> and it opens in a new tab instead — PipoToy automatically adds <code>rel="noopener noreferrer"</code> for you, so it's safe. Only works together with <code>href</code>; plain buttons ignore it.</p>
+        <p class="attr-desc-zh">預設連結在原分頁開啟。加上 <code>target="blank"</code> 就會改在新分頁開——PipoToy 會自動幫你補上 <code>rel="noopener noreferrer"</code>,安全無虞。只有搭配 <code>href</code> 才有用,純按鈕會忽略它。</p>
+        <pre class="code"><span class="cm">&lt;!-- 原分頁 same tab --&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>同分頁<span class="tg">&lt;/pipo-tap&gt;</span>
+
+<span class="cm">&lt;!-- 新分頁 new tab --&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"squorbo"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span> <span class="at">target</span>=<span class="vl">"blank"</span><span class="tg">&gt;</span>開新分頁<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">target — the right one opens a new tab! 右邊那顆會另開新分頁!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <span class="tap-cell"><pipo-tap color="wibble" href="./components.html">同分頁</pipo-tap><span class="demo-cell-label">no target <i>same tab 原分頁</i></span></span>
+              <span class="tap-cell"><pipo-tap color="squorbo" href="./components.html" target="blank">開新分頁</pipo-tap><span class="demo-cell-label">target="blank" <i>new tab 新分頁</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- type -->
+      <div class="attr" id="attr-type">
+        <div class="attr-head">
+          <code class="attr-name">type</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"button"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>button / submit / reset</b></span></span>
+        </div>
+        <h3 class="attr-title">Button type <span>按鈕類型</span></h3>
+        <p class="attr-desc">For buttons inside a <code>&lt;form&gt;</code>: <code>submit</code> sends the form, <code>reset</code> clears it, <code>button</code> does nothing on its own. This only matters when there's no <code>href</code> — links don't submit forms.</p>
+        <p class="attr-desc-zh">給表單 &lt;form&gt; 裡的按鈕用:submit 送出表單,reset 清空,button 自己不做事。只有在沒有 href 時才有意義——連結不會送出表單。</p>
+        <pre class="code"><span class="tg">&lt;form&gt;</span>
+  <span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">type</span>=<span class="vl">"submit"</span><span class="tg">&gt;</span>送出表單<span class="tg">&lt;/pipo-tap&gt;</span>
+  <span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"flumpo"</span> <span class="at">type</span>=<span class="vl">"reset"</span><span class="tg">&gt;</span>清空<span class="tg">&lt;/pipo-tap&gt;</span>
+<span class="tg">&lt;/form&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">type — type in the box, then Submit / Reset · 在框裡打字,再按送出 / 清空</span>
+          </div>
+          <div class="toybox-screen">
+            <form class="tap-demo col" onsubmit="this.querySelector('.type-msg').textContent='✅ submitted! 已送出';return false;" onreset="setTimeout(()=>this.querySelector('.type-msg').textContent='🧹 cleared! 已清空',0)">
+              <input type="text" placeholder="打點字… type something…" style="font-family:var(--pipotoy-font-sans);font-size:15px;padding:10px 16px;border:none;border-radius:var(--pipotoy-round);box-shadow:var(--pipotoy-shadow-press);background:var(--pipotoy-surface);color:var(--pipotoy-text);width:min(320px,80%)">
+              <div class="tap-demo" style="padding:4px 0">
+                <pipo-tap color="mibble" type="submit">送出表單</pipo-tap>
+                <pipo-tap color="flumpo" type="reset">清空</pipo-tap>
+              </div>
+              <div class="type-msg" style="font-weight:700;color:var(--pipotoy-muted);min-height:1.2em"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- disabled -->
+      <div class="attr" id="attr-disabled">
+        <div class="attr-head">
+          <code class="attr-name">disabled</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>false(關)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>加上就停用 add it to disable</b></span></span>
+        </div>
+        <h3 class="attr-title">Turn it off <span>停用</span></h3>
+        <p class="attr-desc">Add <code>disabled</code> and the button fades, stops responding to hover or press, and shows a "not-allowed" cursor. It also tells screen readers it's off via <code>aria-disabled</code>. If a disabled button has an <code>href</code>, the link is removed too — so it really can't be clicked.</p>
+        <p class="attr-desc-zh">加上 disabled,按鈕會變淡、不再回應滑過或按下,游標變成「禁止」符號。它也會透過 aria-disabled 告訴螢幕報讀軟體它被關掉了。如果停用的按鈕本來有 href,連結也會一併移除——所以它真的點不動。</p>
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">disabled</span><span class="tg">&gt;</span>無法點擊<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">disabled — try to press the faded ones! 試著按按看變淡的那些!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <span class="tap-cell"><pipo-tap color="blonko">正常 active</pipo-tap><span class="demo-cell-label">normal</span></span>
+              <span class="tap-cell"><pipo-tap color="blonko" disabled>停用 button</pipo-tap><span class="demo-cell-label">disabled &lt;button&gt;</span></span>
+              <span class="tap-cell"><pipo-tap color="wibble" href="./components.html" disabled>停用 link</pipo-tap><span class="demo-cell-label">disabled &lt;a&gt;</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FULL EXAMPLE -->
+  <section class="alt" id="example">
+    <div class="section-inner">
+      <div class="section-eyebrow">All Together · 全部組起來</div>
+      <h2 class="section-heading">A row of real buttons.</h2>
+      <p class="section-heading-zh">一排真正的按鈕,各種屬性組合在一起。</p>
+
+      <div class="attr">
+        <pre class="code"><span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">size</span>=<span class="vl">"lg"</span><span class="tg">&gt;</span>主要行動<span class="tg">&lt;/pipo-tap&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"flumpo"</span> <span class="at">size</span>=<span class="vl">"lg"</span> <span class="at">shape</span>=<span class="vl">"square"</span><span class="tg">&gt;</span>次要<span class="tg">&lt;/pipo-tap&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">anim</span>=<span class="vl">"tilt"</span> <span class="at">href</span>=<span class="vl">"#"</span><span class="tg">&gt;</span>了解更多<span class="tg">&lt;/pipo-tap&gt;</span>
+<span class="tg">&lt;pipo-tap</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">size</span>=<span class="vl">"xs"</span><span class="tg">&gt;</span>×<span class="tg">&lt;/pipo-tap&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">all together · 全部組起來</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="tap-demo">
+              <pipo-tap color="mibble" size="lg">主要行動</pipo-tap>
+              <pipo-tap color="flumpo" size="lg" shape="square">次要</pipo-tap>
+              <pipo-tap color="wibble" anim="tilt" href="#example">了解更多</pipo-tap>
+              <pipo-tap color="blonko" size="xs">×</pipo-tap>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section id="notes">
+    <div class="section-inner">
+      <div class="section-eyebrow">Good to Know · 備註</div>
+      <h2 class="section-heading">Small things worth knowing.</h2>
+      <p class="section-heading-zh">幾件值得知道的小事。</p>
+
+      <div class="note-list">
+        <div class="note">
+          <div class="note-icon">🫳</div>
+          <div class="note-body">
+            <div class="note-title">It squishes when you press</div>
+            <div class="note-desc">Hover lifts it up with a springy ease; press pushes it down fast (80ms) into the clay. That two-speed feel is what makes it feel real.</div>
+            <div class="note-desc-zh">滑過時帶彈簧感浮起,按下時快速(80ms)壓進黏土裡。這種一快一慢的手感,就是它像真的的原因。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🔀</div>
+          <div class="note-body">
+            <div class="note-title">One tag, button or link</div>
+            <div class="note-desc">No <code>href</code> → a real <code>&lt;button&gt;</code> (keyboard + Enter works). With <code>href</code> → a real <code>&lt;a&gt;</code> (Tab to focus, click to navigate). You never choose the element yourself.</div>
+            <div class="note-desc-zh">沒有 href → 真的 &lt;button&gt;(鍵盤 + Enter 可觸發)。有 href → 真的 &lt;a&gt;(Tab 聚焦、點擊跳轉)。你永遠不用自己選元素。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🛡️</div>
+          <div class="note-body">
+            <div class="note-title">Wrong color never breaks it</div>
+            <div class="note-desc">A color token that doesn't exist quietly falls back to <code>blonko</code>. No errors, no blank button — it always looks fine.</div>
+            <div class="note-desc-zh">不存在的顏色 token 會安靜退回 blonko。不報錯、不空白——它永遠是好看的。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">📐</div>
+          <div class="note-body">
+            <div class="note-title">full always means square</div>
+            <div class="note-desc">A full-width button renders <code>square</code> no matter what <code>shape</code> you write — a full-width pill looks odd, so PipoToy makes the call for you.</div>
+            <div class="note-desc-zh">滿版按鈕一律以 square 呈現,不管你寫了什麼 shape——滿版的膠囊形不好看,所以 PipoToy 幫你決定。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="../changelog.html" data-label="更新日誌">Changelog</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../../src/components/pipo-tap.js" defer></script>
+</body>
+</html>
