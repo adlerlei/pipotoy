@@ -7,6 +7,38 @@
 
 ---
 
+## [0.1.7-alpha] · 2026-06-15
+
+### 新增 · Added
+- **`pipo-tap` Web Component**
+  *`pipo-tap` Web Component*
+  - 黏土感互動按鈕，9 個屬性：`color` / `size` / `shape` / `anim` / `full` / `href` / `target` / `disabled` / `type`
+  - *Clay-feel action button with 9 attributes*
+  - 有 `href` → 渲染真正的 `<a>`；無 → 渲染 `<button>`（含 `type` 支援）
+  - *With `href` renders a real `<a>`; otherwise a `<button>` (with `type` support)*
+  - `target="blank"` → 連結開新分頁，自動補 `rel="noopener noreferrer"`
+  - *`target="blank"` opens the link in a new tab, auto-adding `rel="noopener noreferrer"`*
+  - 兩種 hover 動畫 `float` / `tilt`，pressed 帶彈簧壓扁（tilt 按住保持傾斜）
+  - *Two hover animations `float` / `tilt`, springy squish on press (tilt stays tilted while held)*
+  - `full` 滿版時強制 `square`；無效 color token 安靜 fallback `blonko`；`disabled` 加 `aria-disabled`
+  - *`full` forces `square`; invalid color falls back to `blonko`; `disabled` adds `aria-disabled`*
+- **`site/examples/pipo-tap.html` 元件教學頁**
+  *`site/examples/pipo-tap.html` teaching page*
+  - 雙語 hero + 屬性速查表 + 每屬性章節含程式碼與真實 live demo + 完整範例 + 備註
+  - *Bilingual hero, quick-reference table, per-attribute sections with code & live demos, full example, notes*
+
+### 變更 · Changed
+- **`site/examples/components.html`**：`pipo-tap` 卡片由 Coming Soon 啟用為可點擊連結
+  *`pipo-tap` card activated from Coming Soon to a live link*
+- **`src/pipotoy.js`**：框架入口註冊 `pipo-tap`
+  *register `pipo-tap` in the framework entry*
+
+### 移除 · Removed
+- **`src/pipotoy-tokens.css`**：移除遺留的 `[data-theme="light"]` 選擇器（無對應 dark 區塊，全站固定淺色）
+  *Removed leftover `[data-theme="light"]` selector (no dark block existed; site is light-only)*
+
+---
+
 ## [0.1.6-alpha] · 2026-06-15
 
 ### 新增 · Added
