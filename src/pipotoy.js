@@ -8,6 +8,7 @@
 import './pipotoy-tokens.css';
 import './components/pipo-world.js';
 import './components/pipo-tap.js';
+import './components/pipo-bar.js';
 
 // 對外暴露：方便除錯與擴充
 window.PipoToy = window.PipoToy || {
