@@ -7,6 +7,44 @@
 
 ---
 
+## [0.1.8-alpha] · 2026-06-16
+
+### 新增 · Added
+- **`pipo-bar` Web Component**
+  *`pipo-bar` Web Component*
+  - 膠囊懸浮頂端導覽列，13 個屬性：`logo` / `logo-icon` / `logo-image` / `color` / `bar-color` / `links` / `cta` / `cta-color` / `cta-shape` / `cta-anim` / `cta-href` / `cta-target` / `socials`
+  - *Frosted-glass floating nav bar with 13 attributes*
+  - `logo-image` 支援圖片 logo，載入失敗自動 fallback 至 `logo-icon` 或首字母圓圈
+  - *`logo-image` supports image logo; falls back to `logo-icon` or first-letter circle on error*
+  - `links` 格式 `Label:URL` 或純 `Label`（href 預設 `#`）；當前頁自動偵測高亮
+  - *`links` accepts `Label:URL` or bare `Label` (href defaults to `#`); active page auto-detected via pathname*
+  - `color` 一次設定 logo 圖示背景、active link 強調色、CTA 預設色
+  - *`color` simultaneously controls logo icon bg, active link highlight, and default CTA color*
+  - `bar-color` 設定整條 bar 背景實色（移除 backdrop-filter）；深色 token（luminance < 0.35）時 logo / link / icon 自動轉白；無效 token fallback 霧面白
+  - *`bar-color` fills the whole bar with a solid color (drops backdrop-filter); dark tokens (luminance < 0.35) auto-switch logo/link/icon to white; invalid tokens fall back to frosted white*
+  - Social icon hover 顯示純 CSS tooltip（`::after` + `data-tip`），非瀏覽器原生 title
+  - *Social icons show a pure-CSS hover tooltip (`::after` + `data-tip`), not the native browser title*
+  - CTA 動畫 `float` / `tilt` 與行為完全對齊 `pipo-tap`；`cta-target="_blank"` 自動補 `rel`
+  - *CTA animations aligned with `pipo-tap`; `cta-target="_blank"` auto-adds `rel="noopener noreferrer"`*
+  - `socials` 支援 7 個平台 SVG 圖示（Simple Icons MIT）：facebook / instagram / x / github / youtube / tiktok / linkedin；不認識的平台靜默忽略
+  - *`socials` supports 7 platforms via inline SVG (Simple Icons, MIT); unknown platforms silently ignored*
+  - 手機 ≤720px：pure CSS hamburger + 下拉選單（`checkbox + label`，不需要 JS）；展開動畫使用 `--pipotoy-spring`
+  - *Mobile ≤720px: pure-CSS hamburger + dropdown (checkbox + label, no JS); spring animation on open*
+- **`site/examples/pipo-bar.html` 元件教學頁**
+  *`site/examples/pipo-bar.html` teaching page*
+  - 雙語 hero + 屬性速查表 + 四大群組章節（Logo / Nav / CTA / Socials）各含程式碼與 live demo + 手機 RWD 章節 + 完整範例 + 備註
+  - *Bilingual hero, quick-reference table, four attribute groups with code & live demos, mobile RWD section, full example, notes*
+
+### 變更 · Changed
+- **`site/examples/components.html`**：`pipo-bar` 卡片由 Coming Soon 啟用為可點擊連結
+  *`pipo-bar` card activated from Coming Soon to a live link*
+- **`src/pipotoy.js`**：框架入口新增 `pipo-bar` import
+  *register `pipo-bar` in the framework entry*
+- **`src/version.js`**：版本號更新至 `v0.1.8-alpha`
+  *version bumped to `v0.1.8-alpha`*
+
+---
+
 ## [0.1.7-alpha] · 2026-06-15
 
 ### 新增 · Added
