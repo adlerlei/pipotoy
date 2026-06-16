@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pipo-world — PipoToy Component Guide</title>
+  <title>pipo-page — PipoToy Component Guide</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
   <link rel="stylesheet" href="../site.css">
@@ -22,20 +22,20 @@
       <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
       <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
     </div>
-    <span class="nav-tag">&lt;pipo-world&gt;</span>
+    <span class="nav-tag">&lt;pipo-page&gt;</span>
     <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
       <span></span><span></span><span></span>
     </label>
   </nav>
 
   <!-- HERO -->
-  <div class="hero hero-pipo-world">
+  <div class="hero hero-pipo-page">
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
 
-    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-world</div>
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-page</div>
 
-    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-world</span><span class="lt">&gt;</span></h1>
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-page</span><span class="lt">&gt;</span></h1>
     <p class="hero-zh">網頁世界容器</p>
 
     <p class="hero-sub">
@@ -50,9 +50,9 @@
     <div class="hero-code">
       <pre class="code"><span class="cm">&lt;!-- This is a complete PipoToy page. Really. --&gt;</span>
 <span class="cm">&lt;!-- 這就是一個完整的 PipoToy 頁面,真的。 --&gt;</span>
-<span class="tg">&lt;pipo-world&gt;</span>
+<span class="tg">&lt;pipo-page&gt;</span>
   Hello, world! 你好,世界!
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
     </div>
   </div>
 
@@ -113,9 +113,9 @@
         <h3 class="attr-title">Content width <span>內容寬度</span></h3>
         <p class="attr-desc">How wide your content area is. <code>full</code> stretches edge to edge; <code>narrow</code> keeps things cozy in the middle. On tablets and phones, everything becomes full width automatically.</p>
         <p class="attr-desc-zh">內容區有多寬。full 是滿版,narrow 是窄窄地待在中間。在平板和手機上會自動變成滿版,你不用管。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">size</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">size</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -161,9 +161,9 @@
         <h3 class="attr-title">Minimum height <span>最小高度</span></h3>
         <p class="attr-desc"><code>screen</code> makes your world at least as tall as the browser window (100vh), so short pages never look half-empty. <code>none</code> lets it shrink to fit the content.</p>
         <p class="attr-desc-zh">screen 讓你的世界至少和瀏覽器視窗一樣高(100vh),內容很少時頁面也不會看起來空空的。none 則是內容多高就多高。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">fill</span>=<span class="vl">"none"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">fill</span>=<span class="vl">"none"</span><span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -193,9 +193,9 @@
         <h3 class="attr-title">Padding around content <span>內距</span></h3>
         <p class="attr-desc">Breathing room between your content and the edge of the world. It shrinks gently on smaller screens so phones never waste space.</p>
         <p class="attr-desc-zh">內容和世界邊緣之間的呼吸空間。在小螢幕上會自動縮小,手機不會浪費寶貴的畫面。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">space</span>=<span class="vl">"large"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">space</span>=<span class="vl">"large"</span><span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -241,9 +241,9 @@
         <h3 class="attr-title">Horizontal alignment <span>水平對齊</span></h3>
         <p class="attr-desc">Where the content area sits when it's narrower than the screen. Only matters when <code>size</code> isn't <code>full</code>.</p>
         <p class="attr-desc-zh">當內容區比螢幕窄的時候,它要靠哪邊站。只有 size 不是 full 的時候才有作用。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">size</span>=<span class="vl">"narrow"</span> <span class="at">align</span>=<span class="vl">"left"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">size</span>=<span class="vl">"narrow"</span> <span class="at">align</span>=<span class="vl">"left"</span><span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -277,9 +277,9 @@
         <h3 class="attr-title">Vertical centering <span>垂直置中</span></h3>
         <p class="attr-desc">Floats your content to the vertical center of the world. Perfect for login pages, error pages, or anything with one single focus. Regular pages don't need it.</p>
         <p class="attr-desc-zh">讓內容浮在世界的垂直正中央。適合登入頁、錯誤頁這種只有一個焦點的畫面。一般頁面不需要開。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">middle</span>=<span class="vl">"true"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">middle</span>=<span class="vl">"true"</span><span class="tg">&gt;</span>
   <span class="cm">&lt;!-- a single login card, floating in the middle --&gt;</span>
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -309,9 +309,9 @@
         <h3 class="attr-title">Page scrolling <span>捲動控制</span></h3>
         <p class="attr-desc"><code>auto</code> scrolls when content is taller than the window. <code>yes</code> always shows a scrollbar. <code>no</code> locks the page — use it only when you're sure everything fits, or the overflow gets clipped.</p>
         <p class="attr-desc-zh">auto 是內容超出視窗才捲動,yes 是永遠顯示捲軸,no 是鎖住頁面——只有確定內容塞得下時才用,不然超出的部分會被裁掉。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">scroll</span>=<span class="vl">"no"</span> <span class="at">middle</span>=<span class="vl">"true"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">scroll</span>=<span class="vl">"no"</span> <span class="at">middle</span>=<span class="vl">"true"</span><span class="tg">&gt;</span>
   <span class="cm">&lt;!-- a full-screen page that never scrolls --&gt;</span>
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -364,9 +364,9 @@
         <h3 class="attr-title">Background color <span>背景顏色</span></h3>
         <p class="attr-desc">Fill in a Pipo color token — like <code>mibble</code>, <code>wibble</code>, or <code>blonko</code>. No hex codes, ever. Even when you use an image or a video, set a color too: it's the safety net underneath everything.</p>
         <p class="attr-desc-zh">填一個 Pipo 色系 token——像 mibble、wibble、blonko。永遠不需要色碼。就算用了背景圖或影片,也建議填一個顏色,它是墊在最底下的安全網。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
 
         <div class="toybox pickbox">
           <div class="toybox-chrome">
@@ -388,7 +388,7 @@
             <label for="pk-dunko"   class="lb-dunko">dunko</label>
           </div>
           <div class="toybox-screen pick-screen">
-            <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">color</span>=<span class="vl">"<span class="vv v-mibble">mibble</span><span class="vv v-wibble">wibble</span><span class="vv v-blonko">blonko</span><span class="vv v-plobbo">plobbo</span><span class="vv v-whibble">whibble</span><span class="vv v-dunko">dunko</span>"</span><span class="tg">&gt;</span></pre>
+            <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">color</span>=<span class="vl">"<span class="vv v-mibble">mibble</span><span class="vv v-wibble">wibble</span><span class="vv v-blonko">blonko</span><span class="vv v-plobbo">plobbo</span><span class="vv v-whibble">whibble</span><span class="vv v-dunko">dunko</span>"</span><span class="tg">&gt;</span></pre>
           </div>
         </div>
 
@@ -414,12 +414,12 @@
         <h3 class="attr-title">Background image <span>背景圖片</span></h3>
         <p class="attr-desc">Paste an image URL and it becomes the backdrop of your world. Leave it empty and there's simply no image. It sits on top of <code>color</code>, so if the image ever fails to load, your color shows instead.</p>
         <p class="attr-desc-zh">貼一個圖片網址,它就變成世界的背景。留空就是沒有圖。圖片疊在 color 上面,所以圖片載入失敗時,顏色會接手。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span>
   <span class="at">image</span>=<span class="vl">"https://example.com/bg.jpg"</span>
   <span class="at">color</span>=<span class="vl">"mibble"</span>  <span class="cm">&lt;!-- safety net 安全網 --&gt;</span>
 <span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -449,7 +449,7 @@
         <h3 class="attr-title">How the image fills <span>圖片填滿方式</span></h3>
         <p class="attr-desc"><code>cover</code> fills every pixel (edges may get cropped). <code>contain</code> shows the whole image (edges may show the color underneath). <code>tile</code> repeats the image like wallpaper.</p>
         <p class="attr-desc-zh">cover 填滿每一格(邊緣可能被裁掉),contain 完整顯示整張圖(旁邊會露出底色),tile 像壁紙一樣重複拼貼。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-fit</span>=<span class="vl">"tile"</span><span class="tg">&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-fit</span>=<span class="vl">"tile"</span><span class="tg">&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -483,7 +483,7 @@
         <h3 class="attr-title">Image position <span>圖片位置</span></h3>
         <p class="attr-desc">Which part of the image stays visible when it gets cropped. <code>top</code> keeps the sky, <code>bottom</code> keeps the ground — pick the part you love.</p>
         <p class="attr-desc-zh">圖片被裁切時,要保留哪一邊。top 留住天空,bottom 留住地面——留住你最喜歡的那一塊。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-align</span>=<span class="vl">"top"</span><span class="tg">&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-align</span>=<span class="vl">"top"</span><span class="tg">&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -517,7 +517,7 @@
         <h3 class="attr-title">Image brightness <span>圖片亮度</span></h3>
         <p class="attr-desc">Dim the image so your text stays readable on top of it. 100 is full brightness, 0 is pitch black. Around 50–70 usually makes white text pop nicely.</p>
         <p class="attr-desc-zh">把圖片調暗,讓上面的文字看得清楚。100 是全亮,0 是全黑。50–70 左右通常能讓白色文字很漂亮。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-light</span>=<span class="vl">"60"</span><span class="tg">&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-light</span>=<span class="vl">"60"</span><span class="tg">&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -555,7 +555,7 @@
         <h3 class="attr-title">Parallax effect <span>視差效果</span></h3>
         <p class="attr-desc">When <code>true</code>, the image stays still while the page scrolls past it — a gentle parallax feeling. On iOS Safari and some Android browsers this can be unstable, so PipoToy falls back to normal scrolling there.</p>
         <p class="attr-desc-zh">開啟後,頁面捲動時圖片留在原地不動,有種輕輕的視差感。在 iOS Safari 和部分 Android 瀏覽器上不穩定,PipoToy 會自動退回一般捲動。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-sticky</span>=<span class="vl">"true"</span><span class="tg">&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">image</span>=<span class="vl">"bg.jpg"</span> <span class="at">image-sticky</span>=<span class="vl">"true"</span><span class="tg">&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -609,12 +609,12 @@
         <h3 class="attr-title">Background video <span>背景影片</span></h3>
         <p class="attr-desc">Paste a video URL and it plays behind everything — automatically muted, looping forever, no controls. It sits on the very top of the background stack. Always set a <code>color</code> too, for the moment before the video loads.</p>
         <p class="attr-desc-zh">貼一個影片網址,它就在所有東西後面播放——自動靜音、無限循環、沒有控制列。它在背景疊層的最上面。記得也填一個 color,影片載入前的那一瞬間靠它撐場。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span>
   <span class="at">video</span>=<span class="vl">"https://example.com/bg.mp4"</span>
   <span class="at">color</span>=<span class="vl">"dunko"</span>
 <span class="tg">&gt;</span>
   ...
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -636,7 +636,7 @@
         <h3 class="attr-title">Video brightness <span>影片亮度</span></h3>
         <p class="attr-desc">Works exactly like <code>image-light</code>, but for the video. Dim it down so your content stays the star of the show.</p>
         <p class="attr-desc-zh">和 image-light 一模一樣,只是對象是影片。把它調暗一點,主角才是你的內容。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span> <span class="at">video</span>=<span class="vl">"bg.mp4"</span> <span class="at">video-light</span>=<span class="vl">"50"</span><span class="tg">&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">video</span>=<span class="vl">"bg.mp4"</span> <span class="at">video-light</span>=<span class="vl">"50"</span><span class="tg">&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome">
             <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
@@ -666,17 +666,17 @@
         <h3 class="attr-title">Putting it all together <span>全部組起來</span></h3>
         <p class="attr-desc">A complete world with a color safety net, a dimmed image, and other Pipo components living inside.</p>
         <p class="attr-desc-zh">一個完整的世界:有顏色安全網、有調暗的背景圖,還有其他 Pipo 元件住在裡面。</p>
-        <pre class="code"><span class="tg">&lt;pipo-world</span>
+        <pre class="code"><span class="tg">&lt;pipo-page</span>
   <span class="at">color</span>=<span class="vl">"pibg"</span>
   <span class="at">image</span>=<span class="vl">"https://example.com/bg.jpg"</span>
   <span class="at">image-light</span>=<span class="vl">"80"</span>
   <span class="at">fill</span>=<span class="vl">"screen"</span>
   <span class="at">middle</span>=<span class="vl">"true"</span>
 <span class="tg">&gt;</span>
-  <span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"PipoToy"</span> <span class="at">links</span>=<span class="vl">"首頁,元件,文件"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span>
+  <span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"PipoToy"</span> <span class="at">links</span>=<span class="vl">"首頁,元件,文件"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span>
   <span class="tg">&lt;pipo-card</span> <span class="at">title</span>=<span class="vl">"你好世界"</span><span class="tg">&gt;&lt;/pipo-card&gt;</span>
   <span class="tg">&lt;pipo-foot</span> <span class="at">text</span>=<span class="vl">"© 2026 PipoToy"</span><span class="tg">&gt;&lt;/pipo-foot&gt;</span>
-<span class="tg">&lt;/pipo-world&gt;</span></pre>
+<span class="tg">&lt;/pipo-page&gt;</span></pre>
       </div>
 
     </div>
@@ -725,7 +725,7 @@
         <div class="note">
           <div class="note-icon">🔤</div>
           <div class="note-body">
-            <div class="note-title">pipo-world sets the family font</div>
+            <div class="note-title">pipo-page sets the family font</div>
             <div class="note-desc">As the outermost shell, it defines <code>font-family: "Nunito", "Noto Sans TC", sans-serif</code> so every Pipo component inside inherits the same friendly voice.</div>
             <div class="note-desc-zh">身為最外殼,它定義了整個字型家族,裡面所有 Pipo 元件都繼承同一種友善的聲音。</div>
           </div>

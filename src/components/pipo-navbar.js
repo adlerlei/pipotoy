@@ -1,6 +1,6 @@
 /* =========================================================
-   PipoToy · pipo-bar
-   規格：pipo-bar-spec.md
+   PipoToy · pipo-navbar
+   規格：pipo-navbar-spec.md
    - Nav / 導覽：膠囊懸浮頂端導覽列
    - HTML-First：所有內容由屬性驅動，無 slot
    - 手機 ≤720px：pure CSS hamburger（checkbox + label）
@@ -256,7 +256,7 @@ const BAR_STYLE = `
   }
 `;
 
-class PipoBar extends HTMLElement {
+class PipoNavbar extends HTMLElement {
   static get observedAttributes() {
     return ['logo', 'logo-icon', 'logo-image', 'color', 'bar-color', 'links',
             'cta', 'cta-color', 'cta-shape', 'cta-anim', 'cta-href', 'cta-target', 'socials'];
@@ -437,6 +437,6 @@ class PipoBar extends HTMLElement {
   }
 }
 
-if (!customElements.get('pipo-bar')) {
-  customElements.define('pipo-bar', PipoBar);
+if (!customElements.get('pipo-navbar')) {
+  customElements.define('pipo-navbar', PipoNavbar);
 }

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pipo-bar — PipoToy Component Guide</title>
+  <title>pipo-navbar — PipoToy Component Guide</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
   <link rel="stylesheet" href="../site.css">
   <style>
     /* toybox 預設 overflow:hidden 會裁掉手機下拉選單 → 本頁放行
-       （層級由元件自身 host z-index 處理，見 pipo-bar.js demo 模式） */
+       （層級由元件自身 host z-index 處理，見 pipo-navbar.js demo 模式） */
     .toybox,
     .toybox-screen { overflow: visible; }
 
@@ -46,7 +46,7 @@
       <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
       <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
     </div>
-    <span class="nav-tag">&lt;pipo-bar&gt;</span>
+    <span class="nav-tag">&lt;pipo-navbar&gt;</span>
     <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
       <span></span><span></span><span></span>
     </label>
@@ -57,9 +57,9 @@
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
 
-    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-bar</div>
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-navbar</div>
 
-    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-bar</span><span class="lt">&gt;</span></h1>
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-navbar</span><span class="lt">&gt;</span></h1>
     <p class="hero-zh">膠囊懸浮導覽列</p>
 
     <p class="hero-sub">
@@ -71,24 +71,24 @@
       Logo、連結、CTA 按鈕、社群圖示——一個標籤，不用寫 CSS。
     </p>
 
-    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-bar</span>
+    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-navbar</span>
   <span class="at">logo</span>=<span class="vl">"我的品牌"</span>
   <span class="at">logo-icon</span>=<span class="vl">"🌟"</span>
   <span class="at">color</span>=<span class="vl">"mibble"</span>
   <span class="at">links</span>=<span class="vl">"首頁:/,作品集:/portfolio,關於:/about"</span>
   <span class="at">cta</span>=<span class="vl">"聯繫我"</span>
   <span class="at">cta-href</span>=<span class="vl">"/contact"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre></div>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre></div>
 
     <div class="bar-wrap" style="margin-top:32px;max-width:860px;margin-left:auto;margin-right:auto;">
-      <pipo-bar demo
+      <pipo-navbar demo
         logo="我的品牌"
         logo-icon="🌟"
         color="mibble"
         links="首頁:/,作品集:#,關於:#"
         cta="聯繫我"
         cta-href="#"
-      ></pipo-bar>
+      ></pipo-navbar>
     </div>
   </div>
 
@@ -138,18 +138,18 @@
         <h3 class="attr-title">Brand name text <span>品牌名稱文字</span></h3>
         <p class="attr-desc">The text shown as the brand name. If you also set <code>logo-icon</code>, a colored icon block appears before the text. If neither icon nor image is set, the first letter of <code>logo</code> is used as the icon.</p>
         <p class="attr-desc-zh">品牌名稱文字。如果同時設了 logo-icon，會在文字左側出現一個彩色小方塊。如果 icon 和 image 都沒設，logo 的第一個字會自動變成圖示。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"PipoToy"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"PipoToy"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">logo — the first letter auto-becomes the icon! 第一個字母自動變圖示!</span></div>
           <div class="toybox-screen">
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">logo="PipoToy"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">logo="" (空白)</div>
-                <div class="bar-wrap"><pipo-bar demo></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -165,18 +165,18 @@
         <h3 class="attr-title">Emoji icon beside the logo <span>logo 旁的 emoji 圖示</span></h3>
         <p class="attr-desc">Put an emoji in the colored icon block next to the brand name. Hidden automatically when <code>logo-image</code> is set.</p>
         <p class="attr-desc-zh">在品牌名稱旁的彩色小方塊放 emoji。設了 logo-image 時自動隱藏。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"我的網站"</span> <span class="at">logo-icon</span>=<span class="vl">"🌟"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"我的網站"</span> <span class="at">logo-icon</span>=<span class="vl">"🌟"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">logo-icon</span></div>
           <div class="toybox-screen">
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">logo-icon="🌟"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="我的網站" logo-icon="🌟" color="blonko"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="我的網站" logo-icon="🌟" color="blonko"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">logo-icon="🧸"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -192,11 +192,11 @@
         <h3 class="attr-title">Image logo <span>圖片 logo</span></h3>
         <p class="attr-desc">Point to a PNG, SVG, or any image file. It's capped at 32px tall and 120px wide, so it never stretches the bar. When set, <code>logo-icon</code> is hidden. If the image fails to load, it falls back to <code>logo-icon</code> — or, if that's also empty, the first letter of <code>logo</code> in a colored circle.</p>
         <p class="attr-desc-zh">填圖片 URL（PNG、SVG 都可以）。高度固定 32px、最寬 120px，不會把 bar 撐高。設了之後 logo-icon 自動隱藏。圖片載入失敗時，退回顯示 logo-icon；如果 icon 也沒設，就顯示 logo 首字母。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span>
   <span class="at">logo</span>=<span class="vl">"PipoToy"</span>
   <span class="at">logo-icon</span>=<span class="vl">"🧸"</span>
   <span class="at">logo-image</span>=<span class="vl">"./logo.png"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span>
 
 <span class="cm">&lt;!-- 圖片失敗 → fallback: 退回 logo-icon · broken image falls back to logo-icon --&gt;</span></pre>
         <div class="toybox">
@@ -205,11 +205,11 @@
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">logo-image (broken → fallback to emoji)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" logo-image="./broken.png" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" logo-image="./broken.png" color="mibble"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">logo-image (broken, no icon → first letter)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-image="./broken.png" color="wibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-image="./broken.png" color="wibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -235,15 +235,15 @@
         <h3 class="attr-title">Accent color token <span>強調色 token</span></h3>
         <p class="attr-desc">Sets the accent color for three things at once: the logo icon background, the active nav link highlight, and the default CTA button color. Use any Pipo color token name — <code>mibble</code>, <code>wibble</code>, <code>blonko</code>… An invalid token quietly falls back to <code>mibble</code>.</p>
         <p class="attr-desc-zh">一次設定三個地方的強調色：logo 圖示背景、當前連結的高亮、CTA 預設顏色。用任何 Pipo 色系 token 名字都行。填了不存在的名字也不會壞，會安靜退回 mibble。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">logo-icon</span>=<span class="vl">"✦"</span> <span class="at">color</span>=<span class="vl">"plobbo"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">logo-icon</span>=<span class="vl">"✦"</span> <span class="at">color</span>=<span class="vl">"plobbo"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">color — one token, three places at once · 一個 token 同時影響三個地方</span></div>
           <div class="toybox-screen">
             <div style="display:flex;flex-direction:column;gap:10px">
-              <div class="bar-wrap"><pipo-bar demo logo="Mibble" logo-icon="✦" color="mibble" links="首頁:#"></pipo-bar></div>
-              <div class="bar-wrap"><pipo-bar demo logo="Blonko" logo-icon="✦" color="blonko" links="首頁:#"></pipo-bar></div>
-              <div class="bar-wrap"><pipo-bar demo logo="Plobbo" logo-icon="✦" color="plobbo" links="首頁:#"></pipo-bar></div>
-              <div class="bar-wrap"><pipo-bar demo logo="Wibble" logo-icon="✦" color="wibble" links="首頁:#"></pipo-bar></div>
+              <div class="bar-wrap"><pipo-navbar demo logo="Mibble" logo-icon="✦" color="mibble" links="首頁:#"></pipo-navbar></div>
+              <div class="bar-wrap"><pipo-navbar demo logo="Blonko" logo-icon="✦" color="blonko" links="首頁:#"></pipo-navbar></div>
+              <div class="bar-wrap"><pipo-navbar demo logo="Plobbo" logo-icon="✦" color="plobbo" links="首頁:#"></pipo-navbar></div>
+              <div class="bar-wrap"><pipo-navbar demo logo="Wibble" logo-icon="✦" color="wibble" links="首頁:#"></pipo-navbar></div>
             </div>
           </div>
         </div>
@@ -259,29 +259,29 @@
         <p class="attr-desc">Leave it empty for the default frosted-glass look (translucent white with blur). Set a Pipo token and the whole bar fills with that solid color — the blur is removed automatically. Pick a dark token like <code>dunko</code> or <code>blornko</code> and the logo, links, and icons <b>auto-switch to white</b> so they stay readable. Invalid tokens quietly fall back to frosted white.</p>
         <p class="attr-desc-zh">留空就是預設的霧面玻璃（半透明白 + 模糊）。填一個 Pipo token，整條 bar 換成那個實色——模糊會自動移除。選深色 token（像 dunko、blornko），logo、連結、圖示會<b>自動變白</b>，維持清楚可讀。填了不存在的 token 會安靜退回霧面白。</p>
         <pre class="code"><span class="cm">&lt;!-- 淺色實底 light solid --&gt;</span>
-<span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">bar-color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span>
+<span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">bar-color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span>
 
 <span class="cm">&lt;!-- 深色實底 → 文字自動轉白 dark → white text --&gt;</span>
-<span class="tg">&lt;pipo-bar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">bar-color</span>=<span class="vl">"dunko"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&lt;pipo-navbar</span> <span class="at">logo</span>=<span class="vl">"Brand"</span> <span class="at">bar-color</span>=<span class="vl">"dunko"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">bar-color — dark bars flip text to white automatically · 深色 bar 自動白字</span></div>
           <div class="toybox-screen">
             <div style="display:flex;flex-direction:column;gap:10px">
               <div>
                 <div class="bar-demo-label">bar-color="" (預設霧面白)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="開始"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="開始"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">bar-color="blonko" (淺色實底)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" bar-color="blonko" links="首頁:#,元件:#" cta="開始" cta-color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" bar-color="blonko" links="首頁:#,元件:#" cta="開始" cta-color="mibble"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">bar-color="dunko" (深色 → 自動白字)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="blonko" bar-color="dunko" links="首頁:#,元件:#" cta="開始" cta-color="blonko" socials="github:https://github.com,instagram:https://ig.com"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="blonko" bar-color="dunko" links="首頁:#,元件:#" cta="開始" cta-color="blonko" socials="github:https://github.com,instagram:https://ig.com"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">bar-color="blornko" (深藍灰 → 白字)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🌙" color="wibble" bar-color="blornko" links="首頁:#,作品:#" cta="聯繫" cta-color="wibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🌙" color="wibble" bar-color="blornko" links="首頁:#,作品:#" cta="聯繫" cta-color="wibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -298,25 +298,25 @@
         <p class="attr-desc">Comma-separated. Each item can be <code>Label:URL</code> or just <code>Label</code> (defaults to <code>#</code>). The current page's link gets highlighted automatically by matching <code>href</code> to the browser's pathname.</p>
         <p class="attr-desc-zh">逗號分隔。每項可以是 Label:URL，也可以只寫 Label（會自動 fallback 到 #）。當前頁的連結會自動高亮——靠比對 href 與瀏覽器的 pathname 決定。</p>
         <pre class="code"><span class="cm">&lt;!-- Label:URL 格式 --&gt;</span>
-<span class="tg">&lt;pipo-bar</span>
+<span class="tg">&lt;pipo-navbar</span>
   <span class="at">links</span>=<span class="vl">"首頁:/,作品集:/portfolio,關於:/about"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span>
 
 <span class="cm">&lt;!-- 純 Label（href 自動 # ）--&gt;</span>
-<span class="tg">&lt;pipo-bar</span>
+<span class="tg">&lt;pipo-navbar</span>
   <span class="at">links</span>=<span class="vl">"首頁,作品集,關於"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">links — hover to see the highlight · 滑過看高亮</span></div>
           <div class="toybox-screen">
             <div style="display:flex;flex-direction:column;gap:10px">
               <div>
                 <div class="bar-demo-label">links="首頁:/,作品集:/portfolio,關於:/about"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:/,作品集:/portfolio,關於:/about"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:/,作品集:/portfolio,關於:/about"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">links="首頁,作品集,關於"（純 Label，href 自動 #）</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁,作品集,關於"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁,作品集,關於"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -343,21 +343,21 @@
         <p class="attr-desc">Fill in text and a CTA button appears at the right end of the bar. Leave it empty and nothing renders — no empty space, no placeholder. Add <code>cta-href</code> to make it a real link.</p>
         <p class="attr-desc-zh">填入文字，bar 右側就出現一顆 CTA 按鈕。空白時什麼都不顯示，不佔空間。搭配 cta-href 讓它變成真正的連結。</p>
         <pre class="code"><span class="cm">&lt;!-- 有 cta --&gt;</span>
-<span class="tg">&lt;pipo-bar</span> <span class="at">cta</span>=<span class="vl">"開始使用"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span>
+<span class="tg">&lt;pipo-navbar</span> <span class="at">cta</span>=<span class="vl">"開始使用"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span>
 
 <span class="cm">&lt;!-- 無 cta → 不渲染按鈕 --&gt;</span>
-<span class="tg">&lt;pipo-bar</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&lt;pipo-navbar</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta — with vs. without · 有 vs 無按鈕</span></div>
           <div class="toybox-screen">
             <div style="display:flex;flex-direction:column;gap:10px">
               <div>
                 <div class="bar-demo-label">cta="開始使用"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="開始使用"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="開始使用"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">cta="" (空白 → 不渲染)</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -373,22 +373,22 @@
         <h3 class="attr-title">CTA button color <span>按鈕顏色</span></h3>
         <p class="attr-desc">Override the button color independently from the nav accent. Useful when you want a standout call-to-action in a different tone. Falls back to <code>color</code> if the token doesn't exist.</p>
         <p class="attr-desc-zh">讓按鈕顏色獨立於導覽強調色。想要 CTA 特別顯眼時很好用。填了不存在的 token 會退回繼承 color。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span>
   <span class="at">color</span>=<span class="vl">"mibble"</span>
   <span class="at">cta</span>=<span class="vl">"聯繫我"</span>
   <span class="at">cta-color</span>=<span class="vl">"glorix"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta-color — nav stays mibble, CTA stands out · nav 保持 mibble，CTA 獨樹一格</span></div>
           <div class="toybox-screen">
             <div style="display:flex;flex-direction:column;gap:10px">
               <div>
                 <div class="bar-demo-label">cta-color="glorix"（與 color 不同）</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="聯繫我" cta-color="glorix"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,元件:#" cta="聯繫我" cta-color="glorix"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">cta-color="blonko"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="wibble" links="首頁:#,元件:#" cta="開始使用" cta-color="blonko"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="wibble" links="首頁:#,元件:#" cta="開始使用" cta-color="blonko"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -404,18 +404,18 @@
         <h3 class="attr-title">CTA shape <span>按鈕形狀</span></h3>
         <p class="attr-desc"><code>pill</code> gives a fully rounded capsule. <code>square</code> uses gentle 10px corners for a more structured look.</p>
         <p class="attr-desc-zh">pill 是完全的圓角膠囊。square 是帶點圓角的方形，看起來更工整。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span> <span class="at">cta</span>=<span class="vl">"Get Started"</span> <span class="at">cta-shape</span>=<span class="vl">"square"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">cta</span>=<span class="vl">"Get Started"</span> <span class="at">cta-shape</span>=<span class="vl">"square"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta-shape</span></div>
           <div class="toybox-screen">
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">"pill"（預設）</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="Get Started" cta-shape="pill" cta-color="mibble" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Get Started" cta-shape="pill" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">"square"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="Get Started" cta-shape="square" cta-color="mibble" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Get Started" cta-shape="square" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -429,20 +429,20 @@
           <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"float"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>float / tilt</b></span></span>
         </div>
         <h3 class="attr-title">CTA hover animation <span>按鈕滑過動畫</span></h3>
-        <p class="attr-desc">Same two animations as <code>pipo-tap</code>: <code>float</code> lifts the button up, <code>tilt</code> tips it sideways. Both press down with a springy squish.</p>
-        <p class="attr-desc-zh">和 pipo-tap 相同的兩種動畫：float 往上浮起，tilt 往旁邊歪。按下去都會有彈簧感的壓扁。</p>
-        <pre class="code"><span class="tg">&lt;pipo-bar</span> <span class="at">cta</span>=<span class="vl">"試試看"</span> <span class="at">cta-anim</span>=<span class="vl">"tilt"</span><span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+        <p class="attr-desc">Same two animations as <code>pipo-button</code>: <code>float</code> lifts the button up, <code>tilt</code> tips it sideways. Both press down with a springy squish.</p>
+        <p class="attr-desc-zh">和 pipo-button 相同的兩種動畫：float 往上浮起，tilt 往旁邊歪。按下去都會有彈簧感的壓扁。</p>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">cta</span>=<span class="vl">"試試看"</span> <span class="at">cta-anim</span>=<span class="vl">"tilt"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta-anim — hover the CTA buttons! 滑過 CTA 按鈕試試看!</span></div>
           <div class="toybox-screen">
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">cta-anim="float"（預設）</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="Float" cta-anim="float" cta-color="blonko" color="wibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Float" cta-anim="float" cta-color="blonko" color="wibble"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">cta-anim="tilt"</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="Tilt!" cta-anim="tilt" cta-color="squorbo" color="wibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Tilt!" cta-anim="tilt" cta-color="squorbo" color="wibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -459,22 +459,22 @@
         <p class="attr-desc">Add <code>cta-href</code> and the button becomes a real <code>&lt;a&gt;</code> link. Set <code>cta-target="_blank"</code> to open in a new tab — <code>rel="noopener noreferrer"</code> is added automatically.</p>
         <p class="attr-desc-zh">加上 cta-href，按鈕就變成真的 &lt;a&gt; 連結。設 cta-target="_blank" 在新分頁開啟——rel="noopener noreferrer" 會自動補上。</p>
         <pre class="code"><span class="cm">&lt;!-- 新分頁開啟 open in new tab --&gt;</span>
-<span class="tg">&lt;pipo-bar</span>
+<span class="tg">&lt;pipo-navbar</span>
   <span class="at">cta</span>=<span class="vl">"官網"</span>
   <span class="at">cta-href</span>=<span class="vl">"https://example.com"</span>
   <span class="at">cta-target</span>=<span class="vl">"_blank"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta-href</span></div>
           <div class="toybox-screen">
             <div class="two-col">
               <div>
                 <div class="bar-demo-label">cta-href="" → &lt;button&gt;</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="送出" cta-color="mibble" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="送出" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
               <div>
                 <div class="bar-demo-label">cta-href="#" → &lt;a&gt; link</div>
-                <div class="bar-wrap"><pipo-bar demo logo="PipoToy" cta="了解更多" cta-href="#" cta-color="mibble" color="mibble"></pipo-bar></div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="了解更多" cta-href="#" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -511,15 +511,15 @@
           <tr><td><code>linkedin</code></td><td>LinkedIn</td></tr>
         </table>
 
-        <pre class="code"><span class="tg">&lt;pipo-bar</span>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span>
   <span class="at">socials</span>=<span class="vl">"instagram:https://ig.com/xxx,github:https://github.com/xxx,x:https://x.com/xxx"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">socials — hover the icons! 滑過圖示試試看!</span></div>
           <div class="toybox-screen">
-            <div class="bar-wrap"><pipo-bar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,作品集:#" socials="instagram:https://ig.com,github:https://github.com,x:https://x.com,youtube:https://youtube.com"></pipo-bar></div>
+            <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" logo-icon="🧸" color="mibble" links="首頁:#,作品集:#" socials="instagram:https://ig.com,github:https://github.com,x:https://x.com,youtube:https://youtube.com"></pipo-navbar></div>
             <div style="height:10px"></div>
-            <div class="bar-wrap"><pipo-bar demo logo="創作者" logo-icon="🎨" color="plobbo" socials="tiktok:https://tiktok.com,instagram:https://ig.com,linkedin:https://linkedin.com,facebook:https://facebook.com"></pipo-bar></div>
+            <div class="bar-wrap"><pipo-navbar demo logo="創作者" logo-icon="🎨" color="plobbo" socials="tiktok:https://tiktok.com,instagram:https://ig.com,linkedin:https://linkedin.com,facebook:https://facebook.com"></pipo-navbar></div>
           </div>
         </div>
       </div>
@@ -534,14 +534,14 @@
       <h2 class="section-heading">Pure CSS hamburger menu.</h2>
       <p class="section-heading-zh">純 CSS 漢堡選單，不需要 JavaScript。</p>
 
-      <p class="attr-desc">On screens 720px and narrower, <code>pipo-bar</code> hides the nav links, CTA, and social icons inside a dropdown. A hamburger button appears — click it to expand the menu. The animation uses <code>--pipotoy-spring</code> for that springy open feel. No JavaScript required.</p>
-      <p class="attr-desc-zh">螢幕寬度 720px 以下，pipo-bar 把導覽連結、CTA 按鈕、社群圖示全收進下拉選單。漢堡按鈕出現——點一下展開。動畫使用 --pipotoy-spring，有彈簧感。不需要 JavaScript。</p>
+      <p class="attr-desc">On screens 720px and narrower, <code>pipo-navbar</code> hides the nav links, CTA, and social icons inside a dropdown. A hamburger button appears — click it to expand the menu. The animation uses <code>--pipotoy-spring</code> for that springy open feel. No JavaScript required.</p>
+      <p class="attr-desc-zh">螢幕寬度 720px 以下，pipo-navbar 把導覽連結、CTA 按鈕、社群圖示全收進下拉選單。漢堡按鈕出現——點一下展開。動畫使用 --pipotoy-spring，有彈簧感。不需要 JavaScript。</p>
 
       <div class="toybox">
         <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">mobile — resize your browser below 720px to see the hamburger · 把瀏覽器縮窄到 720px 以下看漢堡按鈕</span></div>
         <div class="toybox-screen">
           <div class="bar-wrap bar-wrap-tall">
-            <pipo-bar demo
+            <pipo-navbar demo
               logo="PipoToy"
               logo-icon="🧸"
               color="mibble"
@@ -549,7 +549,7 @@
               cta="開始使用"
               cta-color="blonko"
               socials="github:https://github.com,instagram:https://ig.com"
-            ></pipo-bar>
+            ></pipo-navbar>
           </div>
         </div>
       </div>
@@ -564,7 +564,7 @@
       <h2 class="section-heading">A complete nav in one tag.</h2>
       <p class="section-heading-zh">一個標籤，一條完整的導覽列。</p>
 
-      <pre class="code"><span class="tg">&lt;pipo-bar</span>
+      <pre class="code"><span class="tg">&lt;pipo-navbar</span>
   <span class="at">logo</span>=<span class="vl">"我的品牌"</span>
   <span class="at">logo-icon</span>=<span class="vl">"🌟"</span>
   <span class="at">color</span>=<span class="vl">"mibble"</span>
@@ -576,13 +576,13 @@
   <span class="at">cta-href</span>=<span class="vl">"/contact"</span>
   <span class="at">cta-target</span>=<span class="vl">"_self"</span>
   <span class="at">socials</span>=<span class="vl">"instagram:https://ig.com/xxx,github:https://github.com/xxx"</span>
-<span class="tg">&gt;&lt;/pipo-bar&gt;</span></pre>
+<span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
 
       <div class="toybox">
         <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">all together · 全部屬性組起來</span></div>
         <div class="toybox-screen">
           <div class="bar-wrap">
-            <pipo-bar demo
+            <pipo-navbar demo
               logo="我的品牌"
               logo-icon="🌟"
               color="mibble"
@@ -594,7 +594,7 @@
               cta-href="#example"
               cta-target="_self"
               socials="instagram:https://ig.com,github:https://github.com"
-            ></pipo-bar>
+            ></pipo-navbar>
           </div>
         </div>
       </div>
@@ -615,7 +615,7 @@
           <div class="note-body">
             <div class="note-title">It's always fixed at the top</div>
             <div class="note-desc">The bar floats at the top of the viewport regardless of scroll position. You don't need to add any wrapper or CSS — that's the whole point.</div>
-            <div class="note-desc-zh">pipo-bar 永遠固定在視口頂部，不管頁面滾到哪裡。不需要任何包裝元素或 CSS——這就是它存在的意義。</div>
+            <div class="note-desc-zh">pipo-navbar 永遠固定在視口頂部，不管頁面滾到哪裡。不需要任何包裝元素或 CSS——這就是它存在的意義。</div>
           </div>
         </div>
         <div class="note">
@@ -669,6 +669,6 @@
 
   <script src="../../src/version.js" defer></script>
   <script src="../site.js" defer></script>
-  <script src="../../src/components/pipo-bar.js" defer></script>
+  <script src="../../src/components/pipo-navbar.js" defer></script>
 </body>
 </html>

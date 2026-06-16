@@ -50,7 +50,7 @@
 - ✅ 無效 token 一律 fallback（`var(--pipo-${color}, var(--pipotoy-surface))`），不報錯不空白。
 - ✅ 鍵盤無障礙：可互動元件加 `:focus-visible` outline。
 
-參考既有元件抓模式：`pipo-tap.js`（最乾淨）、`pipo-bar.js`（複雜：多屬性 + RWD + tooltip）。
+參考既有元件抓模式：`pipo-button.js`（最乾淨）、`pipo-navbar.js`（複雜：多屬性 + RWD + tooltip）。
 
 ---
 

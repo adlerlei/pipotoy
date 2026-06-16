@@ -58,7 +58,7 @@ body {
          <a class="nav-link" data-label="…">…</a>
          <a class="nav-cta"  data-label="…">…</a>   ← 可選
        </div>
-       <span class="nav-tag">…</span>               ← 可選，pipo-world 之類
+       <span class="nav-tag">…</span>               ← 可選，pipo-page 之類
        <label for="nav-toggle" class="nav-burger">…</label>
      </nav>
    ──────────────────────────────────────────── */
@@ -200,7 +200,7 @@ nav {
   transform: translateX(-50%) translateY(0);
 }
 
-/* 可選：元素名稱標籤（pipo-world.html 用） */
+/* 可選：元素名稱標籤（pipo-page.html 用） */
 .nav-tag {
   margin-left: 8px;
   font-family: 'JetBrains Mono', monospace;
@@ -483,8 +483,8 @@ section { padding: 96px 24px; }
   z-index: 1;
 }
 
-/* pipo-world hero 變體（更緊湊） */
-.hero-pipo-world .hero-sub {
+/* pipo-page hero 變體（更緊湊） */
+.hero-pipo-page .hero-sub {
   font-size: clamp(14px, 2.2vw, 16px);
   line-height: 1.75;
   margin: 0 auto 8px;
@@ -958,7 +958,7 @@ section { padding: 96px 24px; }
 
 
 /* ────────────────────────────────────────────
-   9 · examples/pipo-world.html 專屬 sections
+   9 · examples/pipo-page.html 專屬 sections
    ──────────────────────────────────────────── */
 
 /* Hero with crumb */
@@ -1925,7 +1925,7 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
   border-radius: var(--pipotoy-round-sm);
   box-shadow: var(--pipotoy-shadow-1);
 }
-/* pipo-world：外框 + 內容塊 */
+/* pipo-page：外框 + 內容塊 */
 .shape-world {
   width: 76%; height: 70%;
   display: flex;
@@ -1940,7 +1940,7 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
   flex: 1;
 }
 .shape-world::before { flex: 0 0 16px; opacity: 0.7; }
-/* pipo-bar：頂部 nav 條 */
+/* pipo-navbar：頂部 nav 條 */
 .shape-bar {
   width: 84%; height: 28px;
   display: flex;
@@ -1961,7 +1961,7 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
   background: var(--pipotoy-faint);
   display: inline-block;
 }
-/* pipo-tap：按鈕 */
+/* pipo-button：按鈕 */
 .shape-tap {
   width: auto;
   padding: 12px 26px;

@@ -1,6 +1,6 @@
 /* =========================================================
-   PipoToy · pipo-tap
-   規格：pipo-tap-spec.md
+   PipoToy · pipo-button
+   規格：pipo-button-spec.md
    - Action / 互動：黏土感按鈕
    - HTML-First：所有效果用 attribute 宣告
    - 有 href → 渲染 <a>；無 → <button>
@@ -92,7 +92,7 @@ const STYLE = `
 
 const TYPES = ['button', 'submit', 'reset'];
 
-class PipoTap extends HTMLElement {
+class PipoButton extends HTMLElement {
   static get observedAttributes() {
     return ['color', 'size', 'shape', 'anim', 'full', 'href', 'target', 'disabled', 'type'];
   }
@@ -151,7 +151,7 @@ class PipoTap extends HTMLElement {
     }
 
     el.className = 'tap';
-    el.setAttribute('part', 'tap');
+    el.setAttribute('part', 'button');
 
     /* 背景色：無效 token fallback blonko，不報錯不空白 */
     const color = this.getAttribute('color') || 'blonko';
@@ -164,6 +164,6 @@ class PipoTap extends HTMLElement {
   }
 }
 
-if (!customElements.get('pipo-tap')) {
-  customElements.define('pipo-tap', PipoTap);
+if (!customElements.get('pipo-button')) {
+  customElements.define('pipo-button', PipoButton);
 }

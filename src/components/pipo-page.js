@@ -1,6 +1,6 @@
 /* =========================================================
-   PipoToy · pipo-world
-   規格：pipo-world-spec.md（v0.1.1-alpha）
+   PipoToy · pipo-page
+   規格：pipo-page-spec.md（v0.1.1-alpha）
    - 網頁世界容器 / 整個網頁的最外層包覆殼
    - HTML-First：所有效果用 attribute 宣告
    - 不寫色碼、不寫自訂變數
@@ -118,7 +118,7 @@ const TPL = `
   </div>
 `;
 
-class PipoWorld extends HTMLElement {
+class PipoPage extends HTMLElement {
   static get observedAttributes() {
     return [
       'size', 'fill', 'space', 'align', 'middle', 'scroll',
@@ -136,7 +136,7 @@ class PipoWorld extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = TPL;
     this._video = this.shadowRoot.querySelector('video');
-    PipoWorld.observedAttributes.forEach(name => this._apply(name));
+    PipoPage.observedAttributes.forEach(name => this._apply(name));
     this._applyScroll();
   }
 
@@ -273,6 +273,6 @@ class PipoWorld extends HTMLElement {
   }
 }
 
-if (!customElements.get('pipo-world')) {
-  customElements.define('pipo-world', PipoWorld);
+if (!customElements.get('pipo-page')) {
+  customElements.define('pipo-page', PipoPage);
 }

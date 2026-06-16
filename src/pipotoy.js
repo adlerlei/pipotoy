@@ -6,9 +6,9 @@
    ========================================================= */
 
 import './pipotoy-tokens.css';
-import './components/pipo-world.js';
-import './components/pipo-tap.js';
-import './components/pipo-bar.js';
+import './components/pipo-page.js';
+import './components/pipo-button.js';
+import './components/pipo-navbar.js';
 
 // 對外暴露：方便除錯與擴充
 window.PipoToy = window.PipoToy || {

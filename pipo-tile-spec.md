@@ -40,12 +40,12 @@
 
 ## 3. 預設插槽（CTA）
 
-title / text 用屬性；**標籤內部保留一個 default `<slot>`**，給進階用戶放 CTA（通常是 `<pipo-tap>`）。
+title / text 用屬性；**標籤內部保留一個 default `<slot>`**，給進階用戶放 CTA（通常是 `<pipo-button>`）。
 不放任何東西 → slot 區完全不佔空間、不顯示。
 
 ```html
 <pipo-tile title="方案 A" text="說明文字">
-  <pipo-tap color="mibble">選這個</pipo-tap>
+  <pipo-button color="mibble">選這個</pipo-button>
 </pipo-tile>
 ```
 
@@ -80,7 +80,7 @@ title / text 用屬性；**標籤內部保留一個 default `<slot>`**，給進�
 
 - 有 `href` → 用 `<a class="tile" href="...">` 取代 `<article class="tile">`，整張卡可點。
   - `target="blank"` → 在 `<a>` 上加 `target="_blank"` 並自動補 `rel="noopener noreferrer"`。
-  - 與 `pipo-tap` 行為一致。
+  - 與 `pipo-button` 行為一致。
 - `image` 為空 → **不要**渲染 `.tile-media`（不要留空白方塊）。
 - `title` / `text` 為空 → 各自不渲染對應節點。
 - slot 沒有 assigned nodes → `.tile-extra` 不佔空間（`:has` 或 JS 判斷皆可，見第 6 節）。
@@ -101,7 +101,7 @@ title / text 用屬性；**標籤內部保留一個 default `<slot>`**，給進�
 | `box-shadow` | `var(--pipotoy-shadow-2)` |
 | `overflow` | `hidden`（讓圖片上緣跟著圓角裁切） |
 | `color` | `var(--pipotoy-text)` |
-| `font-family` | `var(--pipotoy-font-sans)`（繼承自 pipo-world 也可） |
+| `font-family` | `var(--pipotoy-font-sans)`（繼承自 pipo-page 也可） |
 | `transition` | `transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring)` |
 | `display` | `flex; flex-direction: column;` |
 
@@ -117,7 +117,7 @@ title / text 用屬性；**標籤內部保留一個 default `<slot>`**，給進�
 
 實作建議：JS 把 `color` 值組成 `--pipo-${color}`，用 `getComputedStyle` 驗證是否存在；
 存在 → set `--pipo-_resolved: var(--pipo-${color})`；不存在 → 不 set（自動落到 whibble fallback）。
-（與 `pipo-tap` 的 fallback 思路一致，差別只是 tap 退回 `blonko`、tile 退回 `whibble`。）
+（與 `pipo-button` 的 fallback 思路一致，差別只是 button 退回 `blonko`、tile 退回 `whibble`。）
 
 ### 圖片區 `.tile-media` / `.tile-img`
 
