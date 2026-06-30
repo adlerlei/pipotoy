@@ -5,5 +5,5 @@
      add a git tag (e.g. v0.1.0-alpha)
    ========================================================= */
 
-window.PIPO_VERSION = '0.1.10-alpha';
-window.PIPO_DATE = '2026-06-17';
+window.PIPO_VERSION = '0.1.11-alpha';
+window.PIPO_DATE = '2026-06-30';
