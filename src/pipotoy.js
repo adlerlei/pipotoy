@@ -11,6 +11,7 @@ import './components/pipo-button.js';
 import './components/pipo-navbar.js';
 import './components/pipo-card.js';
 import './components/pipo-stick.js';
+import './components/pipo-alert.js';
 
 // 對外暴露：方便除錯與擴充
 window.PipoToy = window.PipoToy || {

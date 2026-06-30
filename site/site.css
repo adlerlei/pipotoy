@@ -2026,36 +2026,29 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
 }
 .shape-stick i { width: 70%; }
 .shape-stick em { width: 50%; }
-/* pipo-shout：通知 toast */
-.shape-shout {
+/* pipo-alert：通知橫幅 */
+.shape-alert {
   width: 76%;
   padding: 10px 14px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.shape-shout::before {
-  content: '';
-  width: 22px; height: 22px;
+.shape-alert-icon {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--pipotoy-schmerbia-plobbo);
+  background: var(--pipotoy-grumglo-mibble);
   flex-shrink: 0;
   box-shadow: var(--pipotoy-shadow-1);
 }
-.shape-shout-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.shape-shout-body i, .shape-shout-body em {
+.shape-alert em {
   display: block;
-  height: 5px;
+  height: 6px;
+  width: 60%;
   border-radius: 2px;
-  background: var(--pipotoy-faint);
+  background: var(--pipotoy-schmerbia-glorix);
 }
-.shape-shout-body i { width: 60%; background: var(--pipotoy-schmerbia-glorix); height: 6px; }
-.shape-shout-body em { width: 90%; }
 
 /* CARD BODY（玩具盒下半部） */
 .cmp-card-body {
