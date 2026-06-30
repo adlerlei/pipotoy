@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-card — PipoToy Component Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* 頁面層的 live demo 排版（不含任何色碼，色彩全由 pipo-card 自理） */
+    .card-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      padding: 28px 22px;
+    }
+    .card-demo.single { grid-template-columns: minmax(0, 340px); justify-content: center; }
+    .card-demo.duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 560px) {
+      .card-demo, .card-demo.duo { grid-template-columns: 1fr; }
+    }
+    .card-cell { display: flex; flex-direction: column; gap: 10px; }
+    .card-cell .demo-cell-label { margin-top: 0; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <span class="nav-tag">&lt;pipo-card&gt;</span>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-card</div>
+
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-card</span><span class="lt">&gt;</span></h1>
+    <p class="hero-zh">圖配字的資訊卡片</p>
+
+    <p class="hero-sub">
+      A clay-soft card that holds a picture, a title, and a few words.<br>
+      Stack them in a grid for blogs, products, anything. No CSS.
+    </p>
+    <p class="hero-sub-zh">
+      一張黏土感的卡片,裝一張圖、一個標題、幾句話。<br>
+      排成格子就是部落格、商品牆、什麼都行。不用寫 CSS。
+    </p>
+
+    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"mibble"</span> <span class="at">tag</span>=<span class="vl">"教學"</span> <span class="at">title</span>=<span class="vl">"快速上手"</span><span class="tg">&gt;</span>三分鐘讓第一個 Pipo 元件動起來。<span class="tg">&lt;/pipo-card&gt;</span></pre></div>
+
+    <div class="card-demo single" style="margin-top:24px">
+      <pipo-card thumb="mibble" tag="教學" title="快速上手" color="wibble" href="#example">
+        三分鐘讓第一個 Pipo 元件動起來,只要一個標籤。
+      </pipo-card>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <section class="alt" id="reference">
+    <div class="section-inner">
+      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
+      <h2 class="section-heading">7 attributes. All optional.</h2>
+      <p class="section-heading-zh">7 個屬性,全部可不填——什麼都不填,就是一張乾淨的空白卡。</p>
+
+      <table class="rwd-table quick-table" style="max-width:680px">
+        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
+        <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
+        <tr><td><a href="#attr-thumb">thumb</a></td><td>Top color-block thumbnail · 頂部色塊縮圖</td><td>none 無</td></tr>
+        <tr><td><a href="#attr-thumb-image">thumb-image</a></td><td>Top image thumbnail (overrides thumb) · 圖片縮圖</td><td>none 無</td></tr>
+        <tr><td><a href="#attr-title">title</a></td><td>Card heading · 卡片標題</td><td>none 無</td></tr>
+        <tr><td><a href="#attr-tag">tag</a></td><td>Small chip in the corner · 角落小標籤</td><td>none 無</td></tr>
+        <tr><td><a href="#attr-color">color</a></td><td>Accent color for the tag chip · 標籤強調色</td><td>"blonko"</td></tr>
+        <tr class="quick-group"><td colspan="3">Behavior · 行為</td></tr>
+        <tr><td><a href="#attr-href">href</a></td><td>Make the whole card a link · 整卡變連結</td><td>""</td></tr>
+        <tr><td><a href="#attr-target">target</a></td><td>Open link in a new tab · 開新分頁</td><td>""</td></tr>
+      </table>
+
+      <p class="attr-desc">The body text goes between the tags — write plain words or any HTML you like.</p>
+      <p class="attr-desc-zh">內文寫在標籤中間——填純文字,或任何你想放的 HTML 都行。</p>
+    </div>
+  </section>
+
+  <!-- LOOK -->
+  <section id="look">
+    <div class="section-inner">
+      <div class="section-eyebrow">Look · 外觀</div>
+      <h2 class="section-heading">A thumbnail, a title, a tag.</h2>
+      <p class="section-heading-zh">一張縮圖、一個標題、一個小標籤。</p>
+
+      <!-- thumb -->
+      <div class="attr" id="attr-thumb">
+        <div class="attr-head">
+          <code class="attr-name">thumb</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無(不顯示縮圖)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何 Pipo 顏色名字 any Pipo color name</b></span></span>
+        </div>
+        <h3 class="attr-title">Color-block thumbnail <span>色塊縮圖</span></h3>
+        <p class="attr-desc">Fill in a Pipo color token — like <code>mibble</code> or <code>wibble</code> — and the card grows a soft color block on top. No image needed; it's the fastest way to give a card a face. Leave it out and the card starts straight at the text.</p>
+        <p class="attr-desc-zh">填一個 Pipo 色系 token——像 mibble、wibble——卡片頂部就長出一塊柔和的色塊。不用圖片,這是給卡片一張臉最快的方法。不填就直接從文字開始。</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"mibble"</span> <span class="at">title</span>=<span class="vl">"綠綠的卡"</span><span class="tg">&gt;</span>頂部是一塊 mibble 綠。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">thumb — hover the cards, they float! 滑過卡片,會浮起來!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo">
+              <pipo-card thumb="mibble" title="mibble">頂部一塊柔和的綠。</pipo-card>
+              <pipo-card thumb="wibble" title="wibble">頂部一塊柔和的藍。</pipo-card>
+              <pipo-card thumb="squorbo" title="squorbo">頂部一塊柔和的橘。</pipo-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- thumb-image -->
+      <div class="attr" id="attr-thumb-image">
+        <div class="attr-head">
+          <code class="attr-name">thumb-image</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何圖片網址 any image URL</b></span></span>
+        </div>
+        <h3 class="attr-title">Image thumbnail <span>圖片縮圖</span></h3>
+        <p class="attr-desc">Give it an image URL and that picture fills the top, cropped to fit nicely (<code>object-fit: cover</code>). It sits on top of <code>thumb</code>, so if the image fails to load, the color block quietly shows through instead of a broken icon.</p>
+        <p class="attr-desc-zh">給它一張圖片網址,圖片就鋪滿頂部,自動裁切到剛好(object-fit: cover)。它疊在 thumb 之上,所以萬一圖片載入失敗,會安靜露出底下的色塊,而不是破圖。</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span>
+  <span class="at">thumb</span>=<span class="vl">"wibble"</span>
+  <span class="at">thumb-image</span>=<span class="vl">"https://picsum.photos/400/300"</span>
+  <span class="at">title</span>=<span class="vl">"有圖的卡"</span><span class="tg">&gt;</span>載入失敗會退回 wibble 色塊。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">thumb-image — real photos on top · 真的照片鋪在頂部</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo duo">
+              <span class="card-cell">
+                <pipo-card thumb="wibble" thumb-image="https://picsum.photos/seed/pipo1/400/300" title="風景一" tag="Photo">圖片鋪滿頂部,自動裁切。</pipo-card>
+                <span class="demo-cell-label">圖片正常載入</span>
+              </span>
+              <span class="card-cell">
+                <pipo-card thumb="plobbo" thumb-image="https://example.com/does-not-exist.jpg" title="壞圖" tag="Fallback">圖片壞掉 → 露出 plobbo 色塊。</pipo-card>
+                <span class="demo-cell-label">圖片失敗 → 色塊 fallback</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- title -->
+      <div class="attr" id="attr-title">
+        <div class="attr-head">
+          <code class="attr-name">title</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何文字 any text</b></span></span>
+        </div>
+        <h3 class="attr-title">Card heading <span>卡片標題</span></h3>
+        <p class="attr-desc">A short, bold heading that sits above the body text. Leave it out and the card is just the thumbnail and your words — perfectly fine for a quote or a photo caption.</p>
+        <p class="attr-desc-zh">一行粗體的短標題,坐在內文上方。不填的話,卡片就只有縮圖加你的文字——拿來放一句引言或照片說明剛剛好。</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"blonko"</span> <span class="at">title</span>=<span class="vl">"今日重點"</span><span class="tg">&gt;</span>標題會以粗體呈現。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">title — with and without · 有標題 vs 沒標題</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo duo">
+              <span class="card-cell">
+                <pipo-card thumb="blonko" title="今日重點">標題在上,內文在下。</pipo-card>
+                <span class="demo-cell-label">有 title</span>
+              </span>
+              <span class="card-cell">
+                <pipo-card thumb="blonko">「沒有標題,只有一句話。」 —— 某隻 Pipo</pipo-card>
+                <span class="demo-cell-label">無 title</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tag -->
+      <div class="attr" id="attr-tag">
+        <div class="attr-head">
+          <code class="attr-name">tag</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何文字 any text</b></span></span>
+        </div>
+        <h3 class="attr-title">Corner chip <span>角落小標籤</span></h3>
+        <p class="attr-desc">A little pill that floats at the top-right corner — perfect for a category, a price, or a "New!". Its color comes from the <code>color</code> attribute below. Skip it and the corner stays clean.</p>
+        <p class="attr-desc-zh">一顆小膠囊,浮在右上角——拿來標分類、價格,或一句「New!」最適合。它的顏色來自下面的 color 屬性。不填角落就保持乾淨。</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"squorbo"</span> <span class="at">tag</span>=<span class="vl">"New!"</span> <span class="at">color</span>=<span class="vl">"plobbo"</span> <span class="at">title</span>=<span class="vl">"新品"</span><span class="tg">&gt;</span>右上角有顆 plobbo 小膠囊。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">tag — a chip in the corner · 角落的小膠囊</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo">
+              <pipo-card thumb="squorbo" tag="New!" color="plobbo" title="新品上架">右上角一顆膠囊。</pipo-card>
+              <pipo-card thumb="wibble" tag="教學" color="mibble" title="快速上手">標籤標出分類。</pipo-card>
+              <pipo-card thumb="blonko" tag="$99" color="squorbo" title="商品卡">標籤也能放價格。</pipo-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- color -->
+      <div class="attr" id="attr-color">
+        <div class="attr-head">
+          <code class="attr-name">color</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"blonko"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何 Pipo 顏色名字 any Pipo color name</b></span></span>
+        </div>
+        <h3 class="attr-title">Tag accent color <span>標籤強調色</span></h3>
+        <p class="attr-desc">Sets the background color of the <code>tag</code> chip. The text on it stays the same friendly dark tone on every color. Type a name that doesn't exist and it quietly falls back to <code>blonko</code>. (Only matters when you have a <code>tag</code>.)</p>
+        <p class="attr-desc-zh">設定 tag 小膠囊的底色。膠囊上的文字在每個顏色上都維持同一種友善的深色。填了不存在的名字也不會壞,會安靜退回 blonko。(只有在有 tag 時才有作用。)</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">tag</span>=<span class="vl">"熱門"</span> <span class="at">color</span>=<span class="vl">"glorix"</span> <span class="at">title</span>=<span class="vl">"色票"</span><span class="tg">&gt;</span>膠囊底色換成 glorix。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">color — same chip, different colors · 同一顆膠囊,不同顏色</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo">
+              <pipo-card thumb="whibble" tag="mibble" color="mibble" title="mibble">膠囊 = mibble。</pipo-card>
+              <pipo-card thumb="whibble" tag="glorix" color="glorix" title="glorix">膠囊 = glorix。</pipo-card>
+              <pipo-card thumb="whibble" tag="wibble" color="wibble" title="wibble">膠囊 = wibble。</pipo-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BEHAVIOR -->
+  <section class="alt" id="behavior">
+    <div class="section-inner">
+      <div class="section-eyebrow">Behavior · 行為</div>
+      <h2 class="section-heading">Plain card, or clickable.</h2>
+      <p class="section-heading-zh">純卡片,或整張可點。</p>
+
+      <!-- href -->
+      <div class="attr" id="attr-href">
+        <div class="attr-head">
+          <code class="attr-name">href</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(純卡片)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何網址 any URL</b></span></span>
+        </div>
+        <h3 class="attr-title">Make it a link <span>整卡變連結</span></h3>
+        <p class="attr-desc">Leave <code>href</code> empty and the card is a plain <code>&lt;div&gt;</code> container. Give it a URL and the whole card becomes one big <code>&lt;a&gt;</code> — click anywhere on it to navigate, with keyboard focus built in. You write one tag; PipoToy picks the right element.</p>
+        <p class="attr-desc-zh">href 留空,卡片就是一個純 &lt;div&gt; 容器。填上網址,整張卡就變成一個大大的 &lt;a&gt;——點任何地方都會跳轉,鍵盤聚焦也內建好了。你只寫一個標籤,PipoToy 幫你選對的元素。</p>
+        <pre class="code"><span class="cm">&lt;!-- 純卡片 plain card --&gt;</span>
+<span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"blonko"</span> <span class="at">title</span>=<span class="vl">"純展示"</span><span class="tg">&gt;</span>不會跳轉。<span class="tg">&lt;/pipo-card&gt;</span>
+
+<span class="cm">&lt;!-- 可點卡片 clickable card --&gt;</span>
+<span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"wibble"</span> <span class="at">title</span>=<span class="vl">"看元件"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>點整張卡跳頁。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">href — the right one really navigates! 右邊那張真的會跳頁!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo duo">
+              <span class="card-cell">
+                <pipo-card thumb="blonko" title="純展示">點下去什麼都不會發生。</pipo-card>
+                <span class="demo-cell-label">no href <i>&lt;div&gt;</i></span>
+              </span>
+              <span class="card-cell">
+                <pipo-card thumb="wibble" title="看元件" href="./components.html">點整張卡 → 元件總覽。</pipo-card>
+                <span class="demo-cell-label">href="…" <i>&lt;a&gt;</i></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- target -->
+      <div class="attr" id="attr-target">
+        <div class="attr-head">
+          <code class="attr-name">target</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(原分頁)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>blank</b></span></span>
+        </div>
+        <h3 class="attr-title">Open in a new tab <span>開新分頁</span></h3>
+        <p class="attr-desc">By default a card link opens in the same tab. Add <code>target="blank"</code> and it opens in a new tab instead — PipoToy automatically adds <code>rel="noopener noreferrer"</code> for you, so it's safe. Only works together with <code>href</code>; plain cards ignore it.</p>
+        <p class="attr-desc-zh">預設卡片連結在原分頁開啟。加上 <code>target="blank"</code> 就會改在新分頁開——PipoToy 會自動幫你補上 <code>rel="noopener noreferrer"</code>,安全無虞。只有搭配 <code>href</code> 才有用,純卡片會忽略它。</p>
+        <pre class="code"><span class="tg">&lt;pipo-card</span>
+  <span class="at">thumb</span>=<span class="vl">"squorbo"</span>
+  <span class="at">title</span>=<span class="vl">"開新分頁"</span>
+  <span class="at">href</span>=<span class="vl">"https://github.com/adlerlei/pipotoy"</span>
+  <span class="at">target</span>=<span class="vl">"blank"</span><span class="tg">&gt;</span>在新分頁打開 GitHub。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">target — the right one opens a new tab! 右邊那張會另開新分頁!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo duo">
+              <span class="card-cell">
+                <pipo-card thumb="wibble" title="同分頁" href="./components.html">在原分頁跳轉。</pipo-card>
+                <span class="demo-cell-label">no target <i>same tab 原分頁</i></span>
+              </span>
+              <span class="card-cell">
+                <pipo-card thumb="squorbo" title="新分頁" href="https://github.com/adlerlei/pipotoy" target="blank">在新分頁打開 GitHub。</pipo-card>
+                <span class="demo-cell-label">target="blank" <i>new tab 新分頁</i></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FULL EXAMPLE -->
+  <section id="example">
+    <div class="section-inner">
+      <div class="section-eyebrow">All Together · 全部組起來</div>
+      <h2 class="section-heading">A grid of real cards.</h2>
+      <p class="section-heading-zh">一整排真正的卡片,各種屬性組合在一起——這就是部落格、商品牆的樣子。</p>
+
+      <div class="attr">
+        <pre class="code"><span class="tg">&lt;pipo-card</span> <span class="at">thumb-image</span>=<span class="vl">"...jpg"</span> <span class="at">tag</span>=<span class="vl">"教學"</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">title</span>=<span class="vl">"快速上手"</span> <span class="at">href</span>=<span class="vl">"#"</span><span class="tg">&gt;</span>三分鐘上手。<span class="tg">&lt;/pipo-card&gt;</span>
+<span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"wibble"</span> <span class="at">tag</span>=<span class="vl">"元件"</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">title</span>=<span class="vl">"挑一個玩具"</span> <span class="at">href</span>=<span class="vl">"#"</span><span class="tg">&gt;</span>每個標籤都是玩具。<span class="tg">&lt;/pipo-card&gt;</span>
+<span class="tg">&lt;pipo-card</span> <span class="at">thumb</span>=<span class="vl">"squorbo"</span> <span class="at">tag</span>=<span class="vl">"New!"</span> <span class="at">color</span>=<span class="vl">"plobbo"</span> <span class="at">title</span>=<span class="vl">"色票圖鑑"</span><span class="tg">&gt;</span>53 色全收錄。<span class="tg">&lt;/pipo-card&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">all together · 全部組起來</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="card-demo">
+              <pipo-card thumb-image="https://picsum.photos/seed/pipoA/400/300" thumb="mibble" tag="教學" color="mibble" title="快速上手" href="#example">三分鐘讓第一個元件動起來。</pipo-card>
+              <pipo-card thumb="wibble" tag="元件" color="wibble" title="挑一個玩具" href="./components.html">每個標籤都是玩具,丟進 HTML 就能用。</pipo-card>
+              <pipo-card thumb="squorbo" tag="New!" color="plobbo" title="色票圖鑑" href="../docs/pipotoy-compendium.html">53 色 / 9 星球,全部收錄在這。</pipo-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="alt" id="notes">
+    <div class="section-inner">
+      <div class="section-eyebrow">Good to Know · 備註</div>
+      <h2 class="section-heading">Small things worth knowing.</h2>
+      <p class="section-heading-zh">幾件值得知道的小事。</p>
+
+      <div class="note-list">
+        <div class="note">
+          <div class="note-icon">🧱</div>
+          <div class="note-body">
+            <div class="note-title">It floats when you hover</div>
+            <div class="note-desc">Every card lifts up a little with a springy clay ease when you hover it — clickable or not. That playful bounce is built in; you never style it yourself.</div>
+            <div class="note-desc-zh">每張卡滑過時都會帶著彈簧感輕輕浮起來——不管能不能點。那種俏皮的彈跳是內建的,你永遠不用自己刻。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🔀</div>
+          <div class="note-body">
+            <div class="note-title">One tag, div or link</div>
+            <div class="note-desc">No <code>href</code> → a plain <code>&lt;div&gt;</code> card. With <code>href</code> → the whole card is one <code>&lt;a&gt;</code> (Tab to focus, click anywhere to navigate). You never choose the element yourself.</div>
+            <div class="note-desc-zh">沒有 href → 純 &lt;div&gt; 卡片。有 href → 整張卡是一個 &lt;a&gt;(Tab 聚焦、點任何地方都跳轉)。你永遠不用自己選元素。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🛡️</div>
+          <div class="note-body">
+            <div class="note-title">A broken image never breaks the card</div>
+            <div class="note-desc">If <code>thumb-image</code> fails to load, the card quietly shows the <code>thumb</code> color block underneath instead of a broken-image icon. Wrong color tokens fall back too — no errors, no blank cards.</div>
+            <div class="note-desc-zh">如果 thumb-image 載入失敗,卡片會安靜露出底下的 thumb 色塊,而不是破圖示。錯誤的顏色 token 也會 fallback——不報錯、不空白。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🧩</div>
+          <div class="note-body">
+            <div class="note-title">Drop them in any grid</div>
+            <div class="note-desc">A card is <code>display: block</code> and fills whatever space you give it. Put a few in a CSS grid and you've got a responsive gallery — the card handles its own clay look, you handle the layout.</div>
+            <div class="note-desc-zh">卡片是 display: block,會填滿你給它的空間。在 CSS grid 裡放幾張,就是一個 RWD 圖庫——卡片管自己的黏土外觀,你管排版。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../../src/components/pipo-card.js" defer></script>
+</body>
+</html>

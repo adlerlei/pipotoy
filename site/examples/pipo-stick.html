@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-stick — PipoToy Component Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* 頁面層的 live demo 排版（不含任何色碼，色彩全由 pipo-stick 自理） */
+    .stick-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 36px 22px;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 120px;
+    }
+    .stick-demo.line { gap: 14px; }
+    .stick-cell { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .demo-cell-label { margin: 0; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <span class="nav-tag">&lt;pipo-stick&gt;</span>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-stick</div>
+
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-stick</span><span class="lt">&gt;</span></h1>
+    <p class="hero-zh">歪歪的便利貼</p>
+
+    <p class="hero-sub">
+      A tilted sticky note for memos, quotes, or playful asides.<br>
+      Drop a few on the page — they lean different ways, hop on hover.
+    </p>
+    <p class="hero-sub-zh">
+      一張歪歪的便利貼，拿來貼提醒、貼名言、貼隨手記。<br>
+      多貼幾張會往不同方向歪，滑過去會跳起來、翻回另一邊。
+    </p>
+
+    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>記得交報告！<span class="tg">&lt;/pipo-stick&gt;</span></pre></div>
+
+    <div class="stick-demo" style="margin-top:24px">
+      <pipo-stick color="blonko">記得交報告！</pipo-stick>
+      <pipo-stick color="mibble" pin>週三開會</pipo-stick>
+      <pipo-stick color="wibble" tilt="off">置中公告</pipo-stick>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <section class="alt" id="reference">
+    <div class="section-inner">
+      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
+      <h2 class="section-heading">4 attributes. All optional.</h2>
+      <p class="section-heading-zh">4 個屬性，全部可不填——什麼都不填，就是一張歪歪的經典黃便利貼。</p>
+
+      <table class="rwd-table quick-table" style="max-width:680px">
+        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
+        <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
+        <tr><td><a href="#attr-color">color</a></td><td>Sticky note paper color · 便利貼紙張顏色</td><td>"blonko"（經典黃）</td></tr>
+        <tr><td><a href="#attr-size">size</a></td><td>Scale the whole note · 整張便利貼大小</td><td>"regular"（標準）</td></tr>
+        <tr><td><a href="#attr-tilt">tilt</a></td><td>Turn off the automatic lean · 關閉自動歪斜</td><td>自動 ±0.5~1.5°（依 color）</td></tr>
+        <tr><td><a href="#attr-pin">pin</a></td><td>Show a pin on top · 頂部加一顆圖釘</td><td>無（不顯示）</td></tr>
+      </table>
+
+      <p class="attr-desc">Just write a phrase between the tags — that's the whole note.</p>
+      <p class="attr-desc-zh">字寫在標籤中間就好——那就是便利貼的全部內容。</p>
+    </div>
+  </section>
+
+  <!-- LOOK -->
+  <section id="look">
+    <div class="section-inner">
+      <div class="section-eyebrow">Look · 外觀</div>
+      <h2 class="section-heading">Pick a color, lean a way.</h2>
+      <p class="section-heading-zh">挑個顏色，就會自己歪一邊。</p>
+
+      <!-- color -->
+      <div class="attr" id="attr-color">
+        <div class="attr-head">
+          <code class="attr-name">color</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"blonko"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何 Pipo 顏色名字 any Pipo color name</b></span></span>
+        </div>
+        <h3 class="attr-title">Paper color <span>紙張顏色</span></h3>
+        <p class="attr-desc">Fill in any Pipo color token — like <code>mibble</code>, <code>wibble</code>, or <code>glorix</code> — and the sticky note takes on that hue. The classic sticky-note yellow (<code>blonko</code>) is the default, so you can omit <code>color</code> entirely for that nostalgic feel. Type a name that doesn't exist and it quietly falls back to <code>blonko</code>.</p>
+        <p class="attr-desc-zh">填一個 Pipo 色系 token——像 mibble、wibble、glorix——便利貼就換上那個顏色。經典的便利貼黃（blonko）是預設，所以你想走懷舊風直接不填 color 也可以。填了不存在的名字也不會壞，會安靜退回 blonko。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>綠綠的便利貼。<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">color — every Pipo color, all tilted · Pipo 全色票,都歪歪的</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <span class="stick-cell"><pipo-stick color="blonko">blonko</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="mibble">mibble</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="wibble">wibble</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="plobbo">plobbo</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="glorix">glorix</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="squorbo">squorbo</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="schmurp">schmurp</pipo-stick></span>
+              <span class="stick-cell"><pipo-stick color="yumfix">yumfix</pipo-stick></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- size -->
+      <div class="attr" id="attr-size">
+        <div class="attr-head">
+          <code class="attr-name">size</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"regular"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"mini" · "small" · "regular" · "big"</b></span></span>
+        </div>
+        <h3 class="attr-title">Scale the whole note <span>整張大小</span></h3>
+        <p class="attr-desc">A note grows taller on its own as you write more — that's automatic. <code>size</code> is for the opposite: scaling the <em>whole</em> note up or down as one piece (text, padding, and width range all together), so it always keeps that square-ish sticky-note proportion. Four steps: <code>mini</code> for a tiny tag, <code>small</code>, <code>regular</code> (the default), and <code>big</code> for a headline note. Pick a step — you don't set pixel heights by hand.</p>
+        <p class="attr-desc-zh">字寫多了便利貼本來就會自己往下長——那是自動的。<code>size</code> 管的是另一件事：把<em>整張</em>等比例放大縮小（字、內距、寬度範圍一起動），所以永遠維持便利貼該有的方正比例。四個檔位：<code>mini</code> 小標籤、<code>small</code>、<code>regular</code>（預設）、<code>big</code> 大字報。你只挑檔位，不用自己填高度數值。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">size</span>=<span class="vl">"big"</span><span class="tg">&gt;</span>大字報一張。<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">size — mini → big · 四個檔位等比例縮放</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <span class="stick-cell"><pipo-stick color="blonko" size="mini">mini 迷你</pipo-stick><span class="demo-cell-label">size="mini"</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko" size="small">small 小張</pipo-stick><span class="demo-cell-label">size="small"</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko">regular 標準</pipo-stick><span class="demo-cell-label">預設 regular</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko" size="big">big 大張</pipo-stick><span class="demo-cell-label">size="big"</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tilt -->
+      <div class="attr" id="attr-tilt">
+        <div class="attr-head">
+          <code class="attr-name">tilt</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>自動 ±0.5~1.5°</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"off"</b></span></span>
+        </div>
+        <h3 class="attr-title">Turn off the lean <span>關掉歪斜</span></h3>
+        <p class="attr-desc">By default every note tilts a little — the angle is hashed from its <code>color</code>, so notes with different colors lean different ways (a tiny bit chaotic, in a friendly way). Add <code>tilt="off"</code> when you want it perfectly upright: a centered notice, a quote that should feel formal, a card on a structured grid.</p>
+        <p class="attr-desc-zh">預設每張便利貼都會歪一點——角度是從 color 名稱雜湊出來的，所以不同顏色會往不同方向歪（有點亂，但亂得可愛）。加上 <code>tilt="off"</code> 就會完全正立：拿來放公告、正式引言、整齊排列的格子都適合。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">tilt</span>=<span class="vl">"off"</span><span class="tg">&gt;</span>端端正正一張。<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">tilt — off vs default · 強制正立 vs 自動搖擺</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <span class="stick-cell"><pipo-stick color="wibble" tilt="off">端端正正</pipo-stick><span class="demo-cell-label">tilt="off" <i>正立</i></span></span>
+              <span class="stick-cell"><pipo-stick color="wibble">預設搖擺</pipo-stick><span class="demo-cell-label">no tilt <i>歪一邊</i></span></span>
+              <span class="stick-cell"><pipo-stick color="mibble" tilt="off">公告一張</pipo-stick><span class="demo-cell-label">tilt="off" <i>正立</i></span></span>
+              <span class="stick-cell"><pipo-stick color="mibble">隨手記</pipo-stick><span class="demo-cell-label">no tilt <i>歪一邊</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- pin -->
+      <div class="attr" id="attr-pin">
+        <div class="attr-head">
+          <code class="attr-name">pin</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無（不顯示圖釘）</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>boolean attribute</b></span></span>
+        </div>
+        <h3 class="attr-title">Pin it on the board <span>釘在布告欄</span></h3>
+        <p class="attr-desc">Add <code>pin</code> (no value needed — it's a boolean attribute) and a small dark-gray dot appears on top of the note, like a real pushpin. The pin sits centered on top, so the note still tilts underneath. Perfect for bulletin-board layouts.</p>
+        <p class="attr-desc-zh">加上 <code>pin</code>（不用填值，這是 boolean 屬性），便利貼頂部就會冒出一顆深灰小圓點，像真的圖釘。圖釘固定在正中間，下面的便利貼照樣歪。布告欄風格超適合。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">pin</span><span class="tg">&gt;</span>釘起來的便條。<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">pin — with and without · 有圖釘 vs 沒圖釘</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <span class="stick-cell"><pipo-stick color="mibble" pin>釘起來！</pipo-stick><span class="demo-cell-label">with pin <i>有圖釘</i></span></span>
+              <span class="stick-cell"><pipo-stick color="mibble">沒釘的</pipo-stick><span class="demo-cell-label">no pin <i>沒圖釘</i></span></span>
+              <span class="stick-cell"><pipo-stick color="plobbo" pin>週六見</pipo-stick><span class="demo-cell-label">with pin <i>有圖釘</i></span></span>
+              <span class="stick-cell"><pipo-stick color="plobbo">紙上漂</pipo-stick><span class="demo-cell-label">no pin <i>沒圖釘</i></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOVER BEHAVIOR (內建行為說明) -->
+  <section class="alt" id="hover">
+    <div class="section-inner">
+      <div class="section-eyebrow">Built-in · 內建行為</div>
+      <h2 class="section-heading">They hop on hover. Always.</h2>
+      <p class="section-heading-zh">滑過去會跳起來，永遠。</p>
+
+      <div class="note-list">
+        <div class="note">
+          <div class="note-icon">↺</div>
+          <div class="note-body">
+            <div class="note-title">The lean flips the other way</div>
+            <div class="note-desc">Hover a note and it lifts up while rotating <em>the opposite direction</em> — a note leaning left spins a touch right, then settles back when the cursor leaves. It's a tiny spring-loaded gesture that makes a wall of notes feel alive.</div>
+            <div class="note-desc-zh">滑過一張便利貼，它會浮起來、同時往<em>另一邊</em>微微轉回去——本來歪左的會往右回一點，滑鼠離開又會彈回原位。這個小彈簧動作讓一面便利貼牆感覺活生生的。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🎨</div>
+          <div class="note-body">
+            <div class="note-title">Same color, same lean — forever</div>
+            <div class="note-desc">The default angle for each note is hashed from its <code>color</code> name, not randomized per render. So a <code>blonko</code> note will <em>always</em> tilt the same direction, even after reloading — a stable quirk, not a dice roll.</div>
+            <div class="note-desc-zh">每張便利貼的預設角度是從 color 名稱雜湊出來的，不會每次重新算。所以 blonko 永遠往同一邊歪，重新整理也是——這是穩定的小怪癖，不是骰子。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🧷</div>
+          <div class="note-body">
+            <div class="note-title">Pin or no pin, the hover still works</div>
+            <div class="note-desc">Whether or not you add <code>pin</code>, every note still hops on hover. The pin sits on top and the note below still lifts — they share the stage without getting in each other's way.</div>
+            <div class="note-desc-zh">不管有沒有 pin，每張便利貼 hover 都會跳。圖釘坐在頂部，下面的便利貼照樣浮起來——同台不打架。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">↵</div>
+          <div class="note-body">
+            <div class="note-title">One line by default — use &lt;br&gt; to break</div>
+            <div class="note-desc">By default a note keeps your text on a single line (it only wraps when it hits the width limit). Pressing Enter in your HTML, or typing <code>\n</code>, won't break the line — HTML collapses those into a single space. When you want a real line break, drop a <code>&lt;br&gt;</code> right where you want it: <code>週三開會&lt;br&gt;10:00</code>.</div>
+            <div class="note-desc-zh">便利貼預設會把你的文字排成一行（只有撞到寬度上限才自動折行）。在 HTML 裡按 Enter、或打 <code>\n</code>，都不會換行——HTML 會把它們摺疊成一個空格。想要真正的換行，就在要斷的地方放一個 <code>&lt;br&gt;</code>：<code>週三開會&lt;br&gt;10:00</code>。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL EXAMPLE -->
+  <section id="example">
+    <div class="section-inner">
+      <div class="section-eyebrow">All Together · 全部組起來</div>
+      <h2 class="section-heading">A bulletin board.</h2>
+      <p class="section-heading-zh">一面布告欄，全部屬性混搭。</p>
+
+      <div class="attr">
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">pin</span><span class="tg">&gt;</span>週三開會<span class="tg">&lt;br&gt;</span>10:00<span class="tg">&lt;/pipo-stick&gt;</span>
+<span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>記得買牛奶<span class="tg">&lt;/pipo-stick&gt;</span>
+<span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">tilt</span>=<span class="vl">"off"</span><span class="tg">&gt;</span>置中公告：週末野餐<span class="tg">&lt;/pipo-stick&gt;</span>
+<span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"plobbo"</span> <span class="at">pin</span><span class="tg">&gt;</span>「樂觀是一種選擇。」<span class="tg">&lt;/pipo-stick&gt;</span>
+<span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"glorix"</span><span class="tg">&gt;</span>看看天空<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">bulletin board · 滑過每一張都會跳起來!</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <pipo-stick color="blonko" pin>週三開會<br>10:00</pipo-stick>
+              <pipo-stick color="mibble">記得買牛奶</pipo-stick>
+              <pipo-stick color="wibble" tilt="off">置中公告：週末野餐</pipo-stick>
+              <pipo-stick color="plobbo" pin>「樂觀是一種選擇。」</pipo-stick>
+              <pipo-stick color="glorix">看看天空</pipo-stick>
+              <pipo-stick color="squorbo" pin>明天記得請假</pipo-stick>
+              <pipo-stick color="schmurp">試試看 hover!</pipo-stick>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../../src/components/pipo-stick.js" defer></script>
+</body>
+</html>
