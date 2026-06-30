@@ -7,7 +7,7 @@
      cluster 本身只負責「水平排列 + 自動換行 + 等距」
    ========================================================= */
 
-const STYLE = `
+const STYLE_PIPO_CLUSTER = `
   :host {
     display: block;
     box-sizing: border-box;
@@ -20,11 +20,11 @@ const STYLE = `
   }
 
   /* ── gap 變體（透過 host attribute 切換） ── */
-  .cluster { gap: var(--pipotoy-pad-4, 16px); }
+  .cluster { gap: 16px; }
   :host([gap="none"])   .cluster { gap: 0; }
-  :host([gap="small"])  .cluster { gap: var(--pipotoy-pad-2, 8px); }
-  :host([gap="medium"]) .cluster { gap: var(--pipotoy-pad-4, 16px); }
-  :host([gap="large"])  .cluster { gap: var(--pipotoy-pad-5, 24px); }
+  :host([gap="small"])  .cluster { gap: 8px; }
+  :host([gap="medium"]) .cluster { gap: 16px; }
+  :host([gap="large"])  .cluster { gap: 64px; }
 
   /* ── align 變體（垂直對齊） ── */
   .cluster { align-items: center; }
@@ -46,7 +46,7 @@ class PipoCluster extends HTMLElement {
 
   connectedCallback() {
     if (!this._mounted) {
-      this.shadowRoot.innerHTML = `<style>${STYLE}</style><div class="cluster" part="cluster"><slot></slot></div>`;
+      this.shadowRoot.innerHTML = `<style>${STYLE_PIPO_CLUSTER}</style><div class="cluster" part="cluster"><slot></slot></div>`;
       this._mounted = true;
     }
   }
