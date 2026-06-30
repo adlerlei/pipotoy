@@ -240,14 +240,14 @@
     .demo-stick.taro   { background: var(--pipotoy-schmerbia-glorix); color: #3e2e50; transform: rotate(-1.5deg); }
     .demo-stick.honey  { background: var(--pipotoy-yumblax-squorbo);  color: #6a4a00; transform: rotate(1.5deg); }
 
-    /* ── pipo-shout ── */
-    .demo-shout { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: var(--pipotoy-round); border: 1px solid transparent; box-shadow: var(--pipotoy-shadow-1); width: 100%; }
-    .demo-shout-icon  { font-size: 16px; flex-shrink: 0; margin-top: 1px; font-weight: 800; }
-    .demo-shout-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-    .demo-shout-desc  { font-size: 12px; opacity: 0.7; line-height: 1.5; }
-    .demo-shout.mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; border-color: rgba(138,171,161,0.35); }
-    .demo-shout.butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; border-color: rgba(210,168,106,0.35); }
-    .demo-shout.rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; border-color: rgba(180,130,142,0.35); }
+    /* ── pipo-alert ── */
+    .demo-alert { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: var(--pipotoy-round); border: 1px solid transparent; box-shadow: var(--pipotoy-shadow-1); width: 100%; }
+    .demo-alert-icon  { font-size: 16px; flex-shrink: 0; margin-top: 1px; font-weight: 800; }
+    .demo-alert-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .demo-alert-desc  { font-size: 12px; opacity: 0.7; line-height: 1.5; }
+    .demo-alert.mint   { background: var(--pipotoy-grumglo-mibble);   color: #2d6655; border-color: rgba(138,171,161,0.35); }
+    .demo-alert.butter { background: var(--pipotoy-yumblax-blonko);   color: #6a5010; border-color: rgba(210,168,106,0.35); }
+    .demo-alert.rose   { background: var(--pipotoy-schmerbia-plobbo); color: #6a2e40; border-color: rgba(180,130,142,0.35); }
 
     @media (max-width: 600px) {
       .page-header { padding: 32px 20px 24px; }
@@ -563,9 +563,9 @@
       <div class="section-desc">三種語意色：grumglo-mibble（成功）、yumblax-blonko（注意）、schmerbia-plobbo（警告）。</div>
       <div class="spec-card">
         <div class="spec-preview" style="flex-direction:column; gap:10px; align-items:stretch;">
-          <div class="demo-shout mint"><div class="demo-shout-icon">✓</div><div><div class="demo-shout-title">儲存成功！</div><div class="demo-shout-desc">你的作品已經安全存好了。</div></div></div>
-          <div class="demo-shout butter"><div class="demo-shout-icon">!</div><div><div class="demo-shout-title">注意一下</div><div class="demo-shout-desc">有些設定還沒完成，記得去看看。</div></div></div>
-          <div class="demo-shout rose"><div class="demo-shout-icon">✕</div><div><div class="demo-shout-title">出了點問題</div><div class="demo-shout-desc">請重新試一次，或是聯絡我們。</div></div></div>
+          <div class="demo-alert mint"><div class="demo-alert-icon">✓</div><div><div class="demo-alert-title">儲存成功！</div><div class="demo-alert-desc">你的作品已經安全存好了。</div></div></div>
+          <div class="demo-alert butter"><div class="demo-alert-icon">!</div><div><div class="demo-alert-title">注意一下</div><div class="demo-alert-desc">有些設定還沒完成，記得去看看。</div></div></div>
+          <div class="demo-alert rose"><div class="demo-alert-icon">✕</div><div><div class="demo-alert-title">出了點問題</div><div class="demo-alert-desc">請重新試一次，或是聯絡我們。</div></div></div>
         </div>
       </div>
     </section>
