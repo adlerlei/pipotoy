@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-stack — PipoToy Component Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* =========================================================
+       頁面層的 live demo 樣式（不含任何色碼，只用 token）
+       ========================================================= */
+
+    /* 共同容器：左中對齊、呼吸空間 */
+    .stack-demo,
+    .nested-demo {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 32px 28px;
+    }
+
+    /* ── demo-block：方塊示意（含 emoji + 文字標籤） ── */
+    .demo-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--pipotoy-surface);
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round);
+      padding: 11px 18px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--pipotoy-text);
+      box-shadow: var(--pipotoy-shadow-1);
+      box-sizing: border-box;
+      letter-spacing: 0.01em;
+    }
+    .demo-block .demo-block-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--pipotoy-round-sm);
+      background: var(--pipotoy-surface-2);
+      box-shadow: var(--pipotoy-shadow-1);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ── demo-heading：文章標題 ── */
+    .demo-heading {
+      margin: 0 auto;
+      max-width: 92%;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--pipotoy-text);
+    }
+
+    /* ── demo-text：內文段落 ── */
+    .demo-text {
+      margin: 0 auto;
+      max-width: 92%;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.85;
+      color: var(--pipotoy-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* stack 裡面的 cluster/pipo-* 自訂元素，也跟 heading/text 同一條左緣 */
+    .nested-demo pipo-cluster,
+    .nested-demo .pipo-cluster,
+    .stack-demo pipo-cluster {
+      display: block;
+      margin: 0 auto;
+      max-width: 92%;
+    }
+
+    /* ── 表單欄位：label + input ── */
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--pipotoy-text);
+      margin: 0 0 8px;
+      letter-spacing: 0.02em;
+    }
+    .form-input {
+      display: block;
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--pipotoy-text);
+      background: var(--pipotoy-surface);
+      box-sizing: border-box;
+      box-shadow: var(--pipotoy-shadow-1);
+      transition: border-color var(--pipotoy-ease), box-shadow var(--pipotoy-ease);
+    }
+    .form-input::placeholder {
+      color: var(--pipotoy-faint);
+      font-weight: 500;
+    }
+    .form-input:hover {
+      border-color: rgba(58, 58, 61, 0.12);
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--pipotoy-grumglo-mibble);
+      box-shadow: var(--pipotoy-shadow-1),
+                  0 0 0 4px rgba(184, 216, 200, 0.35);
+    }
+
+    /* ── demo-card：玩具感卡片（用於「卡片垂直堆」） ── */
+    .demo-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--pipotoy-surface);
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-lg);
+      padding: 18px 22px;
+      box-shadow: var(--pipotoy-shadow-2);
+      box-sizing: border-box;
+      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
+    }
+    .demo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--pipotoy-shadow-3);
+    }
+    .demo-card .demo-card-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--pipotoy-round);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      box-shadow: var(--pipotoy-shadow-1);
+    }
+    .demo-card .demo-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .demo-card .demo-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--pipotoy-text);
+      letter-spacing: -0.01em;
+    }
+    .demo-card .demo-card-desc {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--pipotoy-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── toybox label 微調：放大字距、調呼吸 ── */
+    .toybox-label {
+      letter-spacing: 0.04em;
+    }
+
+    /* ── gap demo cell label：attribute 風格 chip（薄荷色 pill） ── */
+    .gap-cell-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--pipotoy-round-pill);
+      background: var(--pipotoy-grumglo-mibble);
+      color: #2d6655;
+      letter-spacing: 0.02em;
+      box-shadow: var(--pipotoy-shadow-1);
+      margin-bottom: 14px;
+    }
+    .gap-cell-label em {
+      font-style: normal;
+      color: #5a8270;
+      font-weight: 500;
+      margin-left: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (unified) -->
+  <nav>
+    <a class="nav-brand" href="../../index.html">
+      <div class="nav-logo">🧸</div>
+      Pipo<span>Toy</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <span class="nav-tag">&lt;pipo-stack&gt;</span>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-stack</div>
+
+    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-stack</span><span class="lt">&gt;</span></h1>
+    <p class="hero-zh">垂直堆疊 — 一上一下，自動等距</p>
+
+    <p class="hero-sub">
+      Stack stuff vertically, and let the spacing handle itself.<br>
+      No more <code>margin-top: 16px</code> on every paragraph.
+    </p>
+    <p class="hero-sub-zh">
+      把東西由上往下垂直堆，每一層之間自動留等距空隙。<br>
+      不用再手動加 <code>margin-top</code>，間距自己管。
+    </p>
+
+    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;h3&gt;</span>標題<span class="tg">&lt;/h3&gt;</span>
+  <span class="tg">&lt;p&gt;</span>第一段<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;p&gt;</span>第二段<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span></pre></div>
+
+    <div class="stack-demo" style="margin-top:24px">
+      <pipo-stack gap="medium">
+        <div class="demo-block"><span class="demo-block-icon">📦</span>區塊 A</div>
+        <div class="demo-block"><span class="demo-block-icon">🎨</span>區塊 B</div>
+        <div class="demo-block"><span class="demo-block-icon">🚀</span>區塊 C</div>
+      </pipo-stack>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <section class="alt" id="reference">
+    <div class="section-inner">
+      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
+      <h2 class="section-heading">1 attribute. All optional.</h2>
+      <p class="section-heading-zh">1 個屬性，可不填 — 不填就是 medium（16px）間距。</p>
+
+      <table class="rwd-table quick-table" style="max-width:680px">
+        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
+        <tr class="quick-group"><td colspan="3">Spacing · 間距</td></tr>
+        <tr><td><a href="#attr-gap">gap</a></td><td>Vertical space between items · 層與層之間的垂直距離</td><td>"medium"</td></tr>
+      </table>
+
+      <p class="attr-desc">Drop anything inside — paragraphs, headings, cards, even other pipo-stack or pipo-cluster. Each direct child gets equal breathing room from its neighbors.</p>
+      <p class="attr-desc-zh">中間可以放任何東西 — 段落、標題、卡片、甚至另一個 pipo-stack 或 pipo-cluster。每個直接子元素都會跟左右鄰居自動保持等距。</p>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section id="spacing">
+    <div class="section-inner">
+      <div class="section-eyebrow">Spacing · 間距</div>
+      <h2 class="section-heading">Four sizes, one attribute.</h2>
+      <p class="section-heading-zh">四種尺寸，一個屬性切換。</p>
+
+      <!-- gap -->
+      <div class="attr" id="attr-gap">
+        <div class="attr-head">
+          <code class="attr-name">gap</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"medium"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"none" / "small" / "medium" / "large"</b></span></span>
+        </div>
+        <h3 class="attr-title">Vertical spacing <span>垂直間距</span></h3>
+        <p class="attr-desc">Four friendly sizes: <code>none</code> (no gap), <code>small</code> (8px) for tight lists, <code>medium</code> (16px) for paragraphs and cards, <code>large</code> (24px) for breathing room between sections. Skip it and you get <code>medium</code> — a safe everyday default.</p>
+        <p class="attr-desc-zh">四種好懂的尺寸：<code>none</code> 黏在一起、<code>small</code>（8px）緊湊列表用、<code>medium</code>（16px）段落卡片用、<code>large</code>（24px）區塊之間留呼吸空間用。不填就用 <code>medium</code> — 通用預設、不出錯。</p>
+
+        <pre class="code"><span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"small"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;p&gt;</span>緊湊排列...<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;p&gt;</span>間距很小<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span>
+
+<span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"large"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;h3&gt;</span>標題<span class="tg">&lt;/h3&gt;</span>
+  <span class="tg">&lt;p&gt;</span>說明...<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span></pre>
+
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">gap — none / small / medium / large · 四種間距</span>
+          </div>
+          <div class="toybox-screen" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div>
+              <div class="gap-cell-label"><span>gap</span>=<em>"none"</em></div>
+              <pipo-stack gap="none">
+                <div class="demo-block">A</div>
+                <div class="demo-block">B</div>
+                <div class="demo-block">C</div>
+              </pipo-stack>
+            </div>
+            <div>
+              <div class="gap-cell-label"><span>gap</span>=<em>"small"</em></div>
+              <pipo-stack gap="small">
+                <div class="demo-block">A</div>
+                <div class="demo-block">B</div>
+                <div class="demo-block">C</div>
+              </pipo-stack>
+            </div>
+            <div>
+              <div class="gap-cell-label"><span>gap</span>=<em>"medium"</em><em class="gap-cell-default">(default)</em></div>
+              <pipo-stack gap="medium">
+                <div class="demo-block">A</div>
+                <div class="demo-block">B</div>
+                <div class="demo-block">C</div>
+              </pipo-stack>
+            </div>
+            <div>
+              <div class="gap-cell-label"><span>gap</span>=<em>"large"</em></div>
+              <pipo-stack gap="large">
+                <div class="demo-block">A</div>
+                <div class="demo-block">B</div>
+                <div class="demo-block">C</div>
+              </pipo-stack>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section class="alt" id="real-world">
+    <div class="section-inner">
+      <div class="section-eyebrow">Real-world · 實際場景</div>
+      <h2 class="section-heading">Common stack shapes.</h2>
+      <p class="section-heading-zh">常見的垂直堆疊場景。</p>
+
+      <!-- 文章段落 -->
+      <div class="attr" id="use-article">
+        <div class="attr-head">
+          <span class="attr-name">📄 文章段落</span>
+        </div>
+        <p class="attr-desc">The classic case: stack of paragraphs with a title on top. Each paragraph gets even breathing room — readable without you ever writing a single margin.</p>
+        <p class="attr-desc-zh">最經典的場景：標題配幾段文字。每段之間自動等距 — 不用寫任何 margin 就很好讀。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;h2</span> <span class="at">class</span>=<span class="vl">"demo-heading"</span><span class="tg">&gt;</span>關於 PipoToy<span class="tg">&lt;/h2&gt;</span>
+  <span class="tg">&lt;p&gt;</span>PipoToy 是一個 HTML-First 的玩具 UI 框架。<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;p&gt;</span>不用寫 CSS,只要寫語意化標籤就能排出版面。<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">articles · 文章段落</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stack-demo">
+              <pipo-stack gap="medium">
+                <h3 class="demo-heading">關於 PipoToy</h3>
+                <p class="demo-text">PipoToy 是一個 HTML-First 的玩具 UI 框架,給小朋友學前端設計用的友善橋樑。</p>
+                <p class="demo-text">不用寫 CSS,只要寫語意化標籤就能排出版面,告別 flex 跟 grid 的痛苦。</p>
+              </pipo-stack>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 表單 -->
+      <div class="attr" id="use-form">
+        <div class="attr-head">
+          <span class="attr-name">📝 表單欄位</span>
+        </div>
+        <p class="attr-desc">A vertical form: label, input, label, input, button. Use <code>gap="small"</code> for tight forms (login), <code>gap="medium"</code> for comfortable forms (signup).</p>
+        <p class="attr-desc-zh">表單垂直排列：標籤、輸入框、標籤、輸入框、按鈕。<code>gap="small"</code> 給緊湊表單（登入）,<code>gap="medium"</code> 給舒適表單（註冊）。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"small"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;label&gt;</span>姓名<span class="tg">&lt;/label&gt;</span>
+  <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="vl">"text"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;label&gt;</span>Email<span class="tg">&lt;/label&gt;</span>
+  <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="vl">"email"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">forms · 表單</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="nested-demo">
+              <pipo-stack gap="medium">
+                <label class="form-label">姓名</label>
+                <input class="form-input" type="text" placeholder="王小明">
+                <label class="form-label">Email</label>
+                <input class="form-input" type="email" placeholder="hello@example.com">
+                <label class="form-label">密碼</label>
+                <input class="form-input" type="password" placeholder="••••••">
+              </pipo-stack>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片垂直堆 -->
+      <div class="attr" id="use-cards">
+        <div class="attr-head">
+          <span class="attr-name">🃏 卡片垂直堆</span>
+        </div>
+        <p class="attr-desc">A list of cards stacked vertically. Use <code>gap="large"</code> (24px) so each card feels like its own thing, or <code>gap="small"</code> for a tight feed.</p>
+        <p class="attr-desc-zh">卡片垂直堆疊。<code>gap="large"</code>（24px）讓每張卡都是獨立的存在,<code>gap="small"</code> 給緊湊的動態消息流。</p>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">cards · 卡片垂直堆</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stack-demo">
+              <pipo-stack gap="medium">
+                <div class="demo-card">
+                  <div class="demo-card-thumb" style="background:var(--pipotoy-schmerbia-plobbo)">📦</div>
+                  <div class="demo-card-body">
+                    <div class="demo-card-title">最新消息</div>
+                    <div class="demo-card-desc">這週更新了 12 個新元件與 3 種新色票</div>
+                  </div>
+                </div>
+                <div class="demo-card">
+                  <div class="demo-card-thumb" style="background:var(--pipotoy-drippus-wibble)">🎨</div>
+                  <div class="demo-card-body">
+                    <div class="demo-card-title">設計更新</div>
+                    <div class="demo-card-desc">陰影與圓角的黏土感配方已經上線</div>
+                  </div>
+                </div>
+                <div class="demo-card">
+                  <div class="demo-card-thumb" style="background:var(--pipotoy-yumblax-blonko)">🚀</div>
+                  <div class="demo-card-body">
+                    <div class="demo-card-title">全新功能</div>
+                    <div class="demo-card-desc">pipo-grid 與黏土配色主題，敬請期待</div>
+                  </div>
+                </div>
+              </pipo-stack>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NESTING -->
+  <section id="nesting">
+    <div class="section-inner">
+      <div class="section-eyebrow">Nesting · 巢狀用法</div>
+      <h2 class="section-heading">Stack inside Stack. Stack around Cluster.</h2>
+      <p class="section-heading-zh">Stack 裡面可以再放 Stack，外面可以包 Cluster。</p>
+
+      <p class="attr-desc">The real power of <code>pipo-stack</code> is composition. A page section is usually: <b>title → description → a row of buttons</b>. That's a <code>stack</code> containing a heading, a paragraph, and a <code>cluster</code> of buttons — vertical, then horizontal inside one slot.</p>
+      <p class="attr-desc-zh"><code>pipo-stack</code> 的真正威力在於組合。一個頁面區塊通常是：<b>標題 → 說明 → 一排按鈕</b>。這就是 stack 包標題、段落、再包一個 cluster — 垂直中藏一段水平。</p>
+
+      <pre class="code"><span class="tg">&lt;pipo-stack</span> <span class="at">gap</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
+  <span class="tg">&lt;h3&gt;</span>開始你的旅程<span class="tg">&lt;/h3&gt;</span>
+  <span class="tg">&lt;p&gt;</span>三個按鈕水平排列在一行（Cluster 自動排）<span class="tg">&lt;/p&gt;</span>
+  <span class="tg">&lt;pipo-cluster</span> <span class="at">gap</span>=<span class="vl">"small"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>開始<span class="tg">&lt;/pipo-button&gt;</span>
+    <span class="tg">&lt;pipo-button&gt;</span>看文件<span class="tg">&lt;/pipo-button&gt;</span>
+    <span class="tg">&lt;pipo-button&gt;</span>更多<span class="tg">&lt;/pipo-button&gt;</span>
+  <span class="tg">&lt;/pipo-cluster&gt;</span>
+  <span class="tg">&lt;p&gt;</span>結尾說明...<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/pipo-stack&gt;</span></pre>
+
+      <div class="toybox">
+        <div class="toybox-chrome">
+          <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+          <span class="toybox-label">stack + cluster · 巢狀組合</span>
+        </div>
+        <div class="toybox-screen">
+          <div class="nested-demo">
+            <pipo-stack gap="medium">
+              <h3 class="demo-heading">開始你的旅程</h3>
+              <p class="demo-text">三個按鈕水平排列在一行（Cluster 自動排）</p>
+              <pipo-cluster gap="small">
+                <button style="padding:10px 18px;min-width:108px;text-align:center;border-radius:999px;font-weight:700;font-size:14px;border:none;background:var(--pipotoy-yumblax-blonko);color:var(--pipotoy-text);cursor:pointer;font-family:inherit;">開始</button>
+                <button style="padding:10px 18px;min-width:108px;text-align:center;border-radius:999px;font-weight:700;font-size:14px;border:none;background:var(--pipotoy-drippus-wibble);color:var(--pipotoy-text);cursor:pointer;font-family:inherit;">看文件</button>
+                <button style="padding:10px 18px;min-width:108px;text-align:center;border-radius:999px;font-weight:700;font-size:14px;border:none;background:var(--pipotoy-schmerbia-plobbo);color:var(--pipotoy-text);cursor:pointer;font-family:inherit;">更多</button>
+              </pipo-cluster>
+              <p class="demo-text" style="font-size:13px;color:var(--pipotoy-faint);font-style:italic;">結尾說明，繼續垂直堆下來</p>
+            </pipo-stack>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL TOGETHER -->
+  <section class="alt" id="all">
+    <div class="section-inner">
+      <div class="section-eyebrow">All Together · 全部組起來</div>
+      <h2 class="section-heading">A real-world blog card.</h2>
+      <p class="section-heading-zh">一個真實的部落格卡片場景。</p>
+
+      <p class="attr-desc">A typical blog post card: thumbnail, tag, title, excerpt, then a row of meta info (author · date · read time) all stacked naturally with even spacing.</p>
+      <p class="attr-desc-zh">典型部落格卡片：縮圖、標籤、標題、摘要、最後一排 meta（作者 · 日期 · 閱讀時間）— 全部用 stack 垂直排，自動等距。</p>
+
+      <div class="toybox">
+        <div class="toybox-chrome">
+          <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+          <span class="toybox-label">blog card · 部落格卡片</span>
+        </div>
+        <div class="toybox-screen" style="padding:32px;">
+          <div style="max-width:520px;margin:0 auto;background:var(--pipotoy-surface);border:1px solid var(--pipotoy-line);border-radius:var(--pipotoy-round-lg);padding:28px;box-shadow:var(--pipotoy-shadow-2);">
+            <pipo-stack gap="medium">
+              <div style="height:160px;border-radius:var(--pipotoy-round);background:var(--pipotoy-drippus-wibble);display:flex;align-items:center;justify-content:center;font-size:56px;box-shadow:var(--pipotoy-shadow-1);">📷</div>
+              <div style="display:inline-block;align-self:flex-start;padding:5px 14px;border-radius:999px;background:var(--pipotoy-grumglo-mibble);font-size:11.5px;font-weight:800;letter-spacing:0.06em;color:#2d6655;">設計</div>
+              <h3 style="margin:0;font-size:22px;font-weight:900;line-height:1.35;letter-spacing:-0.01em;">學會這 5 招，讓你的 UI 立刻有「玩具感」</h3>
+              <p style="margin:0;color:var(--pipotoy-muted);font-size:15px;line-height:1.8;font-weight:500;">從配色、圓角、陰影到微互動，把這些招學起來，你也能做出黏土般的可愛介面。</p>
+              <div style="display:flex;align-items:center;gap:10px;color:var(--pipotoy-muted);font-size:13px;font-weight:500;">
+                <span style="width:30px;height:30px;border-radius:50%;background:var(--pipotoy-yumblax-blonko);box-shadow:var(--pipotoy-shadow-1);"></span>
+                <span><b style="color:var(--pipotoy-text);font-weight:800;">Adler</b> · 2026-06-30 · 5 分鐘閱讀</span>
+              </div>
+            </pipo-stack>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section id="notes">
+    <div class="section-inner">
+      <div class="section-eyebrow">Good to Know · 備註</div>
+      <h2 class="section-heading">Small things worth knowing.</h2>
+      <p class="section-heading-zh">幾件值得知道的小事。</p>
+
+      <div class="note-list">
+        <div class="note">
+          <div class="note-icon">🎯</div>
+          <div class="note-body">
+            <div class="note-title">One attribute, one job</div>
+            <div class="note-desc">pipo-stack does exactly one thing: stack children vertically with equal spacing. No alignment, no justification, no columns — those belong to pipo-cluster or (later) pipo-grid. Keeping the API tiny means there's nothing to learn.</div>
+            <div class="note-desc-zh">pipo-stack 只做一件事：垂直堆子元素並保持等距。沒有對齊、沒有水平分佈、沒有欄位 — 那些歸 pipo-cluster 或之後的 pipo-grid 管。API 越小，學得越快。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🧩</div>
+          <div class="note-body">
+            <div class="note-title">Direct children only</div>
+            <div class="note-desc">The gap only applies to <b>direct</b> children of pipo-stack. If you put a <code>&lt;div&gt;</code> around three paragraphs and put that inside the stack, only the wrapping div gets the gap — its inner paragraphs will sit flush together. Wrap each block in its own pipo-stack if you need finer control.</div>
+            <div class="note-desc-zh">間距只作用於 pipo-stack 的<b>直接</b>子元素。如果你用 <code>&lt;div&gt;</code> 包了三段再放進 stack，只有那個外層 div 會吃到間距，裡面的段落會黏在一起。需要更細的控制，就各自包一個 pipo-stack。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">📱</div>
+          <div class="note-body">
+            <div class="note-title">Responsiveness is the parent's job</div>
+            <div class="note-desc">pipo-stack doesn't know about screen widths — it just stacks. When you need different layouts on mobile vs desktop, wrap it in <code>pipo-page</code> or (soon) <code>pipo-grid</code>, and let them handle the breakpoints.</div>
+            <div class="note-desc-zh">pipo-stack 不知道螢幕寬度 — 它只管垂直堆。需要手機/電腦不同排版，把它包進 <code>pipo-page</code> 或之後的 <code>pipo-grid</code>，讓它們處理斷點。</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-icon">🛡️</div>
+          <div class="note-body">
+            <div class="note-title">Invalid values are silent</div>
+            <div class="note-desc">An unknown <code>gap</code> value silently falls back to <code>medium</code>. No errors, no broken layouts — the stack always shows up looking sensible.</div>
+            <div class="note-desc-zh">不認得的 <code>gap</code> 值會安靜退回 <code>medium</code>。不報錯、不破版 — stack 永遠看起來正常。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (unified) -->
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links">
+      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
+      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
+      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
+      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../../src/components/pipo-stack.js?v=2" defer></script>
+  <script src="../../src/components/pipo-cluster.js?v=2" defer></script>
+</body>
+</html>
