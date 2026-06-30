@@ -33,6 +33,27 @@ const STYLE = `
     transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
   }
 
+  /* size 檔位：整張等比例縮放（font + padding + 寬度範圍）
+     未填 size 時 .stick 本身即 regular，無需 :host([size="regular"]) 重複宣告 */
+  :host([size="mini"]) .stick {
+    font-size: 12px;
+    padding: var(--pipotoy-pad-2) var(--pipotoy-pad-3);
+    min-width: 60px;
+    max-width: 150px;
+  }
+  :host([size="small"]) .stick {
+    font-size: 13px;
+    padding: var(--pipotoy-pad-3) var(--pipotoy-pad-4);
+    min-width: 76px;
+    max-width: 190px;
+  }
+  :host([size="big"]) .stick {
+    font-size: 16px;
+    padding: var(--pipotoy-pad-5) var(--pipotoy-pad-6);
+    min-width: 120px;
+    max-width: 300px;
+  }
+
   /* 預設傾斜：由 JS 從 color 名稱雜湊出 ±1.5° 內角度，寫入元件內部變數（非 design token） */
   .stick {
     transform: rotate(var(--pipotoy-stick-tilt, 0deg));

@@ -75,13 +75,14 @@
   <section class="alt" id="reference">
     <div class="section-inner">
       <div class="section-eyebrow">Quick Reference · 屬性速查</div>
-      <h2 class="section-heading">3 attributes. All optional.</h2>
-      <p class="section-heading-zh">3 個屬性，全部可不填——什麼都不填，就是一張歪歪的經典黃便利貼。</p>
+      <h2 class="section-heading">4 attributes. All optional.</h2>
+      <p class="section-heading-zh">4 個屬性，全部可不填——什麼都不填，就是一張歪歪的經典黃便利貼。</p>
 
       <table class="rwd-table quick-table" style="max-width:680px">
         <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
         <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
         <tr><td><a href="#attr-color">color</a></td><td>Sticky note paper color · 便利貼紙張顏色</td><td>"blonko"（經典黃）</td></tr>
+        <tr><td><a href="#attr-size">size</a></td><td>Scale the whole note · 整張便利貼大小</td><td>"regular"（標準）</td></tr>
         <tr><td><a href="#attr-tilt">tilt</a></td><td>Turn off the automatic lean · 關閉自動歪斜</td><td>自動 ±0.5~1.5°（依 color）</td></tr>
         <tr><td><a href="#attr-pin">pin</a></td><td>Show a pin on top · 頂部加一顆圖釘</td><td>無（不顯示）</td></tr>
       </table>
@@ -123,6 +124,32 @@
               <span class="stick-cell"><pipo-stick color="squorbo">squorbo</pipo-stick></span>
               <span class="stick-cell"><pipo-stick color="schmurp">schmurp</pipo-stick></span>
               <span class="stick-cell"><pipo-stick color="yumfix">yumfix</pipo-stick></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- size -->
+      <div class="attr" id="attr-size">
+        <div class="attr-head">
+          <code class="attr-name">size</code>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"regular"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"mini" · "small" · "regular" · "big"</b></span></span>
+        </div>
+        <h3 class="attr-title">Scale the whole note <span>整張大小</span></h3>
+        <p class="attr-desc">A note grows taller on its own as you write more — that's automatic. <code>size</code> is for the opposite: scaling the <em>whole</em> note up or down as one piece (text, padding, and width range all together), so it always keeps that square-ish sticky-note proportion. Four steps: <code>mini</code> for a tiny tag, <code>small</code>, <code>regular</code> (the default), and <code>big</code> for a headline note. Pick a step — you don't set pixel heights by hand.</p>
+        <p class="attr-desc-zh">字寫多了便利貼本來就會自己往下長——那是自動的。<code>size</code> 管的是另一件事：把<em>整張</em>等比例放大縮小（字、內距、寬度範圍一起動），所以永遠維持便利貼該有的方正比例。四個檔位：<code>mini</code> 小標籤、<code>small</code>、<code>regular</code>（預設）、<code>big</code> 大字報。你只挑檔位，不用自己填高度數值。</p>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">size</span>=<span class="vl">"big"</span><span class="tg">&gt;</span>大字報一張。<span class="tg">&lt;/pipo-stick&gt;</span></pre>
+        <div class="toybox">
+          <div class="toybox-chrome">
+            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
+            <span class="toybox-label">size — mini → big · 四個檔位等比例縮放</span>
+          </div>
+          <div class="toybox-screen">
+            <div class="stick-demo">
+              <span class="stick-cell"><pipo-stick color="blonko" size="mini">mini 迷你</pipo-stick><span class="demo-cell-label">size="mini"</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko" size="small">small 小張</pipo-stick><span class="demo-cell-label">size="small"</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko">regular 標準</pipo-stick><span class="demo-cell-label">預設 regular</span></span>
+              <span class="stick-cell"><pipo-stick color="blonko" size="big">big 大張</pipo-stick><span class="demo-cell-label">size="big"</span></span>
             </div>
           </div>
         </div>
@@ -215,6 +242,14 @@
             <div class="note-desc-zh">不管有沒有 pin，每張便利貼 hover 都會跳。圖釘坐在頂部，下面的便利貼照樣浮起來——同台不打架。</div>
           </div>
         </div>
+        <div class="note">
+          <div class="note-icon">↵</div>
+          <div class="note-body">
+            <div class="note-title">One line by default — use &lt;br&gt; to break</div>
+            <div class="note-desc">By default a note keeps your text on a single line (it only wraps when it hits the width limit). Pressing Enter in your HTML, or typing <code>\n</code>, won't break the line — HTML collapses those into a single space. When you want a real line break, drop a <code>&lt;br&gt;</code> right where you want it: <code>週三開會&lt;br&gt;10:00</code>.</div>
+            <div class="note-desc-zh">便利貼預設會把你的文字排成一行（只有撞到寬度上限才自動折行）。在 HTML 裡按 Enter、或打 <code>\n</code>，都不會換行——HTML 會把它們摺疊成一個空格。想要真正的換行，就在要斷的地方放一個 <code>&lt;br&gt;</code>：<code>週三開會&lt;br&gt;10:00</code>。</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -227,7 +262,7 @@
       <p class="section-heading-zh">一面布告欄，全部屬性混搭。</p>
 
       <div class="attr">
-        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">pin</span><span class="tg">&gt;</span>週三開會 10:00<span class="tg">&lt;/pipo-stick&gt;</span>
+        <pre class="code"><span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">pin</span><span class="tg">&gt;</span>週三開會<span class="tg">&lt;br&gt;</span>10:00<span class="tg">&lt;/pipo-stick&gt;</span>
 <span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>記得買牛奶<span class="tg">&lt;/pipo-stick&gt;</span>
 <span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">tilt</span>=<span class="vl">"off"</span><span class="tg">&gt;</span>置中公告：週末野餐<span class="tg">&lt;/pipo-stick&gt;</span>
 <span class="tg">&lt;pipo-stick</span> <span class="at">color</span>=<span class="vl">"plobbo"</span> <span class="at">pin</span><span class="tg">&gt;</span>「樂觀是一種選擇。」<span class="tg">&lt;/pipo-stick&gt;</span>
@@ -239,7 +274,7 @@
           </div>
           <div class="toybox-screen">
             <div class="stick-demo">
-              <pipo-stick color="blonko" pin>週三開會 10:00</pipo-stick>
+              <pipo-stick color="blonko" pin>週三開會<br>10:00</pipo-stick>
               <pipo-stick color="mibble">記得買牛奶</pipo-stick>
               <pipo-stick color="wibble" tilt="off">置中公告：週末野餐</pipo-stick>
               <pipo-stick color="plobbo" pin>「樂觀是一種選擇。」</pipo-stick>
