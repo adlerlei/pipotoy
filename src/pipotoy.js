@@ -14,6 +14,8 @@ import './components/pipo-stick.js';
 import './components/pipo-alert.js';
 import './components/pipo-stack.js';
 import './components/pipo-cluster.js';
+import './components/pipo-row.js';
+import './components/pipo-col.js';
 
 // 對外暴露：方便除錯與擴充
 window.PipoToy = window.PipoToy || {
