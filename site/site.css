@@ -2085,6 +2085,26 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
 .shape-cluster i:nth-child(3) { width: 22%; }
 .shape-cluster i:nth-child(4) { width: 28%; }
 
+/* pipo-row：12 欄 Grid，三個不等寬的格子（精確排版意象） */
+.shape-row {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 6px;
+}
+.shape-row i {
+  display: block;
+  height: 22px;
+  border-radius: 4px;
+}
+.shape-row i:nth-child(1) { background: var(--pipotoy-grumglo-mibble); }
+.shape-row i:nth-child(2) {
+  background: var(--pipotoy-schmerbia-plobbo);
+  grid-row: span 2;
+  height: 50px;
+}
+.shape-row i:nth-child(3) { background: var(--pipotoy-drippus-wibble); }
+
 /* CARD BODY（玩具盒下半部） */
 .cmp-card-body {
   padding: 18px 20px 20px;
