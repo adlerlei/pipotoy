@@ -1,8 +1,8 @@
 /* =========================================================
    PipoToy · pipo-page
-   規格：pipo-page-spec.md（v0.1.1-alpha）
    - 網頁世界容器 / 整個網頁的最外層包覆殼
    - HTML-First：所有效果用 attribute 宣告
+   - 初學者優先：horizontal 控制左右，vertical 控制上下
    - 不寫色碼、不寫自訂變數
    ========================================================= */
 
@@ -33,10 +33,10 @@ const TPL = `
       :host([data-pw-size="narrow"]) .pw-content { max-width: 100%; }
     }
 
-    /* ── align（內容水平位置） ── */
-    :host([data-pw-align="left"])   .pw-content { margin-left: 0;   margin-right: auto; }
-    :host([data-pw-align="center"]) .pw-content { margin-left: auto; margin-right: auto; }
-    :host([data-pw-align="right"])  .pw-content { margin-left: auto; margin-right: 0; }
+    /* ── horizontal（內容左右位置） ── */
+    :host([data-pw-horizontal="left"])   .pw-content { margin-left: 0;   margin-right: auto; }
+    :host([data-pw-horizontal="center"]) .pw-content { margin-left: auto; margin-right: auto; }
+    :host([data-pw-horizontal="right"])  .pw-content { margin-left: auto; margin-right: 0; }
 
     /* ── space（容器四周留白） ── */
     :host([data-pw-space="0"])     .pw-content { padding: 0; }
@@ -53,11 +53,21 @@ const TPL = `
       :host([data-pw-space="large"])  .pw-content { padding: 24px; }
     }
 
-    /* ── middle（垂直置中） ── */
-    :host([data-pw-middle="true"]) {
-      display: flex; align-items: center; justify-content: center;
+    /* ── vertical（內容上下位置） ── */
+    :host([data-pw-vertical]) .pw-content { width: 100%; }
+    :host([data-pw-vertical="center"]) .pw-content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
     }
-    :host([data-pw-middle="true"]) .pw-content { width: 100%; }
+    :host([data-pw-vertical="bottom"]) .pw-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
 
     /* ── 背景層（color → image → video，底到頂） ── */
     .pw-color,
@@ -121,7 +131,7 @@ const TPL = `
 class PipoPage extends HTMLElement {
   static get observedAttributes() {
     return [
-      'size', 'fill', 'space', 'align', 'middle', 'scroll',
+      'size', 'fill', 'space', 'horizontal', 'vertical', 'scroll',
       'color', 'image', 'image-fit', 'image-align', 'image-light', 'image-sticky',
       'video', 'video-light'
     ];
@@ -236,11 +246,11 @@ class PipoPage extends HTMLElement {
       }
 
       /* ── 結構屬性：copy 到 data attr 給 CSS 選 ── */
-      case 'size':   this.setAttribute('data-pw-size',   val || 'full');   break;
-      case 'fill':   this.setAttribute('data-pw-fill',   val || 'screen'); break;
-      case 'space':  this.setAttribute('data-pw-space',  val || '0');      break;
-      case 'align':  this.setAttribute('data-pw-align',  val || 'center'); break;
-      case 'middle': this.setAttribute('data-pw-middle', this._isTrue(val) ? 'true' : 'false'); break;
+      case 'size':       this.setAttribute('data-pw-size',       val || 'full');   break;
+      case 'fill':       this.setAttribute('data-pw-fill',       val || 'screen'); break;
+      case 'space':      this.setAttribute('data-pw-space',      val || '0');      break;
+      case 'horizontal': this.setAttribute('data-pw-horizontal', this._choice(val, ['left', 'center', 'right'], 'center')); break;
+      case 'vertical':   this.setAttribute('data-pw-vertical',   this._choice(val, ['top', 'center', 'bottom'], 'top')); break;
     }
   }
 
@@ -261,6 +271,10 @@ class PipoPage extends HTMLElement {
 
   _isTrue(v) {
     return v === '' || v === 'true' || v === '1';
+  }
+
+  _choice(value, options, fallback) {
+    return options.includes(value) ? value : fallback;
   }
 
   _toNum(v, fallback) {

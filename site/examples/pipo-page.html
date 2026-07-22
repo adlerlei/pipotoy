@@ -1,49 +1,325 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pipo-page — PipoToy Component Guide</title><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../src/pipotoy-tokens.css"><link rel="stylesheet" href="../site.css"><link rel="stylesheet" href="./component-guide.css"><script src="../../src/components/pipo-page.js"></script></head>
-<body class="component-guide"><nav><a class="nav-brand" href="../../index.html"><div class="nav-logo">🧸</div>Pipo<span>Toy</span></a><input type="checkbox" id="nav-toggle" class="nav-toggle"><div class="nav-links"><a class="nav-link" href="./components.html" data-label="元件展示">Components</a><a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a><a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a></div><span class="nav-tag">&lt;pipo-page&gt;</span><label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu"><span></span><span></span><span></span></label></nav>
-<main><header class="guide-hero"><div class="hero-blob hero-blob-1"></div><div class="hero-blob hero-blob-2"></div><div class="guide-inner"><div class="hero-crumb"><a href="./components.html">Components</a> / pipo-page</div><h1 class="guide-name"><span class="bracket">&lt;</span><span class="name">pipo-page</span><span class="bracket">&gt;</span></h1><h2 class="guide-title">Shape the world around your content.</h2><p class="guide-desc">Use pipo-page as the outer shell for width, spacing, alignment, and background. Start with color and a comfortable content size.</p><pipo-note class="guide-zh" color="wibble" line="medium" lang="zh-Hant"><strong>先替內容準備一個完整世界</strong><p>pipo-page 負責內容寬度、留白、對齊與背景；先從顏色與舒服的內容寬度開始。</p></pipo-note><div class="starter"><div class="code-panel"><pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">color</span>=<span class="vl">"mibble"</span>
-  <span class="at">size</span>=<span class="vl">"narrow"</span> <span class="at">space</span>=<span class="vl">"medium"</span><span class="tg">&gt;</span>
-  Your page content
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="live-panel"><span class="live-label">Live preview · 實際效果</span><pipo-page class="page-demo" fill="none" color="mibble" size="narrow" space="medium"><div class="page-demo-content"><h4>A friendly page</h4><p>Your content already has a clear width, background, and breathing room.</p></div></pipo-page></div></div></div></header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pipo-page — PipoToy Component Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="./component-guide.css">
+  <script src="../../src/components/pipo-page.js"></script>
+</head>
+<body class="component-guide page-guide">
+  <nav>
+    <a class="nav-brand" href="../../index.html"><div class="nav-logo">🧸</div>Pipo<span>Toy</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <div class="nav-links">
+      <a class="nav-link" href="./components.html" data-label="回元件總覽">← Back</a>
+      <a class="nav-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Colors</a>
+      <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
+    </div>
+    <span class="nav-tag">&lt;pipo-page&gt;</span>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu"><span></span><span></span><span></span></label>
+  </nav>
 
-<section class="guide-section alt"><div class="guide-inner"><div class="section-head"><div class="section-eyebrow">Start Here</div><h2 class="section-title">Three pages you'll use most.</h2><p class="section-desc">Choose a reading page, a centered hero, or a full-width section before adding media backgrounds.</p><pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">先決定閱讀頁、置中主視覺或滿版區塊，再考慮圖片與影片背景。</pipo-note></div><div class="recipe-grid">
-<article class="recipe-card"><div class="card-head"><span class="card-number">01</span><h3 class="card-title">Reading page</h3><p class="card-desc">A narrow centered column with medium space.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">閱讀頁：窄版置中，加上中等留白。</pipo-note></div><div class="card-code"><pre class="code"><span class="at">size</span>=<span class="vl">"narrow"</span> <span class="at">space</span>=<span class="vl">"medium"</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo" fill="none" color="whibble" size="narrow" space="medium"><div class="page-demo-content"><h4>Story title</h4><p>A calm width for longer text.</p></div></pipo-page></div></article>
-<article class="recipe-card"><div class="card-head"><span class="card-number">02</span><h3 class="card-title">Centered hero</h3><p class="card-desc">Use middle for a focused first screen.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">置中主視覺：middle 讓內容垂直置中。</pipo-note></div><div class="card-code"><pre class="code"><span class="at">size</span>=<span class="vl">"medium"</span> <span class="at">middle</span> <span class="at">color</span>=<span class="vl">"wibble"</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo" fill="none" size="medium" middle color="wibble" space="medium"><div class="page-demo-content"><h4>Build something playful</h4><p>One message, centered and easy to notice.</p></div></pipo-page></div></article>
-<article class="recipe-card"><div class="card-head"><span class="card-number">03</span><h3 class="card-title">Image hero</h3><p class="card-desc">Darken the photo, then place light text on top.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">圖片主視覺：先把背景壓暗，再使用淺色前景文字。</pipo-note></div><div class="card-code"><pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">image</span>=<span class="vl">"photo.jpg"</span>
-  <span class="at">image-light</span>=<span class="vl">"25"</span><span class="tg">&gt;</span>
-  <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="vl">"hero-copy"</span><span class="tg">&gt;</span>...<span class="tg">&lt;/div&gt;</span>
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo page-demo-media" fill="none" image="https://picsum.photos/seed/pipotoy-page/800/500" image-light="25" color="blunkfo" size="medium" space="medium"><div class="page-demo-content"><h4>Weekend adventure</h4><p>Dark background, light foreground, easy to read.</p></div></pipo-page></div></article>
-</div></div></section>
+  <main>
+    <header class="guide-hero">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+      <div class="guide-inner">
+        <div class="hero-crumb"><a href="./components.html">Components</a> / pipo-page</div>
+        <h1 class="guide-name"><span class="bracket">&lt;</span><span class="name">pipo-page</span><span class="bracket">&gt;</span></h1>
+        <h2 class="guide-title">Give your content a world to live in.</h2>
+        <p class="guide-desc">Put text, images, or buttons inside this tag, then choose how large the page feels, where the content stands, and what appears behind it.</p>
+        <pipo-note class="guide-zh" color="wibble" line="medium" lang="zh-Hant"><strong>替內容準備一個完整世界</strong><p>把文字、圖片或按鈕放進這個標籤，再決定畫面多大、內容站在哪裡，以及背後要放什麼。</p></pipo-note>
 
-<section class="guide-section"><div class="guide-inner"><div class="section-head"><div class="section-eyebrow">Learn One Control at a Time</div><h2 class="section-title">Change one thing, then see what moves.</h2><p class="section-desc">Each example changes one layout control: width, inner spacing, or horizontal position.</p><pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">以下每個範例只解釋一件事：內容寬度、內側留白，或內容的水平位置。</pipo-note></div><div class="compare-grid">
-<article class="compare-card"><div class="card-head"><h3 class="card-title">1. Set the content width</h3><p class="card-desc"><code>size="narrow"</code> limits the inner content to a readable column. It does not add padding.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">size 只限制內容最大寬度，不會增加四周留白。</pipo-note></div><div class="card-code"><pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">size</span>=<span class="vl">"narrow"</span><span class="tg">&gt;</span>
-  A readable text column
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo" fill="none" size="narrow" color="mibble"><div class="demo-tile">This inner column stops at the narrow width.</div></pipo-page></div></article>
-<article class="compare-card"><div class="card-head"><h3 class="card-title">2. Add space inside the page</h3><p class="card-desc"><code>space="large"</code> adds padding between the page edge and its content.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">space 控制內容與頁面邊緣之間的內側留白。</pipo-note></div><div class="card-code"><pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">space</span>=<span class="vl">"large"</span><span class="tg">&gt;</span>
-  Content with generous breathing room
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo" fill="none" size="full" space="large" color="wibble"><div class="demo-tile">The empty area around this box comes from space.</div></pipo-page></div></article>
-<article class="compare-card"><div class="card-head"><h3 class="card-title">3. Move a narrow column</h3><p class="card-desc"><code>align="right"</code> moves a width-limited content column to the right edge.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">align 會移動已限制寬度的內容欄；內容滿版時不容易看出差異。</pipo-note></div><div class="card-code"><pre class="code"><span class="tg">&lt;pipo-page</span> <span class="at">size</span>=<span class="vl">"narrow"</span>
-  <span class="at">align</span>=<span class="vl">"right"</span><span class="tg">&gt;</span>
-  A narrow column on the right
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="card-stage layout-demo"><pipo-page class="page-demo" fill="none" size="narrow" align="right" space="small" color="blonko"><div class="demo-tile">This narrow column sits on the right.</div></pipo-page></div></article>
-</div></div></section>
+        <div class="beginner-example hero-example">
+          <div class="example-result">
+            <span class="example-label">You will see · 實際效果</span>
+            <pipo-page class="page-demo hero-page-demo" fill="none" color="mibble" size="narrow" space="medium" horizontal="center" vertical="center">
+              <div class="friendly-content"><strong>My first page</strong></div>
+            </pipo-page>
+          </div>
+          <div class="example-code">
+            <span class="example-label">Write this · 寫下這段</span>
+            <pre class="choice-code" id="copy-page-start"><code>&lt;pipo-page
+  color="mibble"
+  size="narrow"
+  space="medium"
+  vertical="center"&gt;
+  My first page
+&lt;/pipo-page&gt;</code></pre>
+            <button class="copy-button" type="button" data-copy-target="copy-page-start">Copy</button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<section class="guide-section alt"><div class="guide-inner"><div class="section-head"><div class="section-eyebrow">Reference</div><h2 class="section-title">All fourteen attributes.</h2><p class="section-desc">Start with layout and color. Image, video, and scroll controls are for specific full-page experiences.</p><pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">先掌握版面與顏色；圖片、影片與捲動控制只在特定整頁情境使用。</pipo-note></div><details class="reference-panel"><summary><span>Show all 14 attributes<span class="reference-summary-zh" lang="zh-Hant">查看全部屬性</span></span></summary><div class="reference-body"><div class="reference-list">
-<div class="reference-item"><code>size</code><div><p><strong>Content width</strong><br><code>full / wide / medium / narrow</code>; default full</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">內容最大寬度。</pipo-note></div></div><div class="reference-item"><code>fill</code><div><p><strong>Minimum height</strong><br><code>screen / none</code>; default screen</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">是否至少填滿一個螢幕高度。</pipo-note></div></div>
-<div class="reference-item"><code>space</code><div><p><strong>Content padding</strong><br><code>0 / small / medium / large</code>; default 0</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">內容四周留白，手機會自動縮小。</pipo-note></div></div><div class="reference-item"><code>align</code><div><p><strong>Horizontal position</strong><br><code>left / center / right</code>; default center</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">內容容器的水平位置。</pipo-note></div></div>
-<div class="reference-item"><code>middle</code><div><p><strong>Vertical centering</strong><br>Boolean; default off</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">加入屬性即可垂直置中內容。</pipo-note></div></div><div class="reference-item"><code>scroll</code><div><p><strong>Page scrolling</strong><br><code>auto / no</code>; default auto</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">設為 no 會鎖住整頁捲動，請只用於全螢幕體驗。</pipo-note></div></div>
-<div class="reference-item"><code>color</code><div><p><strong>Background color</strong><br>Any Pipo color; default <code>pibg</code></p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">最底層背景顏色。</pipo-note></div></div><div class="reference-item"><code>image</code><div><p><strong>Background image</strong><br>Any image URL; default none</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">背景圖片網址。</pipo-note></div></div>
-<div class="reference-item"><code>image-fit</code><div><p><strong>Image sizing</strong><br><code>cover / contain / tile</code>; default cover</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">圖片填滿方式。</pipo-note></div></div><div class="reference-item"><code>image-align</code><div><p><strong>Image position</strong><br>CSS position value; default center</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">例如 center、top、left center。</pipo-note></div></div>
-<div class="reference-item"><code>image-light</code><div><p><strong>Image brightness</strong><br>0–100; default 100</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">數字越低，背景圖片越暗。</pipo-note></div></div><div class="reference-item"><code>image-sticky</code><div><p><strong>Fixed background</strong><br>Boolean; default off</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">桌面使用固定背景；手機自動降級為一般捲動。</pipo-note></div></div>
-<div class="reference-item"><code>video</code><div><p><strong>Background video</strong><br>Video URL; default none</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">背景影片會靜音、循環並填滿畫面。</pipo-note></div></div><div class="reference-item"><code>video-light</code><div><p><strong>Video brightness</strong><br>0–100; default 100</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">數字越低，背景影片越暗。</pipo-note></div></div>
-</div></div></details></div></section>
+    <section class="guide-section alt" aria-labelledby="start-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">Start with a question</div>
+          <h2 class="section-title" id="start-title">What would you like to change?</h2>
+          <p class="section-desc">You do not need to memorize attributes. Pick a question, look at the choices, and copy the result you like.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>先從問題開始</strong><p>不用背屬性。先選一個問題，看懂不同畫面，再照著喜歡的結果寫。</p></pipo-note>
+        </div>
+        <div class="page-map">
+          <a class="page-map-card" href="#shape"><span class="page-map-icon">▣</span><strong>How big?</strong><pipo-note class="map-note" color="wibble" line="thin" lang="zh-Hant">畫面要多大？</pipo-note></a>
+          <a class="page-map-card" href="#position"><span class="page-map-icon">✥</span><strong>Where should it stand?</strong><pipo-note class="map-note" color="wibble" line="thin" lang="zh-Hant">內容要站哪裡？</pipo-note></a>
+          <a class="page-map-card" href="#background"><span class="page-map-icon">●</span><strong>What goes behind it?</strong><pipo-note class="map-note" color="wibble" line="thin" lang="zh-Hant">背後放什麼？</pipo-note></a>
+          <a class="page-map-card" href="#recipes"><span class="page-map-icon">★</span><strong>Show me finished pages</strong><pipo-note class="map-note" color="wibble" line="thin" lang="zh-Hant">直接看完成品</pipo-note></a>
+        </div>
+      </div>
+    </section>
 
-<section class="guide-section"><div class="guide-inner"><div class="section-head"><div class="section-eyebrow">Complete Example</div><h2 class="section-title">A focused landing-page hero.</h2><p class="section-desc">Combine a background image with a readable content width and responsive space.</p><pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">背景圖片搭配合適內容寬度與響應式留白，就能完成清楚的主視覺。</pipo-note></div><div class="complete-example"><div class="code-panel"><pre class="code"><span class="tg">&lt;pipo-page</span>
-  <span class="at">size</span>=<span class="vl">"narrow"</span> <span class="at">space</span>=<span class="vl">"large"</span>
-  <span class="at">middle</span> <span class="at">color</span>=<span class="vl">"blunkfo"</span>
-  <span class="at">image</span>=<span class="vl">"hero.jpg"</span> <span class="at">image-light</span>=<span class="vl">"25"</span><span class="tg">&gt;</span>
-  <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="vl">"hero-copy"</span><span class="tg">&gt;</span>
-    <span class="tg">&lt;h1&gt;</span>Make the web feel playful.<span class="tg">&lt;/h1&gt;</span>
-    <span class="tg">&lt;p&gt;</span>Build with friendly components.<span class="tg">&lt;/p&gt;</span>
-  <span class="tg">&lt;/div&gt;</span>
-<span class="tg">&lt;/pipo-page&gt;</span></pre></div><div class="live-panel"><span class="live-label">Live preview · 實際效果</span><pipo-page class="page-demo page-demo-media" fill="none" size="narrow" space="large" middle color="blunkfo" image="https://picsum.photos/seed/pipotoy-hero/900/600" image-light="25"><div class="page-demo-content"><h4>Make the web feel playful.</h4><p>Build with friendly components.</p></div></pipo-page></div></div></div></section>
-</main><footer><div class="footer-brand">Pipo<span>Toy</span></div><p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p><div class="footer-links"><a class="footer-link" href="../../index.html" data-label="回首頁">Home</a><a class="footer-link" href="./components.html" data-label="元件展示">Components</a><a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a><a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a></div><p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p></footer><script src="../../src/version.js?v=16" defer></script><script src="../site.js" defer></script><script src="../../src/components/pipo-note.js?v=2" defer></script></body></html>
+    <section class="guide-section" id="shape" aria-labelledby="shape-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">Step 1 · Page size</div>
+          <h2 class="section-title" id="shape-title">How much room does your content need?</h2>
+          <p class="section-desc">Height, width, and breathing room are three different choices. Change them one at a time.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>畫面要多大？</strong><p>高度、寬度和四周留白是三件不同的事。一次看一個，就不會混在一起。</p></pipo-note>
+        </div>
+
+        <section class="lesson" id="attr-fill">
+          <div class="lesson-question"><span class="lesson-number">1</span><div><h3>How tall should the page be?</h3><p>A full screen works for a homepage. Content height works for a smaller section.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>畫面要多高？</strong><p>整個螢幕適合首頁；跟著內容適合一般段落。</p></pipo-note></div><code>fill</code></div>
+          <div class="default-note">If you write nothing: it fills one screen.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：會填滿一個螢幕。</pipo-note></div>
+          <div class="choice-grid two-choices">
+            <article class="choice-card"><h4>Fill the screen</h4><p>Great for the first view of a homepage.</p><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>填滿螢幕</strong>適合首頁第一幕。</pipo-note><div class="height-picture screen-height"><div>Content</div></div><pre class="choice-code"><code>&lt;pipo-page fill="screen"&gt;...&lt;/pipo-page&gt;</code></pre></article>
+            <article class="choice-card"><h4>Follow the content</h4><p>Great for a normal section.</p><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>跟著內容</strong>適合一般段落。</pipo-note><div class="height-picture content-height"><div>Content</div></div><pre class="choice-code"><code>&lt;pipo-page fill="none"&gt;...&lt;/pipo-page&gt;</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-size">
+          <div class="lesson-question"><span class="lesson-number">2</span><div><h3>How wide should the content be?</h3><p>The background stays full width. Only the content width changes.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>內容要多寬？</strong><p>背景永遠是滿版；這裡只改變文字與元件可以站多寬。</p></pipo-note></div><code>size</code></div>
+          <div class="default-note">If you write nothing: the content uses the full width. On phones, every choice fits the screen automatically.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：內容使用全部寬度；手機上會自動縮成適合螢幕的寬度。</pipo-note></div>
+          <div class="choice-grid four-choices">
+            <article class="choice-card"><h4>Full</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">全部寬度</pipo-note><div class="width-picture"><i class="width-full"></i></div><pre class="choice-code"><code>size="full"</code></pre></article>
+            <article class="choice-card"><h4>Wide</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">寬版</pipo-note><div class="width-picture"><i class="width-wide"></i></div><pre class="choice-code"><code>size="wide"</code></pre></article>
+            <article class="choice-card"><h4>Medium</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">中等</pipo-note><div class="width-picture"><i class="width-medium"></i></div><pre class="choice-code"><code>size="medium"</code></pre></article>
+            <article class="choice-card"><h4>Narrow</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">窄版閱讀</pipo-note><div class="width-picture"><i class="width-narrow"></i></div><pre class="choice-code"><code>size="narrow"</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-space">
+          <div class="lesson-question"><span class="lesson-number">3</span><div><h3>How much breathing room should it have?</h3><p>More space makes the content feel calmer. Phones reduce it automatically.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>內容旁邊要留多少空間？</strong><p>留白越大，內容越有呼吸感；手機會自動把留白縮小。</p></pipo-note></div><code>space</code></div>
+          <div class="default-note">If you write nothing: no extra space is added.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：不會額外加入留白。</pipo-note></div>
+          <div class="choice-grid four-choices">
+            <article class="choice-card"><h4>None</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">沒有</pipo-note><div class="space-picture space-zero"><i>Content</i></div><pre class="choice-code"><code>space="0"</code></pre></article>
+            <article class="choice-card"><h4>Small</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">小</pipo-note><div class="space-picture space-small"><i>Content</i></div><pre class="choice-code"><code>space="small"</code></pre></article>
+            <article class="choice-card"><h4>Medium</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">中</pipo-note><div class="space-picture space-medium"><i>Content</i></div><pre class="choice-code"><code>space="medium"</code></pre></article>
+            <article class="choice-card"><h4>Large</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">大</pipo-note><div class="space-picture space-large"><i>Content</i></div><pre class="choice-code"><code>space="large"</code></pre></article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="guide-section alt" id="position" aria-labelledby="position-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">Step 2 · Content position</div>
+          <h2 class="section-title" id="position-title">Where should the content stand?</h2>
+          <p class="section-desc">Use <code>horizontal</code> for left and right. Use <code>vertical</code> for top and bottom.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>內容要站在哪裡？</strong><p>左右看 horizontal，上下看 vertical。名稱和方向完全一樣，不用猜。</p></pipo-note>
+        </div>
+
+        <section class="lesson" id="attr-horizontal">
+          <div class="lesson-question"><span class="lesson-number">4</span><div><h3>Left, center, or right?</h3><p>The difference is easiest to see with narrow content.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>靠左、置中，還是靠右？</strong><p>搭配窄版內容時，位置最容易看出來。</p></pipo-note></div><code>horizontal</code></div>
+          <div class="default-note">If you write nothing: the content is centered horizontally.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：內容會水平置中。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Left</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">靠左</pipo-note><div class="position-picture horizontal-left"><i>Content</i></div><pre class="choice-code"><code>&lt;pipo-page
+  horizontal="left"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+            <article class="choice-card"><h4>Center</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">置中</pipo-note><div class="position-picture horizontal-center"><i>Content</i></div><pre class="choice-code"><code>&lt;pipo-page
+  horizontal="center"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+            <article class="choice-card"><h4>Right</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">靠右</pipo-note><div class="position-picture horizontal-right"><i>Content</i></div><pre class="choice-code"><code>&lt;pipo-page
+  horizontal="right"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-vertical">
+          <div class="lesson-question"><span class="lesson-number">5</span><div><h3>Top, center, or bottom?</h3><p>The page needs enough height for the difference to be visible.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>靠上、置中，還是靠下？</strong><p>畫面要有足夠高度，上下位置才看得出差別。</p></pipo-note></div><code>vertical</code></div>
+          <div class="default-note">If you write nothing: the content stays at the top.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：內容會靠上。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Top</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">靠上</pipo-note><div class="live-choice"><pipo-page class="position-page" fill="none" vertical="top" color="mibble" space="small"><div class="position-content">Content</div></pipo-page></div><pre class="choice-code"><code>&lt;pipo-page
+  vertical="top"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+            <article class="choice-card"><h4>Center</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">垂直置中</pipo-note><div class="live-choice"><pipo-page class="position-page" fill="none" vertical="center" color="wibble" space="small"><div class="position-content">Content</div></pipo-page></div><pre class="choice-code"><code>&lt;pipo-page
+  vertical="center"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+            <article class="choice-card"><h4>Bottom</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">靠下</pipo-note><div class="live-choice"><pipo-page class="position-page" fill="none" vertical="bottom" color="blonko" space="small"><div class="position-content">Content</div></pipo-page></div><pre class="choice-code"><code>&lt;pipo-page
+  vertical="bottom"&gt;
+  ...
+&lt;/pipo-page&gt;</code></pre></article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="guide-section" id="background" aria-labelledby="background-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">Step 3 · Background</div>
+          <h2 class="section-title" id="background-title">Color, image, or video?</h2>
+          <p class="section-desc">Start with a color. Add an image or video when the page needs a stronger mood.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>背後要放什麼？</strong><p>先從顏色開始。需要更強烈的情境時，再加入圖片或影片。</p></pipo-note>
+        </div>
+
+        <section class="lesson" id="attr-color">
+          <div class="lesson-question"><span class="lesson-number">6</span><div><h3>Choose a background color</h3><p>Use the name of a character from the Pipo color family.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>換一個背景顏色</strong><p>直接填入 Pipo 色彩角色的名字。</p></pipo-note></div><code>color</code></div>
+          <div class="default-note">If you write nothing: the page uses the creamy pibg color.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：使用奶油色 pibg。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Green · mibble</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">綠色</pipo-note><div class="color-picture color-mibble"></div><pre class="choice-code"><code>color="mibble"</code></pre></article>
+            <article class="choice-card"><h4>Blue · wibble</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">藍色</pipo-note><div class="color-picture color-wibble"></div><pre class="choice-code"><code>color="wibble"</code></pre></article>
+            <article class="choice-card"><h4>Yellow · blonko</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">黃色</pipo-note><div class="color-picture color-blonko"></div><pre class="choice-code"><code>color="blonko"</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-image">
+          <div class="lesson-question"><span class="lesson-number">7</span><div><h3>Add a background image</h3><p>Put an image path in <code>image</code>, and it appears behind the content.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>放一張背景圖片</strong><p>把圖片位置填進 image，就會出現在內容後面。</p></pipo-note></div><code>image</code></div>
+          <div class="single-example"><div class="single-preview"><pipo-page class="media-page" fill="none" image="https://picsum.photos/seed/pipotoy-kids-image/1000/600" image-light="45" color="blunkfo" space="medium" vertical="center"><div class="media-copy"><strong>Weekend adventure</strong></div></pipo-page></div><pre class="choice-code"><code>&lt;pipo-page image="photo.jpg"&gt;...&lt;/pipo-page&gt;</code></pre></div>
+        </section>
+
+        <section class="lesson" id="attr-image-fit">
+          <div class="lesson-question"><span class="lesson-number">8</span><div><h3>How should the image fit?</h3><p>Fill the area, show the whole image, or repeat it like wallpaper.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>圖片要怎麼放進畫面？</strong><p>填滿、完整顯示，或像壁紙一樣重複。</p></pipo-note></div><code>image-fit</code></div>
+          <div class="default-note">If you write nothing: the image fills the whole area.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：圖片會填滿整個畫面。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Cover</h4><p>Fills the area and may crop a little.</p><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>填滿畫面</strong>可能裁掉一小部分。</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-fit-kids/500/300" image-fit="cover" color="crumfo"></pipo-page><pre class="choice-code"><code>image-fit="cover"</code></pre></article>
+            <article class="choice-card"><h4>Contain</h4><p>Shows everything and may leave space.</p><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>完整顯示</strong>可能留下空白。</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-fit-kids/500/300" image-fit="contain" color="crumfo"></pipo-page><pre class="choice-code"><code>image-fit="contain"</code></pre></article>
+            <article class="choice-card"><h4>Tile</h4><p>Repeats like wallpaper.</p><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>重複鋪滿</strong>像壁紙一樣排列。</pipo-note><pipo-page class="media-mini tile-mini" fill="none" image="https://picsum.photos/seed/pipotoy-tile-kids/100/80" image-fit="tile" color="crumfo"></pipo-page><pre class="choice-code"><code>image-fit="tile"</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-image-align">
+          <div class="lesson-question"><span class="lesson-number">9</span><div><h3>Which part of the image matters most?</h3><p>When the image is cropped, keep the top, center, or bottom in view.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>圖片最重要的地方要留在哪裡？</strong><p>圖片被裁切時，可以決定保留上方、中間或下方。</p></pipo-note></div><code>image-align</code></div>
+          <div class="default-note">If you write nothing: the center stays visible.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：保留圖片中央。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Keep the top</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">保留上方</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-focus-kids/500/700" image-align="top" color="crumfo"></pipo-page><pre class="choice-code"><code>image-align="top"</code></pre></article>
+            <article class="choice-card"><h4>Keep the center</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">保留中央</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-focus-kids/500/700" image-align="center" color="crumfo"></pipo-page><pre class="choice-code"><code>image-align="center"</code></pre></article>
+            <article class="choice-card"><h4>Keep the bottom</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">保留下方</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-focus-kids/500/700" image-align="bottom" color="crumfo"></pipo-page><pre class="choice-code"><code>image-align="bottom"</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-image-light">
+          <div class="lesson-question"><span class="lesson-number">10</span><div><h3>Is the image too bright for text?</h3><p>A smaller number makes the image darker and light text easier to read.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>圖片太亮，文字看不清楚？</strong><p>數字越小，圖片越暗，淺色文字就越清楚。</p></pipo-note></div><code>image-light</code></div>
+          <div class="default-note">If you write nothing: brightness stays at 100.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：亮度是 100，不會變暗。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Original brightness</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">原本亮度</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-bright-kids/600/400" image-light="100" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>image-light="100"</code></pre></article>
+            <article class="choice-card"><h4>A little darker</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">稍微變暗</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-bright-kids/600/400" image-light="60" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>image-light="60"</code></pre></article>
+            <article class="choice-card"><h4>Clearer text</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">文字更清楚</pipo-note><pipo-page class="media-mini" fill="none" image="https://picsum.photos/seed/pipotoy-bright-kids/600/400" image-light="30" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>image-light="30"</code></pre></article>
+          </div>
+        </section>
+
+        <section class="lesson" id="attr-image-sticky">
+          <div class="lesson-question"><span class="lesson-number">11</span><div><h3>Keep the image still while scrolling</h3><p>Add <code>image-sticky</code> so the desktop background does not move with the content.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>捲動畫面時，讓背景留在原地</strong><p>加上 image-sticky，桌面背景就不會跟著內容一起跑。</p></pipo-note></div><code>image-sticky</code></div>
+          <div class="default-note">On phones, it becomes a normal background so scrolling stays smooth.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">手機會自動使用普通背景，讓捲動保持順暢。</pipo-note></div>
+          <div class="single-example"><div class="sticky-picture"><span>Background stays here</span><i>Content moves down ↓</i><i>Content moves down ↓</i></div><pre class="choice-code"><code>&lt;pipo-page image="photo.jpg" image-sticky&gt;...&lt;/pipo-page&gt;</code></pre></div>
+        </section>
+
+        <section class="lesson" id="attr-video">
+          <div class="lesson-question"><span class="lesson-number">12</span><div><h3>Use a moving background</h3><p>The video is muted, repeats automatically, and stays behind the content.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>把背景換成會動的影片</strong><p>影片會自動靜音、重複播放，內容仍然留在最上面。</p></pipo-note></div><code>video</code></div>
+          <div class="single-example"><div class="single-preview"><pipo-page class="media-page" fill="none" video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" video-light="50" color="blunkfo" space="medium" vertical="center"><div class="media-copy"><strong>Moving background</strong></div></pipo-page></div><pre class="choice-code"><code>&lt;pipo-page video="movie.mp4"&gt;...&lt;/pipo-page&gt;</code></pre></div>
+        </section>
+
+        <section class="lesson" id="attr-video-light">
+          <div class="lesson-question"><span class="lesson-number">13</span><div><h3>Is the video too bright for text?</h3><p>Just like an image, a smaller number makes the video darker.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>影片太亮，文字看不清楚？</strong><p>和圖片一樣，數字越小，影片就越暗。</p></pipo-note></div><code>video-light</code></div>
+          <div class="default-note">If you write nothing: brightness stays at 100.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：亮度是 100，不會變暗。</pipo-note></div>
+          <div class="choice-grid three-choices">
+            <article class="choice-card"><h4>Original brightness</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">原本亮度</pipo-note><pipo-page class="media-mini" fill="none" video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" video-light="100" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>video-light="100"</code></pre></article>
+            <article class="choice-card"><h4>A little darker</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">稍微變暗</pipo-note><pipo-page class="media-mini" fill="none" video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" video-light="60" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>video-light="60"</code></pre></article>
+            <article class="choice-card"><h4>Clearer text</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant">文字更清楚</pipo-note><pipo-page class="media-mini" fill="none" video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" video-light="30" color="blunkfo" vertical="center"><span class="picture-word">Sample text</span></pipo-page><pre class="choice-code"><code>video-light="30"</code></pre></article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="guide-section alt" aria-labelledby="special-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">One last thing</div>
+          <h2 class="section-title" id="special-title">Most pages never need to change this.</h2>
+          <p class="section-desc">Only games, exhibition screens, or fixed control panels may need to stop the page from scrolling.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>一般頁面不用改這個</strong><p>只有遊戲、展場畫面或固定操作面板，才可能需要禁止捲動。</p></pipo-note>
+        </div>
+        <section class="lesson" id="attr-scroll">
+          <div class="lesson-question"><span class="lesson-number">14</span><div><h3>Should the whole page scroll?</h3><p>Use <code>auto</code> for normal content. <code>no</code> locks the whole page in place.</p><pipo-note class="lesson-note" color="wibble" line="thin" lang="zh-Hant"><strong>要不要讓整個頁面捲動？</strong><p>一般內容請維持 auto；no 會把整個頁面鎖住。</p></pipo-note></div><code>scroll</code></div>
+          <div class="default-note">If you write nothing: the page scrolls normally.<pipo-note class="default-note-zh" color="wibble" line="thin" lang="zh-Hant">什麼都不寫時：可以正常捲動。</pipo-note></div>
+          <div class="choice-grid two-choices">
+            <article class="choice-card"><h4>Scroll normally</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>可以捲動</strong>內容可以上下移動。</pipo-note><div class="scroll-picture scroll-on"><i>↕</i><span>Content moves up and down</span></div><pre class="choice-code"><code>scroll="auto"</code></pre></article>
+            <article class="choice-card"><h4>Lock the page</h4><pipo-note class="choice-note" color="wibble" line="thin" lang="zh-Hant"><strong>鎖住畫面</strong>內容固定不動。</pipo-note><div class="scroll-picture scroll-off"><i>×</i><span>Content stays in place</span></div><pre class="choice-code"><code>scroll="no"</code></pre></article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="guide-section" id="recipes" aria-labelledby="recipes-title">
+      <div class="guide-inner">
+        <div class="section-head beginner-head">
+          <div class="section-eyebrow">Ready to use</div>
+          <h2 class="section-title" id="recipes-title">Two complete pages you can start with</h2>
+          <p class="section-desc">Copy one first, then replace the words and colors with your own.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant"><strong>直接拿來用</strong><p>先複製，再換成自己的文字與顏色就可以了。</p></pipo-note>
+        </div>
+        <div class="recipe-list">
+          <article class="beginner-example recipe-example">
+            <div class="recipe-name"><span>01</span><div><h3>A comfortable story page</h3><p>Narrow content and medium space work well for stories and explanations.</p><pipo-note class="recipe-note" color="wibble" line="thin" lang="zh-Hant"><strong>舒服的故事閱讀頁</strong>窄版內容、中等留白，適合文章與說明。</pipo-note></div></div>
+            <div class="example-result"><pipo-page class="page-demo recipe-page" fill="none" size="narrow" space="medium" color="pibg"><div class="story-content"><strong>Today’s little story</strong><span>Once upon a time, a little bear wanted to learn how to make a web page...</span><span>First, the bear made a comfortable home for the content.</span></div></pipo-page></div>
+            <div class="example-code"><pre class="choice-code"><code>&lt;pipo-page fill="none" size="narrow" space="medium" color="pibg"&gt;
+  &lt;h1&gt;Today’s little story&lt;/h1&gt;
+  &lt;p&gt;Once upon a time...&lt;/p&gt;
+&lt;/pipo-page&gt;</code></pre></div>
+          </article>
+
+          <article class="beginner-example recipe-example">
+            <div class="recipe-name"><span>02</span><div><h3>A centered homepage hero</h3><p>Fill the screen and place the title right in the center.</p><pipo-note class="recipe-note" color="wibble" line="thin" lang="zh-Hant"><strong>置中的首頁主畫面</strong>填滿螢幕，讓標題站在正中央。</pipo-note></div></div>
+            <div class="example-result"><pipo-page class="page-demo recipe-page hero-recipe" fill="none" size="narrow" space="large" horizontal="center" vertical="center" color="blunkfo" image="https://picsum.photos/seed/pipotoy-final-kids/1000/600" image-light="30"><div class="media-copy"><strong>Let’s make a playful web page</strong><span>Start with one tag you can understand.</span></div></pipo-page></div>
+            <div class="example-code"><pre class="choice-code" id="copy-page-complete"><code>&lt;pipo-page
+  size="narrow"
+  space="large"
+  horizontal="center"
+  vertical="center"
+  color="blunkfo"
+  image="hero.jpg"
+  image-light="30"&gt;
+  &lt;h1&gt;Let’s make a playful web page&lt;/h1&gt;
+  &lt;p&gt;Start with one tag you can understand.&lt;/p&gt;
+&lt;/pipo-page&gt;</code></pre><button class="copy-button" type="button" data-copy-target="copy-page-complete">Copy all</button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">Pipo<span>Toy</span></div>
+    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
+    <div class="footer-links"><a class="footer-link" href="../../index.html" data-label="回首頁">Home</a><a class="footer-link" href="./components.html" data-label="元件展示">Components</a><a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a><a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a></div>
+    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
+  </footer>
+
+  <script src="../../src/version.js?v=16" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../../src/components/pipo-note.js?v=2" defer></script>
+  <script>
+    document.querySelectorAll('[data-copy-target]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var target = document.getElementById(button.dataset.copyTarget);
+        if (!target || !navigator.clipboard) return;
+        navigator.clipboard.writeText(target.textContent.trim()).then(function () {
+          var original = button.textContent;
+          button.textContent = 'Copied';
+          window.setTimeout(function () { button.textContent = original; }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

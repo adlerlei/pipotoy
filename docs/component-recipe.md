@@ -65,15 +65,19 @@
 </head>
 <body>
   <nav>     統一導覽（抄任一 examples 頁，改 nav-tag 為 <pipo-xxx>）
-  <hero>    breadcrumb · 元件名(code 風) · 中文一句 · 雙語介紹 · hero-code · live demo
-  <section> Quick Reference 屬性速查表
-  每個屬性一節：說明 + 程式碼範例(左) + live demo(右) + RWD(若有)
-  完整範例：所有屬性組合的真實場景
+  <hero>    breadcrumb · 元件名(code 風) · 英文主說明 · pipo-note 中文輔助 · 最小寫法 · live demo
+  <section> 用初學者會問的問題帶路，例如「內容要站哪裡？」
+  每個屬性一節：具體問題 + 全部視覺選項 + 各選項最短 HTML + RWD 結果(若有)
+  完整範例：最常見、可直接複製的真實場景
   <footer>  版本號（讀 window.PIPO_VERSION）
 </body>
 ```
 
-風格：玩具感、Pipo 色系、有陰影/hover 動畫。禁止 API docs 白底灰框風。
+教學順序：先看懂結果，再看最短寫法。程式碼與效果一律垂直排列，不可左右壓縮。
+
+風格：玩具感、Pipo 色系、有陰影/hover 動畫。讀者只是假設為完全沒有經驗的初學者或小朋友，禁止 API docs、Quick Reference 速查表、型別清單與工程術語導向。
+
+語言規則：英文是主要內容；中文翻譯一律使用 `<pipo-note color="wibble">`，不可另做翻譯 span 或自訂中文提示樣式。主視覺與段落說明用 `line="medium"`，卡片與選項用 `line="thin"`，並載入 `src/components/pipo-note.js`。
 
 ---
 
@@ -93,6 +97,9 @@
 
 - [ ] 不填任何屬性 → 有合理預設，不空白不報錯
 - [ ] 每個屬性都實際生效，無效值有 fallback
+- [ ] 不看程式碼也能從畫面分辨每個選項的差異
+- [ ] 每個有意義的選項都有畫面與最短 HTML，沒有只寫文字帶過
+- [ ] 程式碼空格、標籤與屬性名稱完整，不因排版被拆開或黏在一起
 - [ ] 手機寬度（≤720px）不爆版
 - [ ] 鍵盤可操作（可互動元件）
 - [ ] console 無錯

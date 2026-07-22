@@ -1199,14 +1199,6 @@ section { padding: 96px 24px; }
 .mini.fill.none .content { height: 34px; }
 .mini.space { padding: var(--p); }
 .mini.space .content { width: 100%; height: 100%; }
-.mini.align { padding: 10px; display: block; }
-.mini.align .content { width: 55%; height: 100%; }
-.mini.align.left   .content { margin-right: auto; }
-.mini.align.center .content { margin-left: auto; margin-right: auto; }
-.mini.align.right  .content { margin-left: auto; }
-.mini.middle { padding: 10px; justify-content: flex-start; }
-.mini.middle .content { flex: none; height: 34px; width: 100%; }
-.mini.middle.on { justify-content: center; }
 .mini.scrollbox { height: 150px; padding: 10px; display: block; }
 .mini.scrollbox .inner { height: 100%; border-radius: 6px; }
 .mini.scrollbox.auto .inner { overflow-y: auto; }
