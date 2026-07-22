@@ -165,7 +165,7 @@ const BAR_STYLE = `
     transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
     white-space: nowrap; box-sizing: border-box;
   }
-  .cta.shape-square { border-radius: var(--pipotoy-round-sm); }
+  .cta.shape-rounded { border-radius: var(--pipotoy-round-sm); }
   .cta:hover { box-shadow: var(--pipotoy-shadow-3); transform: translateY(-3px); }
   .cta.anim-tilt { transform-origin: center bottom; }
   .cta.anim-tilt:hover { transform: rotate(-5deg) translateY(-2px); }
@@ -306,7 +306,7 @@ class PipoNavbar extends HTMLElement {
   }
 
   _ctaHtml(cta, ctaColorVar, ctaShape, ctaAnim, ctaHref, ctaTarget, extraClass) {
-    const shapeC = ctaShape === 'square' ? ' shape-square' : '';
+    const shapeC = ctaShape === 'rounded' ? ' shape-rounded' : '';
     const animC  = ctaAnim  === 'tilt'   ? ' anim-tilt'   : '';
     const cls    = `cta${shapeC}${animC}${extraClass ? ' ' + extraClass : ''}`;
     const style  = `background:${ctaColorVar}`;

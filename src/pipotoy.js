@@ -12,6 +12,7 @@ import './components/pipo-navbar.js';
 import './components/pipo-card.js';
 import './components/pipo-stick.js';
 import './components/pipo-alert.js';
+import './components/pipo-note.js';
 import './components/pipo-stack.js';
 import './components/pipo-cluster.js';
 import './components/pipo-row.js';

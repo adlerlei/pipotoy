@@ -8,25 +8,474 @@
   <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
   <link rel="stylesheet" href="../site.css">
   <style>
-    /* 頁面層的 live demo 排版（不含任何色碼，色彩全由 pipo-button 自理） */
-    .tap-demo {
+    .button-guide main { overflow: hidden; }
+
+    .button-hero {
+      position: relative;
+      padding: 148px 24px 76px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .button-hero-inner,
+    .button-section-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 900px);
+      margin: 0 auto;
+    }
+
+    .button-hero .hero-crumb { margin-bottom: 22px; }
+
+    .button-hero-name {
+      margin: 0 0 12px;
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      font-size: clamp(38px, 7vw, 68px);
+      font-weight: 1000;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+    }
+
+    .button-hero-name .bracket { color: var(--pipotoy-faint); font-weight: 800; }
+    .button-hero-name .name { color: var(--pipotoy-grumglo-slurpo); }
+
+    .button-hero-title {
+      margin: 0 0 10px;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .button-hero-desc {
+      max-width: 540px;
+      margin: 0 auto;
+      color: var(--pipotoy-muted);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.75;
+    }
+
+    .zh-summary { margin-top: 16px; color: var(--pipotoy-text); text-align: left; }
+
+    .zh-summary strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--pipotoy-dunkvon-blornko);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .zh-summary p {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .hero-zh-summary { max-width: 540px; margin-right: auto; margin-left: auto; }
+    .section-zh-summary { max-width: 620px; }
+
+    .starter {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.75fr);
+      gap: 18px;
+      margin-top: 34px;
+      text-align: left;
+    }
+
+    .starter-code,
+    .starter-live,
+    .recipe-card,
+    .complete-card,
+    .reference-panel {
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-lg);
+      box-shadow: var(--pipotoy-shadow-2);
+    }
+
+    .starter-code {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      background: var(--pipotoy-dunkvon-blornko);
+    }
+
+    .starter-code .code {
+      width: 100%;
+      margin: 0;
+      padding: 26px 86px 26px 24px;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-pill);
+      background: var(--pipotoy-surface);
+      color: var(--pipotoy-text);
+      box-shadow: var(--pipotoy-shadow-1);
+      padding: 7px 12px;
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform var(--pipotoy-spring), box-shadow var(--pipotoy-spring);
+    }
+
+    .copy-button:hover { transform: translateY(-2px); box-shadow: var(--pipotoy-shadow-2); }
+    .copy-button:active { transform: translateY(1px); }
+
+    .starter-live {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 150px;
+      padding: 24px;
+      background: var(--pipotoy-surface);
+    }
+
+    .live-label {
+      color: var(--pipotoy-faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .button-section { padding: 76px 24px; }
+    .button-section.alt { background: var(--pipotoy-surface); }
+
+    .button-section-head { margin-bottom: 28px; }
+    .button-section-head .section-eyebrow { margin-bottom: 7px; }
+
+    .button-section-title {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .button-section-desc {
+      margin: 0;
+      color: var(--pipotoy-muted);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .recipe-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      background: var(--pipotoy-bg);
+    }
+
+    .recipe-card-head { padding: 22px 22px 14px; }
+
+    .recipe-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--pipotoy-grumglo-mibble);
+      box-shadow: var(--pipotoy-shadow-1);
+      color: var(--pipotoy-text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .recipe-title { margin: 0 0 5px; font-size: 18px; font-weight: 900; }
+    .recipe-subtitle { margin: 0; color: var(--pipotoy-muted); font-size: 13px; line-height: 1.65; }
+
+    .recipe-zh-summary {
+      margin-top: 14px;
+      color: var(--pipotoy-text);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .recipe-zh-summary strong { display: block; margin-bottom: 2px; color: var(--pipotoy-dunkvon-blornko); font-weight: 900; }
+
+    .recipe-code {
+      position: relative;
+      margin-top: auto;
+      background: var(--pipotoy-dunkvon-blornko);
+    }
+
+    .recipe-code .code {
+      min-height: 112px;
+      margin: 0;
+      padding: 18px 18px 44px;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      font-size: 11px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .recipe-code .copy-button {
+      top: auto;
+      right: 12px;
+      bottom: 10px;
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+
+    .recipe-live {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 104px;
+      padding: 20px;
+      background: var(--pipotoy-surface);
+    }
+
+    .look-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .look-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-lg);
+      background: var(--pipotoy-bg);
+      box-shadow: var(--pipotoy-shadow-2);
+    }
+
+    .look-card-head { padding: 20px 22px 14px; }
+    .look-card-title { margin: 0 0 4px; font-size: 18px; font-weight: 900; }
+    .look-card-desc { margin: 0; color: var(--pipotoy-muted); font-size: 13px; line-height: 1.6; }
+    .look-card-zh { margin: 12px 0 0; color: var(--pipotoy-text); font-size: 12px; font-weight: 700; line-height: 1.55; }
+
+    .look-stage {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      padding: 28px 18px;
+      gap: 14px;
+      min-height: 170px;
+      padding: 24px 18px;
+      border-top: 1px solid var(--pipotoy-line);
+      background: var(--pipotoy-surface);
     }
-    .tap-demo.col { flex-direction: column; }
-    .tap-demo.tall { min-height: 120px; }
-    .tap-cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .tap-cell .demo-cell-label { margin-top: 0; }
-    .tap-demo-full { padding: 24px 18px; }
+
+    .look-stage-column { flex-direction: column; }
+    .look-stage-sizes { align-items: flex-end; }
+    .look-stage-shapes { flex-direction: column; }
+    .shape-demo::part(button) { min-width: 132px; }
+
+    .look-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .look-option-label {
+      color: var(--pipotoy-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .reference-panel {
+      overflow: hidden;
+      background: var(--pipotoy-bg);
+    }
+
+    .reference-panel summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      list-style: none;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .reference-panel summary::-webkit-details-marker { display: none; }
+
+    .reference-panel summary::after {
+      content: '+';
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--pipotoy-grumglo-mibble);
+      box-shadow: var(--pipotoy-shadow-1);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 600;
+      transition: transform var(--pipotoy-spring);
+    }
+
+    .reference-panel[open] summary::after { transform: rotate(45deg); }
+
+    .reference-summary-zh {
+      display: block;
+      margin-top: 2px;
+      color: var(--pipotoy-drippus-blunfix);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .reference-body {
+      padding: 0 24px 26px;
+      border-top: 1px solid var(--pipotoy-line);
+    }
+
+    .reference-group { padding-top: 22px; }
+
+    .reference-group-title {
+      margin: 0 0 10px;
+      color: var(--pipotoy-faint);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .reference-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .reference-item {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 13px 14px;
+      border: 1px solid var(--pipotoy-line);
+      border-radius: var(--pipotoy-round-sm);
+      background: var(--pipotoy-surface);
+    }
+
+    .reference-item code {
+      color: var(--pipotoy-grumglo-slurpo);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .reference-item p { margin: 0; color: var(--pipotoy-muted); font-size: 13px; line-height: 1.55; }
+    .reference-item strong { color: var(--pipotoy-text); font-weight: 800; }
+    .reference-zh { margin-top: 8px; color: var(--pipotoy-text); font-size: 12px; font-weight: 700; line-height: 1.55; }
+
+    .reference-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .reference-note {
+      padding: 8px 12px;
+      border-radius: var(--pipotoy-round-pill);
+      background: var(--pipotoy-surface-2);
+      color: var(--pipotoy-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .complete-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+      overflow: hidden;
+      background: var(--pipotoy-bg);
+    }
+
+    .complete-code { position: relative; min-width: 0; background: var(--pipotoy-dunkvon-blornko); }
+    .complete-code .code {
+      height: 100%;
+      min-height: 230px;
+      margin: 0;
+      padding: 28px 82px 28px 24px;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      white-space: pre-wrap;
+    }
+
+    .complete-live {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      gap: 12px;
+      padding: 34px;
+      background: var(--pipotoy-surface);
+    }
+
+    .complete-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 760px) {
+      .button-hero { padding: 116px 18px 54px; }
+      .button-hero .hero-blob-1 { width: 260px; height: 260px; }
+      .button-hero .hero-blob-2 { width: 220px; height: 220px; }
+      .starter,
+      .complete-card { grid-template-columns: 1fr; }
+      .recipe-grid { grid-template-columns: 1fr; }
+      .look-grid { grid-template-columns: 1fr; }
+      .recipe-code .code { min-height: auto; }
+      .reference-list { grid-template-columns: 1fr; }
+      .complete-code .code { min-height: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .button-section { padding: 58px 18px; }
+      .button-hero-name { font-size: clamp(31px, 11vw, 46px); }
+      .button-hero-desc { font-size: 15px; }
+      .starter-code .code { padding: 24px 18px 64px; white-space: pre-wrap; overflow-wrap: anywhere; }
+      .starter-code .copy-button { top: auto; right: 12px; bottom: 12px; }
+      .reference-panel summary { padding: 19px 18px; }
+      .reference-body { padding: 0 16px 20px; }
+      .reference-item { grid-template-columns: 76px minmax(0, 1fr); padding: 12px; }
+      .complete-code .code { padding: 24px 18px 66px; font-size: 11px; }
+      .complete-code .copy-button { top: auto; right: 12px; bottom: 12px; }
+      .complete-live { padding: 26px 18px; }
+    }
   </style>
 </head>
-<body>
+<body class="button-guide">
 
-  <!-- NAV (unified) -->
   <nav>
     <a class="nav-brand" href="../../index.html">
       <div class="nav-logo">🧸</div>
@@ -44,412 +493,224 @@
     </label>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
+  <main>
+    <header class="button-hero">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
 
-    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-button</div>
+      <div class="button-hero-inner">
+        <div class="hero-crumb"><a href="./components.html">Components</a> / pipo-button</div>
+        <h1 class="button-hero-name"><span class="bracket">&lt;</span><span class="name">pipo-button</span><span class="bracket">&gt;</span></h1>
+        <h2 class="button-hero-title">One tag. One friendly button.</h2>
+        <p class="button-hero-desc">Drop it into HTML and it already looks right. Add color, size, links, or motion only when you need them.</p>
+        <pipo-note class="zh-summary hero-zh-summary" color="wibble" line="medium" lang="zh-Hant">
+          <strong>一個標籤，就是一顆好看的按鈕</strong>
+          <p>直接寫進 HTML 就能使用；顏色、大小、連結與動畫，需要時再加。</p>
+        </pipo-note>
 
-    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-button</span><span class="lt">&gt;</span></h1>
-    <p class="hero-zh">點下去的按鈕</p>
-
-    <p class="hero-sub">
-      A clay-soft button that floats when you hover<br>
-      and squishes when you press it. One tag, no CSS.
-    </p>
-    <p class="hero-sub-zh">
-      一顆黏土感的按鈕,滑過去會浮起來,按下去會被壓扁。<br>
-      一個標籤就好,不用寫任何 CSS。
-    </p>
-
-    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>確認<span class="tg">&lt;/pipo-button&gt;</span></pre></div>
-
-    <div class="tap-demo" style="margin-top:24px">
-      <pipo-button color="blonko">確認</pipo-button>
-      <pipo-button color="mibble" anim="tilt">Tilt me!</pipo-button>
-      <pipo-button color="plobbo" shape="square">立即開始</pipo-button>
-    </div>
-  </div>
-
-  <!-- QUICK REFERENCE -->
-  <section class="alt" id="reference">
-    <div class="section-inner">
-      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
-      <h2 class="section-heading">9 attributes. All optional.</h2>
-      <p class="section-heading-zh">9 個屬性,全部可不填——什麼都不填,就是一顆好看的黃色膠囊按鈕。</p>
-
-      <table class="rwd-table quick-table" style="max-width:680px">
-        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
-        <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
-        <tr><td><a href="#attr-color">color</a></td><td>Background color (Pipo token) · 背景顏色</td><td>"blonko"</td></tr>
-        <tr><td><a href="#attr-size">size</a></td><td>How big it is · 大小</td><td>"md"</td></tr>
-        <tr><td><a href="#attr-shape">shape</a></td><td>Rounded pill or soft square · 形狀</td><td>"pill"</td></tr>
-        <tr><td><a href="#attr-full">full</a></td><td>Stretch to full width · 滿版寬度</td><td>false</td></tr>
-        <tr class="quick-group"><td colspan="3">Motion · 動作</td></tr>
-        <tr><td><a href="#attr-anim">anim</a></td><td>Hover animation style · 滑過動畫</td><td>"float"</td></tr>
-        <tr class="quick-group"><td colspan="3">Behavior · 行為</td></tr>
-        <tr><td><a href="#attr-href">href</a></td><td>Make it a link · 變成連結</td><td>""</td></tr>
-        <tr><td><a href="#attr-target">target</a></td><td>Open link in a new tab · 開新分頁</td><td>""</td></tr>
-        <tr><td><a href="#attr-type">type</a></td><td>Button type (form use) · 按鈕類型</td><td>"button"</td></tr>
-        <tr><td><a href="#attr-disabled">disabled</a></td><td>Turn it off · 停用</td><td>false</td></tr>
-      </table>
-
-      <p class="attr-desc">Hover any button below — it floats up. Press and hold — it squishes down. That clay feeling is built in; you never style it yourself.</p>
-      <p class="attr-desc-zh">滑過下面任何一顆按鈕,它會浮起來;按住不放,它會被壓扁。那種黏土的手感是內建的,你永遠不用自己刻。</p>
-    </div>
-  </section>
-
-  <!-- LOOK -->
-  <section id="look">
-    <div class="section-inner">
-      <div class="section-eyebrow">Look · 外觀</div>
-      <h2 class="section-heading">Pick a color, a size, a shape.</h2>
-      <p class="section-heading-zh">挑一個顏色、一個大小、一個形狀。</p>
-
-      <!-- color -->
-      <div class="attr" id="attr-color">
-        <div class="attr-head">
-          <code class="attr-name">color</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"blonko"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何 Pipo 顏色名字 any Pipo color name</b></span></span>
-        </div>
-        <h3 class="attr-title">Background color <span>背景顏色</span></h3>
-        <p class="attr-desc">Fill in a Pipo color token — like <code>mibble</code>, <code>wibble</code>, or <code>plobbo</code>. No hex codes, ever. The text color stays the same friendly dark tone on every color. Type a name that doesn't exist and it quietly falls back to <code>blonko</code>.</p>
-        <p class="attr-desc-zh">填一個 Pipo 色系 token——像 mibble、wibble、plobbo。永遠不用色碼。文字顏色在每個底色上都維持同一種友善的深色。填了不存在的名字也不會壞,會安靜退回 blonko。</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>按我<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">color — real buttons, hover & press them! 真的按鈕,滑過、按下試試!</span>
+        <div class="starter">
+          <div class="starter-code">
+            <pre class="code" id="copy-start"><span class="tg">&lt;pipo-button&gt;</span>Confirm<span class="tg">&lt;/pipo-button&gt;</span></pre>
+            <button class="copy-button" type="button" data-copy-target="copy-start">Copy</button>
           </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
+          <div class="starter-live">
+            <span class="live-label">Live preview · 實際效果</span>
+            <pipo-button>Confirm</pipo-button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="button-section alt" id="common-uses">
+      <div class="button-section-inner">
+        <div class="button-section-head">
+          <div class="section-eyebrow">Start Here</div>
+          <h2 class="button-section-title">Three buttons you'll use most.</h2>
+          <p class="button-section-desc">Pick one, copy it, and change the words.</p>
+          <pipo-note class="zh-summary section-zh-summary" color="wibble" line="medium" lang="zh-Hant"><strong>最常用的三種按鈕</strong><p>大多數情況，從下面挑一種就夠了。</p></pipo-note>
+        </div>
+
+        <div class="recipe-grid">
+          <article class="recipe-card">
+            <div class="recipe-card-head">
+              <span class="recipe-number">01</span>
+              <h3 class="recipe-title">Choose a color</h3>
+              <p class="recipe-subtitle">Use a Pipo name, never a hex code.</p>
+              <pipo-note class="recipe-zh-summary" color="wibble" line="thin" lang="zh-Hant"><strong>換一個顏色</strong>用 Pipo 名字選顏色，不需要色碼。</pipo-note>
+            </div>
+            <div class="recipe-code">
+              <pre class="code" id="copy-color"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span><span class="tg">&gt;</span>Save<span class="tg">&lt;/pipo-button&gt;</span></pre>
+              <button class="copy-button" type="button" data-copy-target="copy-color">Copy</button>
+            </div>
+            <div class="recipe-live"><pipo-button color="mibble">Save</pipo-button></div>
+          </article>
+
+          <article class="recipe-card">
+            <div class="recipe-card-head">
+              <span class="recipe-number">02</span>
+              <h3 class="recipe-title">Make it a link</h3>
+              <p class="recipe-subtitle">Add a URL and the button knows where to go.</p>
+              <pipo-note class="recipe-zh-summary" color="wibble" line="thin" lang="zh-Hant"><strong>做成連結</strong>加上網址，按鈕就會帶使用者前往另一頁。</pipo-note>
+            </div>
+            <div class="recipe-code">
+              <pre class="code" id="copy-link"><span class="tg">&lt;pipo-button</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>Learn more<span class="tg">&lt;/pipo-button&gt;</span></pre>
+              <button class="copy-button" type="button" data-copy-target="copy-link">Copy</button>
+            </div>
+            <div class="recipe-live"><pipo-button color="wibble" href="./components.html">Learn more</pipo-button></div>
+          </article>
+
+          <article class="recipe-card">
+            <div class="recipe-card-head">
+              <span class="recipe-number">03</span>
+              <h3 class="recipe-title">Make the main action</h3>
+              <p class="recipe-subtitle">Go large and full width for forms or mobile screens.</p>
+              <pipo-note class="recipe-zh-summary" color="wibble" line="thin" lang="zh-Hant"><strong>做成主要行動</strong>放大、撐滿，適合表單送出或手機頁面。</pipo-note>
+            </div>
+            <div class="recipe-code">
+              <pre class="code" id="copy-full"><span class="tg">&lt;pipo-button</span> <span class="at">size</span>=<span class="vl">"lg"</span> <span class="at">full</span><span class="tg">&gt;</span>Get started<span class="tg">&lt;/pipo-button&gt;</span></pre>
+              <button class="copy-button" type="button" data-copy-target="copy-full">Copy</button>
+            </div>
+            <div class="recipe-live"><pipo-button color="plobbo" size="lg" full>Get started</pipo-button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="button-section" id="look">
+      <div class="button-section-inner">
+        <div class="button-section-head">
+          <div class="section-eyebrow">Look</div>
+          <h2 class="button-section-title">See what changes.</h2>
+          <p class="button-section-desc">Shape, color, and size are independent — mix them however you like.</p>
+          <pipo-note class="zh-summary section-zh-summary" color="wibble" line="medium" lang="zh-Hant"><strong>直接比較不同外觀</strong><p>形狀、顏色與尺寸可以自由組合。</p></pipo-note>
+        </div>
+
+        <div class="look-grid">
+          <article class="look-card">
+            <div class="look-card-head">
+              <h3 class="look-card-title">Shape</h3>
+              <p class="look-card-desc"><code>pill</code> is a capsule. <code>rounded</code> is a soft rectangle.</p>
+              <pipo-note class="look-card-zh" color="wibble" line="thin" lang="zh-Hant">形狀：pill 是膠囊；rounded 是柔和圓角矩形。</pipo-note>
+            </div>
+            <div class="look-stage look-stage-shapes">
+              <div class="look-option"><pipo-button class="shape-demo" color="mibble" size="lg" shape="pill">Button</pipo-button><span class="look-option-label">pill</span></div>
+              <div class="look-option"><pipo-button class="shape-demo" color="mibble" size="lg" shape="rounded">Button</pipo-button><span class="look-option-label">rounded</span></div>
+            </div>
+          </article>
+
+          <article class="look-card">
+            <div class="look-card-head">
+              <h3 class="look-card-title">Color</h3>
+              <p class="look-card-desc">Every Pipo color name works with the same tag.</p>
+              <pipo-note class="look-card-zh" color="wibble" line="thin" lang="zh-Hant">顏色：所有 Pipo 色名都能直接使用。</pipo-note>
+            </div>
+            <div class="look-stage">
               <pipo-button color="mibble">mibble</pipo-button>
               <pipo-button color="wibble">wibble</pipo-button>
               <pipo-button color="blonko">blonko</pipo-button>
               <pipo-button color="plobbo">plobbo</pipo-button>
-              <pipo-button color="squorbo">squorbo</pipo-button>
-              <pipo-button color="dunko">dunko</pipo-button>
             </div>
-          </div>
+          </article>
+
+          <article class="look-card">
+            <div class="look-card-head">
+              <h3 class="look-card-title">Size</h3>
+              <p class="look-card-desc">Four steps, from a compact icon button to a bold CTA.</p>
+              <pipo-note class="look-card-zh" color="wibble" line="thin" lang="zh-Hant">尺寸：四個級距，從小型圖示按鈕到主要行動按鈕。</pipo-note>
+            </div>
+            <div class="look-stage look-stage-sizes">
+              <div class="look-option"><pipo-button color="squorbo" size="xs">xs</pipo-button><span class="look-option-label">xs</span></div>
+              <div class="look-option"><pipo-button color="squorbo" size="sm">sm</pipo-button><span class="look-option-label">sm</span></div>
+              <div class="look-option"><pipo-button color="squorbo" size="md">md</pipo-button><span class="look-option-label">md</span></div>
+              <div class="look-option"><pipo-button color="squorbo" size="lg">lg</pipo-button><span class="look-option-label">lg</span></div>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <!-- size -->
-      <div class="attr" id="attr-size">
-        <div class="attr-head">
-          <code class="attr-name">size</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"md"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>xs / sm / md / lg</b></span></span>
+    <section class="button-section alt" id="reference">
+      <div class="button-section-inner">
+        <div class="button-section-head">
+          <div class="section-eyebrow">Reference</div>
+          <h2 class="button-section-title">Need more control?</h2>
+          <p class="button-section-desc">All nine attributes live here. You do not need them on your first visit.</p>
+          <pipo-note class="zh-summary section-zh-summary" color="wibble" line="medium" lang="zh-Hant"><strong>想控制更多細節？</strong><p>九個屬性都整理在這裡；第一次使用不需要全部看完。</p></pipo-note>
         </div>
-        <h3 class="attr-title">How big it is <span>大小</span></h3>
-        <p class="attr-desc">Four sizes, from a tiny <code>xs</code> chip to a chunky <code>lg</code> call-to-action. The padding and font scale together so every size stays nicely proportioned.</p>
-        <p class="attr-desc-zh">四種大小,從小巧的 xs 一路到厚實的 lg 主行動鈕。內距和字級會一起縮放,每個尺寸的比例都剛剛好。</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">size</span>=<span class="vl">"lg"</span><span class="tg">&gt;</span>立即開始<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">size</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <span class="tap-cell"><pipo-button color="blonko" size="xs">xs</pipo-button><span class="demo-cell-label">"xs"</span></span>
-              <span class="tap-cell"><pipo-button color="blonko" size="sm">sm</pipo-button><span class="demo-cell-label">"sm"</span></span>
-              <span class="tap-cell"><pipo-button color="blonko" size="md">md</pipo-button><span class="demo-cell-label">"md"</span></span>
-              <span class="tap-cell"><pipo-button color="blonko" size="lg">lg</pipo-button><span class="demo-cell-label">"lg"</span></span>
-            </div>
-          </div>
-        </div>
-        <div style="height:20px"></div>
-        <table class="rwd-table">
-          <tr><th>size</th><th>padding</th><th>font-size</th></tr>
-          <tr><td>xs</td><td>11px</td><td>15px</td></tr>
-          <tr><td>sm</td><td>7px 16px</td><td>13px</td></tr>
-          <tr><td>md</td><td>11px 26px</td><td>15px</td></tr>
-          <tr><td>lg</td><td>15px 36px</td><td>17px</td></tr>
-        </table>
-      </div>
 
-      <!-- shape -->
-      <div class="attr" id="attr-shape">
-        <div class="attr-head">
-          <code class="attr-name">shape</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"pill"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>pill / square</b></span></span>
-        </div>
-        <h3 class="attr-title">Pill or soft square <span>形狀</span></h3>
-        <p class="attr-desc"><code>pill</code> is fully rounded — the classic friendly capsule. <code>square</code> keeps gently rounded corners for a more structured look. (When <code>full</code> is on, the shape is always square — see below.)</p>
-        <p class="attr-desc-zh">pill 是完全的圓角,經典又友善的膠囊形。square 是帶點圓角的方形,看起來更工整。(開了 full 時,形狀一律是 square——見下方。)</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">shape</span>=<span class="vl">"square"</span><span class="tg">&gt;</span>方形按鈕<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">shape</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <span class="tap-cell"><pipo-button color="wibble" shape="pill">pill</pipo-button><span class="demo-cell-label">"pill" <i>999px</i></span></span>
-              <span class="tap-cell"><pipo-button color="wibble" shape="square">square</pipo-button><span class="demo-cell-label">"square" <i>10px</i></span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- full -->
-      <div class="attr" id="attr-full">
-        <div class="attr-head">
-          <code class="attr-name">full</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>false(關)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>加上就開 add it to turn on</b></span></span>
-        </div>
-        <h3 class="attr-title">Full width <span>滿版寬度</span></h3>
-        <p class="attr-desc">Add <code>full</code> and the button stretches to fill its container — perfect for forms and mobile screens. A full-width button is always <code>square</code>, so even if you write <code>shape="pill"</code>, it renders square.</p>
-        <p class="attr-desc-zh">加上 full,按鈕就會撐滿整個容器寬度——表單和手機畫面最適合。滿版按鈕一律是 square,所以就算你寫了 shape="pill",也會以方形呈現。</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">size</span>=<span class="vl">"lg"</span> <span class="at">full</span><span class="tg">&gt;</span>立即開始<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">full — stretches edge to edge · 撐滿整個寬度</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo-full">
-              <pipo-button color="mibble" size="lg" full>立即開始</pipo-button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MOTION -->
-  <section class="alt" id="motion">
-    <div class="section-inner">
-      <div class="section-eyebrow">Motion · 動作</div>
-      <h2 class="section-heading">Two ways to come alive.</h2>
-      <p class="section-heading-zh">兩種活起來的方式。</p>
-
-      <!-- anim -->
-      <div class="attr" id="attr-anim">
-        <div class="attr-head">
-          <code class="attr-name">anim</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"float"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>float / tilt</b></span></span>
-        </div>
-        <h3 class="attr-title">Hover animation <span>滑過動畫</span></h3>
-        <p class="attr-desc"><code>float</code> lifts the button straight up when you hover. <code>tilt</code> tips it playfully to one side. Both squish down with a springy bounce when pressed — and <code>tilt</code> stays tilted while you hold it.</p>
-        <p class="attr-desc-zh">float 是滑過時筆直浮起來。tilt 是俏皮地往一邊歪。兩種按下去都會帶著彈簧感壓扁——而且 tilt 按住時會保持傾斜,不會歸正。</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">anim</span>=<span class="vl">"tilt"</span><span class="tg">&gt;</span>歪歪的<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">anim — hover and press to feel the difference! 滑過、按住感受差別!</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo tall">
-              <span class="tap-cell"><pipo-button color="squorbo" size="lg" anim="float">float</pipo-button><span class="demo-cell-label">"float" <i>lifts straight up 筆直浮起</i></span></span>
-              <span class="tap-cell"><pipo-button color="squorbo" size="lg" anim="tilt">tilt</pipo-button><span class="demo-cell-label">"tilt" <i>tips to one side 往旁邊歪</i></span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BEHAVIOR -->
-  <section id="behavior">
-    <div class="section-inner">
-      <div class="section-eyebrow">Behavior · 行為</div>
-      <h2 class="section-heading">Button or link — it knows.</h2>
-      <p class="section-heading-zh">按鈕還是連結——它自己會判斷。</p>
-
-      <!-- href -->
-      <div class="attr" id="attr-href">
-        <div class="attr-head">
-          <code class="attr-name">href</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(是按鈕)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何網址 any URL</b></span></span>
-        </div>
-        <h3 class="attr-title">Make it a link <span>變成連結</span></h3>
-        <p class="attr-desc">Leave <code>href</code> empty and you get a real <code>&lt;button&gt;</code>. Give it a URL and the very same tag becomes a real <code>&lt;a&gt;</code> link — same look, same feel, but it navigates. You write one tag; PipoToy picks the right element.</p>
-        <p class="attr-desc-zh">href 留空,你得到一顆真正的 &lt;button&gt;。填上網址,同一個標籤就變成真正的 &lt;a&gt; 連結——外觀手感一模一樣,但它會跳轉。你只寫一個標籤,PipoToy 幫你選對的元素。</p>
-        <pre class="code"><span class="cm">&lt;!-- 按鈕 button --&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"blonko"</span><span class="tg">&gt;</span>送出<span class="tg">&lt;/pipo-button&gt;</span>
-
-<span class="cm">&lt;!-- 連結 link --&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>了解更多<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">href — the right one really navigates! 右邊那顆真的會跳頁!</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <span class="tap-cell"><pipo-button color="blonko">送出</pipo-button><span class="demo-cell-label">no href <i>&lt;button&gt;</i></span></span>
-              <span class="tap-cell"><pipo-button color="wibble" href="./components.html">了解更多</pipo-button><span class="demo-cell-label">href="…" <i>&lt;a&gt;</i></span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- target -->
-      <div class="attr" id="attr-target">
-        <div class="attr-head">
-          <code class="attr-name">target</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>空白(原分頁)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>blank</b></span></span>
-        </div>
-        <h3 class="attr-title">Open in a new tab <span>開新分頁</span></h3>
-        <p class="attr-desc">By default a link opens in the same tab. Add <code>target="blank"</code> and it opens in a new tab instead — PipoToy automatically adds <code>rel="noopener noreferrer"</code> for you, so it's safe. Only works together with <code>href</code>; plain buttons ignore it.</p>
-        <p class="attr-desc-zh">預設連結在原分頁開啟。加上 <code>target="blank"</code> 就會改在新分頁開——PipoToy 會自動幫你補上 <code>rel="noopener noreferrer"</code>,安全無虞。只有搭配 <code>href</code> 才有用,純按鈕會忽略它。</p>
-        <pre class="code"><span class="cm">&lt;!-- 原分頁 same tab --&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>同分頁<span class="tg">&lt;/pipo-button&gt;</span>
-
-<span class="cm">&lt;!-- 新分頁 new tab --&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"squorbo"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span> <span class="at">target</span>=<span class="vl">"blank"</span><span class="tg">&gt;</span>開新分頁<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">target — the right one opens a new tab! 右邊那顆會另開新分頁!</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <span class="tap-cell"><pipo-button color="wibble" href="./components.html">同分頁</pipo-button><span class="demo-cell-label">no target <i>same tab 原分頁</i></span></span>
-              <span class="tap-cell"><pipo-button color="squorbo" href="./components.html" target="blank">開新分頁</pipo-button><span class="demo-cell-label">target="blank" <i>new tab 新分頁</i></span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- type -->
-      <div class="attr" id="attr-type">
-        <div class="attr-head">
-          <code class="attr-name">type</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"button"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>button / submit / reset</b></span></span>
-        </div>
-        <h3 class="attr-title">Button type <span>按鈕類型</span></h3>
-        <p class="attr-desc">For buttons inside a <code>&lt;form&gt;</code>: <code>submit</code> sends the form, <code>reset</code> clears it, <code>button</code> does nothing on its own. This only matters when there's no <code>href</code> — links don't submit forms.</p>
-        <p class="attr-desc-zh">給表單 &lt;form&gt; 裡的按鈕用:submit 送出表單,reset 清空,button 自己不做事。只有在沒有 href 時才有意義——連結不會送出表單。</p>
-        <pre class="code"><span class="tg">&lt;form&gt;</span>
-  <span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">type</span>=<span class="vl">"submit"</span><span class="tg">&gt;</span>送出表單<span class="tg">&lt;/pipo-button&gt;</span>
-  <span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"flumpo"</span> <span class="at">type</span>=<span class="vl">"reset"</span><span class="tg">&gt;</span>清空<span class="tg">&lt;/pipo-button&gt;</span>
-<span class="tg">&lt;/form&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">type — type in the box, then Submit / Reset · 在框裡打字,再按送出 / 清空</span>
-          </div>
-          <div class="toybox-screen">
-            <form class="tap-demo col" onsubmit="this.querySelector('.type-msg').textContent='✅ submitted! 已送出';return false;" onreset="setTimeout(()=>this.querySelector('.type-msg').textContent='🧹 cleared! 已清空',0)">
-              <input type="text" placeholder="打點字… type something…" style="font-family:var(--pipotoy-font-sans);font-size:15px;padding:10px 16px;border:none;border-radius:var(--pipotoy-round);box-shadow:var(--pipotoy-shadow-press);background:var(--pipotoy-surface);color:var(--pipotoy-text);width:min(320px,80%)">
-              <div class="tap-demo" style="padding:4px 0">
-                <pipo-button color="mibble" type="submit">送出表單</pipo-button>
-                <pipo-button color="flumpo" type="reset">清空</pipo-button>
+        <details class="reference-panel">
+          <summary>
+            <span>Show all 9 attributes<span class="reference-summary-zh" lang="zh-Hant">查看全部屬性</span></span>
+          </summary>
+          <div class="reference-body">
+            <div class="reference-group">
+              <h3 class="reference-group-title">Look</h3>
+              <div class="reference-list">
+                <div class="reference-item"><code>color</code><div><p><strong>Background color</strong><br>Any Pipo color; default <code>blonko</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">背景顏色：任一 Pipo 色名；預設 blonko</pipo-note></div></div>
+                <div class="reference-item"><code>size</code><div><p><strong>Button size</strong><br><code>xs / sm / md / lg</code>; default <code>md</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">按鈕大小：四個尺寸；預設 md</pipo-note></div></div>
+                <div class="reference-item"><code>shape</code><div><p><strong>Corner shape</strong><br><code>pill / rounded</code>; default <code>pill</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">按鈕形狀：膠囊或圓角矩形；預設 pill</pipo-note></div></div>
+                <div class="reference-item"><code>full</code><div><p><strong>Fill the container</strong><br>Boolean; add it to turn on</p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">撐滿容器：加上屬性即可啟用</pipo-note></div></div>
               </div>
-              <div class="type-msg" style="font-weight:700;color:var(--pipotoy-muted);min-height:1.2em"></div>
-            </form>
-          </div>
-        </div>
-      </div>
+            </div>
 
-      <!-- disabled -->
-      <div class="attr" id="attr-disabled">
-        <div class="attr-head">
-          <code class="attr-name">disabled</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>false(關)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>加上就停用 add it to disable</b></span></span>
-        </div>
-        <h3 class="attr-title">Turn it off <span>停用</span></h3>
-        <p class="attr-desc">Add <code>disabled</code> and the button fades, stops responding to hover or press, and shows a "not-allowed" cursor. It also tells screen readers it's off via <code>aria-disabled</code>. If a disabled button has an <code>href</code>, the link is removed too — so it really can't be clicked.</p>
-        <p class="attr-desc-zh">加上 disabled,按鈕會變淡、不再回應滑過或按下,游標變成「禁止」符號。它也會透過 aria-disabled 告訴螢幕報讀軟體它被關掉了。如果停用的按鈕本來有 href,連結也會一併移除——所以它真的點不動。</p>
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">disabled</span><span class="tg">&gt;</span>無法點擊<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">disabled — try to press the faded ones! 試著按按看變淡的那些!</span>
+            <div class="reference-group">
+              <h3 class="reference-group-title">Motion</h3>
+              <div class="reference-list">
+                <div class="reference-item"><code>anim</code><div><p><strong>Hover animation</strong><br><code>float / tilt</code>; default <code>float</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">滑過動畫：浮起或傾斜；預設 float</pipo-note></div></div>
+              </div>
+            </div>
+
+            <div class="reference-group">
+              <h3 class="reference-group-title">Behavior</h3>
+              <div class="reference-list">
+                <div class="reference-item"><code>href</code><div><p><strong>Make it a link</strong><br>Any URL</p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">變成連結：填入任何網址</pipo-note></div></div>
+                <div class="reference-item"><code>target</code><div><p><strong>Open a new tab</strong><br>Use <code>blank</code> with <code>href</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">另開分頁：搭配 href 使用 blank</pipo-note></div></div>
+                <div class="reference-item"><code>type</code><div><p><strong>Form behavior</strong><br><code>button / submit / reset</code></p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">表單行為：按鈕、送出或重設</pipo-note></div></div>
+                <div class="reference-item"><code>disabled</code><div><p><strong>Turn it off</strong><br>Boolean; add it to disable</p><pipo-note class="reference-zh" color="wibble" line="thin" lang="zh-Hant">停用按鈕：加上屬性即可停用</pipo-note></div></div>
+              </div>
+            </div>
+
+            <div class="reference-notes">
+              <span class="reference-note">Invalid colors fall back to blonko</span>
+              <span class="reference-note">href creates a real link</span>
+              <span class="reference-note">full uses the rounded shape</span>
+            </div>
           </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <span class="tap-cell"><pipo-button color="blonko">正常 active</pipo-button><span class="demo-cell-label">normal</span></span>
-              <span class="tap-cell"><pipo-button color="blonko" disabled>停用 button</pipo-button><span class="demo-cell-label">disabled &lt;button&gt;</span></span>
-              <span class="tap-cell"><pipo-button color="wibble" href="./components.html" disabled>停用 link</pipo-button><span class="demo-cell-label">disabled &lt;a&gt;</span></span>
+        </details>
+      </div>
+    </section>
+
+    <section class="button-section" id="complete-example">
+      <div class="button-section-inner">
+        <div class="button-section-head">
+          <div class="section-eyebrow">Complete Example</div>
+          <h2 class="button-section-title">A ready-to-use action group.</h2>
+          <p class="button-section-desc">A primary action, a back link, and a disabled state — together.</p>
+          <pipo-note class="zh-summary section-zh-summary" color="wibble" line="medium" lang="zh-Hant"><strong>一組可以直接使用的操作按鈕</strong><p>主要行動、返回連結與停用狀態放在一起。</p></pipo-note>
+        </div>
+
+        <div class="complete-card">
+          <div class="complete-code">
+            <pre class="code" id="copy-complete"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">size</span>=<span class="vl">"lg"</span><span class="tg">&gt;</span>Save changes<span class="tg">&lt;/pipo-button&gt;</span>
+
+<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"flumpo"</span> <span class="at">href</span>=<span class="vl">"./components.html"</span><span class="tg">&gt;</span>Back to list<span class="tg">&lt;/pipo-button&gt;</span>
+
+<span class="tg">&lt;pipo-button</span> <span class="at">disabled</span><span class="tg">&gt;</span>Coming soon<span class="tg">&lt;/pipo-button&gt;</span></pre>
+            <button class="copy-button" type="button" data-copy-target="copy-complete">Copy all</button>
+          </div>
+          <div class="complete-live">
+            <span class="live-label">Live preview · 實際效果</span>
+            <div class="complete-actions">
+              <pipo-button color="mibble" size="lg">Save changes</pipo-button>
+              <pipo-button color="flumpo" href="./components.html">Back to list</pipo-button>
+              <pipo-button disabled>Coming soon</pipo-button>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  </main>
 
-    </div>
-  </section>
-
-  <!-- FULL EXAMPLE -->
-  <section class="alt" id="example">
-    <div class="section-inner">
-      <div class="section-eyebrow">All Together · 全部組起來</div>
-      <h2 class="section-heading">A row of real buttons.</h2>
-      <p class="section-heading-zh">一排真正的按鈕,各種屬性組合在一起。</p>
-
-      <div class="attr">
-        <pre class="code"><span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"mibble"</span> <span class="at">size</span>=<span class="vl">"lg"</span><span class="tg">&gt;</span>主要行動<span class="tg">&lt;/pipo-button&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"flumpo"</span> <span class="at">size</span>=<span class="vl">"lg"</span> <span class="at">shape</span>=<span class="vl">"square"</span><span class="tg">&gt;</span>次要<span class="tg">&lt;/pipo-button&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"wibble"</span> <span class="at">anim</span>=<span class="vl">"tilt"</span> <span class="at">href</span>=<span class="vl">"#"</span><span class="tg">&gt;</span>了解更多<span class="tg">&lt;/pipo-button&gt;</span>
-<span class="tg">&lt;pipo-button</span> <span class="at">color</span>=<span class="vl">"blonko"</span> <span class="at">size</span>=<span class="vl">"xs"</span><span class="tg">&gt;</span>×<span class="tg">&lt;/pipo-button&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">all together · 全部組起來</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="tap-demo">
-              <pipo-button color="mibble" size="lg">主要行動</pipo-button>
-              <pipo-button color="flumpo" size="lg" shape="square">次要</pipo-button>
-              <pipo-button color="wibble" anim="tilt" href="#example">了解更多</pipo-button>
-              <pipo-button color="blonko" size="xs">×</pipo-button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOTES -->
-  <section id="notes">
-    <div class="section-inner">
-      <div class="section-eyebrow">Good to Know · 備註</div>
-      <h2 class="section-heading">Small things worth knowing.</h2>
-      <p class="section-heading-zh">幾件值得知道的小事。</p>
-
-      <div class="note-list">
-        <div class="note">
-          <div class="note-icon">🫳</div>
-          <div class="note-body">
-            <div class="note-title">It squishes when you press</div>
-            <div class="note-desc">Hover lifts it up with a springy ease; press pushes it down fast (80ms) into the clay. That two-speed feel is what makes it feel real.</div>
-            <div class="note-desc-zh">滑過時帶彈簧感浮起,按下時快速(80ms)壓進黏土裡。這種一快一慢的手感,就是它像真的的原因。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">🔀</div>
-          <div class="note-body">
-            <div class="note-title">One tag, button or link</div>
-            <div class="note-desc">No <code>href</code> → a real <code>&lt;button&gt;</code> (keyboard + Enter works). With <code>href</code> → a real <code>&lt;a&gt;</code> (Tab to focus, click to navigate). You never choose the element yourself.</div>
-            <div class="note-desc-zh">沒有 href → 真的 &lt;button&gt;(鍵盤 + Enter 可觸發)。有 href → 真的 &lt;a&gt;(Tab 聚焦、點擊跳轉)。你永遠不用自己選元素。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">🛡️</div>
-          <div class="note-body">
-            <div class="note-title">Wrong color never breaks it</div>
-            <div class="note-desc">A color token that doesn't exist quietly falls back to <code>blonko</code>. No errors, no blank button — it always looks fine.</div>
-            <div class="note-desc-zh">不存在的顏色 token 會安靜退回 blonko。不報錯、不空白——它永遠是好看的。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">📐</div>
-          <div class="note-body">
-            <div class="note-title">full always means square</div>
-            <div class="note-desc">A full-width button renders <code>square</code> no matter what <code>shape</code> you write — a full-width pill looks odd, so PipoToy makes the call for you.</div>
-            <div class="note-desc-zh">滿版按鈕一律以 square 呈現,不管你寫了什麼 shape——滿版的膠囊形不好看,所以 PipoToy 幫你決定。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER (unified) -->
   <footer>
     <div class="footer-brand">Pipo<span>Toy</span></div>
     <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
@@ -462,8 +723,22 @@
     <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
   </footer>
 
-  <script src="../../src/version.js" defer></script>
+  <script src="../../src/version.js?v=16" defer></script>
   <script src="../site.js" defer></script>
-  <script src="../../src/components/pipo-button.js" defer></script>
+  <script src="../../src/components/pipo-note.js?v=2" defer></script>
+  <script src="../../src/components/pipo-button.js?v=2" defer></script>
+  <script>
+    document.querySelectorAll('[data-copy-target]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target || !navigator.clipboard) return;
+        navigator.clipboard.writeText(target.textContent.trim()).then(function () {
+          const original = button.textContent;
+          button.textContent = 'Copied';
+          window.setTimeout(function () { button.textContent = original; }, 1400);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

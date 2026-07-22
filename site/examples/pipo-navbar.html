@@ -112,7 +112,7 @@
         <tr class="quick-group"><td colspan="3">CTA · 行動按鈕</td></tr>
         <tr><td><a href="#attr-cta">cta</a></td><td>Button text (empty = no button) · 按鈕文字</td><td>""</td></tr>
         <tr><td><a href="#attr-cta-color">cta-color</a></td><td>Button color token · 按鈕顏色</td><td>繼承 color</td></tr>
-        <tr><td><a href="#attr-cta-shape">cta-shape</a></td><td>pill / square</td><td>"pill"</td></tr>
+        <tr><td><a href="#attr-cta-shape">cta-shape</a></td><td>pill / rounded</td><td>"pill"</td></tr>
         <tr><td><a href="#attr-cta-anim">cta-anim</a></td><td>float / tilt · 滑過動畫</td><td>"float"</td></tr>
         <tr><td><a href="#attr-cta-href">cta-href</a></td><td>Button link URL · 跳轉網址</td><td>""</td></tr>
         <tr><td><a href="#attr-cta-target">cta-target</a></td><td>_self / _blank · 開新分頁</td><td>"_self"</td></tr>
@@ -399,12 +399,12 @@
       <div class="attr" id="attr-cta-shape">
         <div class="attr-head">
           <code class="attr-name">cta-shape</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"pill"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>pill / square</b></span></span>
+          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"pill"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>pill / rounded</b></span></span>
         </div>
         <h3 class="attr-title">CTA shape <span>按鈕形狀</span></h3>
-        <p class="attr-desc"><code>pill</code> gives a fully rounded capsule. <code>square</code> uses gentle 10px corners for a more structured look.</p>
-        <p class="attr-desc-zh">pill 是完全的圓角膠囊。square 是帶點圓角的方形，看起來更工整。</p>
-        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">cta</span>=<span class="vl">"Get Started"</span> <span class="at">cta-shape</span>=<span class="vl">"square"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
+        <p class="attr-desc"><code>pill</code> gives a fully rounded capsule. <code>rounded</code> uses gentle 10px corners for a more structured look.</p>
+        <p class="attr-desc-zh">pill 是完全的圓角膠囊。rounded 是帶有柔和圓角的矩形，看起來更工整。</p>
+        <pre class="code"><span class="tg">&lt;pipo-navbar</span> <span class="at">cta</span>=<span class="vl">"Get Started"</span> <span class="at">cta-shape</span>=<span class="vl">"rounded"</span><span class="tg">&gt;&lt;/pipo-navbar&gt;</span></pre>
         <div class="toybox">
           <div class="toybox-chrome"><div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div><span class="toybox-label">cta-shape</span></div>
           <div class="toybox-screen">
@@ -414,8 +414,8 @@
                 <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Get Started" cta-shape="pill" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
               <div>
-                <div class="bar-demo-label">"square"</div>
-                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Get Started" cta-shape="square" cta-color="mibble" color="mibble"></pipo-navbar></div>
+                <div class="bar-demo-label">"rounded"</div>
+                <div class="bar-wrap"><pipo-navbar demo logo="PipoToy" cta="Get Started" cta-shape="rounded" cta-color="mibble" color="mibble"></pipo-navbar></div>
               </div>
             </div>
           </div>
@@ -669,6 +669,6 @@
 
   <script src="../../src/version.js" defer></script>
   <script src="../site.js" defer></script>
-  <script src="../../src/components/pipo-navbar.js" defer></script>
+  <script src="../../src/components/pipo-navbar.js?v=2" defer></script>
 </body>
 </html>

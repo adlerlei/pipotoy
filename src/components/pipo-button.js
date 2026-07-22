@@ -46,10 +46,10 @@ const STYLE = `
   :host([size="lg"]) .tap { padding: 15px 36px; font-size: 17px; }
 
   /* ── shape ── */
-  :host([shape="pill"])   .tap { border-radius: var(--pipotoy-round-pill); }
-  :host([shape="square"]) .tap { border-radius: var(--pipotoy-round-sm); }
+  :host([shape="pill"])    .tap { border-radius: var(--pipotoy-round-pill); }
+  :host([shape="rounded"]) .tap { border-radius: var(--pipotoy-round-sm); }
 
-  /* ── full：滿版 + 強制 square（蓋過 shape）+ 縱向 padding 依 size ── */
+  /* ── full：滿版 + 強制 rounded（蓋過 shape）+ 縱向 padding 依 size ── */
   :host([full]) .tap {
     width: 100%;
     border-radius: var(--pipotoy-round-sm);

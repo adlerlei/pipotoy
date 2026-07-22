@@ -2050,60 +2050,99 @@ a.cmp-card:hover .cmp-card-name { color: var(--pipotoy-grumglo-slurpo); }
   background: var(--pipotoy-schmerbia-glorix);
 }
 
-/* pipo-stack：垂直堆疊的三個方塊 */
-.shape-stack {
-  width: 70%;
+/* pipo-note：左側線條與安靜文字 */
+.shape-note {
+  width: 72%;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+.shape-note > i {
+  display: block;
+  width: 5px;
+  min-height: 56px;
+  border-radius: var(--pipotoy-round-pill);
+  background: var(--pipotoy-drippus-blunfix);
+  flex-shrink: 0;
+}
+.shape-note > span {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  gap: 7px;
+}
+.shape-note em {
+  display: block;
+  height: 6px;
+  border-radius: var(--pipotoy-round-pill);
+  background: var(--pipotoy-dunkvon-blornko);
+}
+.shape-note em:nth-child(2) { width: 88%; }
+.shape-note em:nth-child(3) { width: 64%; }
+
+/* pipo-stack：垂直堆疊的三個彩色方塊（玩具堆意象） */
+.shape-stack {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .shape-stack i {
   display: block;
-  height: 8px;
-  border-radius: 3px;
-  background: rgba(58, 58, 61, 0.4);
+  height: 22px;
+  border-radius: var(--pipotoy-round-sm);
+  box-shadow:
+    var(--pipotoy-shadow-1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08);
 }
-.shape-stack i:nth-child(1) { width: 90%; }
-.shape-stack i:nth-child(2) { width: 70%; }
-.shape-stack i:nth-child(3) { width: 80%; }
+.shape-stack i:nth-child(1) { background: var(--pipotoy-grumglo-mibble); }
+.shape-stack i:nth-child(2) { background: var(--pipotoy-yumblax-blonko); }
+.shape-stack i:nth-child(3) { background: var(--pipotoy-drippus-wibble); }
 
-/* pipo-cluster：水平排列的三個小元素（自動換行意象） */
+/* pipo-cluster：四個圓形 pill 散佈（像群聚的玩具） */
 .shape-cluster {
   width: 70%;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px 8px;
+  align-items: center;
+  justify-content: flex-start;
 }
 .shape-cluster i {
   display: block;
-  height: 10px;
+  height: 22px;
   border-radius: 999px;
-  background: rgba(58, 58, 61, 0.4);
+  box-shadow:
+    var(--pipotoy-shadow-1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08);
 }
-.shape-cluster i:nth-child(1) { width: 38%; }
-.shape-cluster i:nth-child(2) { width: 30%; }
-.shape-cluster i:nth-child(3) { width: 22%; }
-.shape-cluster i:nth-child(4) { width: 28%; }
+.shape-cluster i:nth-child(1) { width: 56px; background: var(--pipotoy-grumglo-mibble); }
+.shape-cluster i:nth-child(2) { width: 44px; background: var(--pipotoy-yumblax-blonko); }
+.shape-cluster i:nth-child(3) { width: 38px; background: var(--pipotoy-schmerbia-plobbo); }
+.shape-cluster i:nth-child(4) { width: 50px; background: var(--pipotoy-drippus-wibble); }
 
-/* pipo-row：12 欄 Grid，三個不等寬的格子（精確排版意象） */
+/* pipo-row：12 欄 Grid，三個不同 span 的彩色格子（精確排版意象） */
 .shape-row {
   width: 70%;
   display: grid;
-  grid-template-columns: 8fr 4fr;
+  grid-template-columns: repeat(12, 1fr);
   gap: 6px;
 }
 .shape-row i {
   display: block;
   height: 22px;
-  border-radius: 4px;
+  border-radius: var(--pipotoy-round-sm);
+  box-shadow:
+    var(--pipotoy-shadow-1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08);
 }
-.shape-row i:nth-child(1) { background: var(--pipotoy-grumglo-mibble); }
-.shape-row i:nth-child(2) {
-  background: var(--pipotoy-schmerbia-plobbo);
-  grid-row: span 2;
-  height: 50px;
-}
-.shape-row i:nth-child(3) { background: var(--pipotoy-drippus-wibble); }
+.shape-row i:nth-child(1) { background: var(--pipotoy-grumglo-mibble); grid-column: span 8; }
+.shape-row i:nth-child(2) { background: var(--pipotoy-yumblax-blonko); grid-column: span 4; }
+.shape-row i:nth-child(3) { background: var(--pipotoy-drippus-wibble); grid-column: span 12; }
 
 /* CARD BODY（玩具盒下半部） */
 .cmp-card-body {
