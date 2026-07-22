@@ -7,40 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../src/pipotoy-tokens.css">
   <link rel="stylesheet" href="../site.css">
-  <style>
-    /* 頁面層的 live demo 排版（不含任何色碼，色彩全由 pipo-alert 自理） */
-    .alert-demo {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 24px;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .alert-demo.duo {
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .alert-demo.three {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .alert-cell { display: flex; flex-direction: column; gap: 8px; }
-    .alert-cell .demo-cell-label { margin-top: 0; text-align: center; }
-
-    @media (max-width: 720px) {
-      .alert-demo.duo, .alert-demo.three { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="./component-guide.css">
 </head>
-<body>
-
-  <!-- NAV (unified) -->
+<body class="component-guide">
   <nav>
-    <a class="nav-brand" href="../../index.html">
-      <div class="nav-logo">🧸</div>
-      Pipo<span>Toy</span>
-    </a>
+    <a class="nav-brand" href="../../index.html"><div class="nav-logo">🧸</div>Pipo<span>Toy</span></a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <div class="nav-links">
       <a class="nav-link" href="./components.html" data-label="元件展示">Components</a>
@@ -48,254 +19,111 @@
       <a class="nav-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
     </div>
     <span class="nav-tag">&lt;pipo-alert&gt;</span>
-    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu">
-      <span></span><span></span><span></span>
-    </label>
+    <label for="nav-toggle" class="nav-burger" aria-label="開關選單 Menu"><span></span><span></span><span></span></label>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
+  <main>
+    <header class="guide-hero">
+      <div class="hero-blob hero-blob-1"></div><div class="hero-blob hero-blob-2"></div>
+      <div class="guide-inner">
+        <div class="hero-crumb"><a href="./components.html">Components</a> / pipo-alert</div>
+        <h1 class="guide-name"><span class="bracket">&lt;</span><span class="name">pipo-alert</span><span class="bracket">&gt;</span></h1>
+        <h2 class="guide-title">Say what happened, right where it matters.</h2>
+        <p class="guide-desc">Use an alert for a saved change, a warning, or an error. The default is ready for a simple success message.</p>
+        <pipo-note class="guide-zh" color="wibble" line="medium" lang="zh-Hant"><strong>在需要的位置說清楚發生了什麼</strong><p>適合顯示儲存成功、注意事項或錯誤；只寫標籤內容，就是一則完成狀態通知。</p></pipo-note>
 
-    <div class="hero-crumb"><a href="../../index.html">PipoToy</a> / Components / pipo-alert</div>
-
-    <h1 class="hero-name"><span class="lt">&lt;</span><span class="nm">pipo-alert</span><span class="lt">&gt;</span></h1>
-    <p class="hero-zh">會跳出來的可愛通知</p>
-
-    <p class="hero-sub">
-      A friendly little banner for "saved", "careful", or "oops".<br>
-      Three semantic colors, an optional sub-line, and a dismissible ×.
-    </p>
-    <p class="hero-sub-zh">
-      一條小可愛橫幅,專門說「存好了」、「注意一下」、「出事了」。<br>
-      三種語意色、可加副標題、可加 × 關閉。
-    </p>
-
-    <div class="hero-code"><pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"success"</span> <span class="at">desc</span>=<span class="vl">"你的作品已經安全存好了。"</span><span class="tg">&gt;</span>儲存成功！<span class="tg">&lt;/pipo-alert&gt;</span></pre></div>
-
-    <div class="alert-demo" style="margin-top:24px">
-      <pipo-alert type="success" desc="你的作品已經安全存好了。">儲存成功！</pipo-alert>
-      <pipo-alert type="warn" desc="有些設定還沒完成,記得去看看。">注意一下</pipo-alert>
-      <pipo-alert type="error" desc="請重新試一次,或是聯絡我們。">出了點問題</pipo-alert>
-    </div>
-  </div>
-
-  <!-- QUICK REFERENCE -->
-  <section class="alt" id="reference">
-    <div class="section-inner">
-      <div class="section-eyebrow">Quick Reference · 屬性速查</div>
-      <h2 class="section-heading">4 attributes. All optional.</h2>
-      <p class="section-heading-zh">4 個屬性,全部可不填——什麼都不填,就是一條成功通知。</p>
-
-      <table class="rwd-table quick-table" style="max-width:680px">
-        <tr><th>Attribute · 屬性名稱</th><th>What it does · 做什麼</th><th>Default · 不填的話</th></tr>
-        <tr class="quick-group"><td colspan="3">Look · 外觀</td></tr>
-        <tr><td><a href="#attr-type">type</a></td><td>Semantic color (success / warn / error) · 語意色</td><td>"success"</td></tr>
-        <tr><td><a href="#attr-desc">desc</a></td><td>Sub-line under the title · 副標題</td><td>none 無</td></tr>
-        <tr><td><a href="#attr-icon">icon</a></td><td>Show or hide the left icon · 是否顯示左側 icon</td><td>"on"</td></tr>
-        <tr class="quick-group"><td colspan="3">Behavior · 行為</td></tr>
-        <tr><td><a href="#attr-dismiss">dismiss</a></td><td>Show a × button to close it · 加 × 關閉按鈕</td><td>off</td></tr>
-      </table>
-
-      <p class="attr-desc">The main text goes between the tags — a short, bold heading works best.</p>
-      <p class="attr-desc-zh">主訊息寫在標籤中間——一句話、粗體、簡短,效果最好。</p>
-    </div>
-  </section>
-
-  <!-- LOOK -->
-  <section id="look">
-    <div class="section-inner">
-      <div class="section-eyebrow">Look · 外觀</div>
-      <h2 class="section-heading">Three semantic colors.</h2>
-      <p class="section-heading-zh">三種語意色,一看就懂。</p>
-
-      <!-- type -->
-      <div class="attr" id="attr-type">
-        <div class="attr-head">
-          <code class="attr-name">type</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"success"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"success" / "warn" / "error"</b></span></span>
-        </div>
-        <h3 class="attr-title">Semantic color <span>語意色</span></h3>
-        <p class="attr-desc">Pick a mood. <code>success</code> (mint) is "all good", <code>warn</code> (butter) is "careful", <code>error</code> (rose) is "oh no". Skip it and you get the friendly mint default. An unknown value silently falls back to <code>success</code> — no broken boxes, no errors.</p>
-        <p class="attr-desc-zh">挑一個語意。<code>success</code>(薄荷綠)是「一切搞定」,<code>warn</code>(奶油黃)是「注意一下」,<code>error</code>(玫紅)是「糟糕」。不填就用預設的薄荷綠。寫錯的字也會安靜退回 <code>success</code>——不破圖、不報錯。</p>
-        <pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"success"</span><span class="tg">&gt;</span>儲存成功！<span class="tg">&lt;/pipo-alert&gt;</span>
-<span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"warn"</span><span class="tg">&gt;</span>注意一下<span class="tg">&lt;/pipo-alert&gt;</span>
-<span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"error"</span><span class="tg">&gt;</span>出了點問題<span class="tg">&lt;/pipo-alert&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">type — the three moods · 三種語意</span>
+        <div class="starter">
+          <div class="code-panel">
+            <pre class="code" id="copy-alert-start"><span class="tg">&lt;pipo-alert&gt;</span>Changes saved.<span class="tg">&lt;/pipo-alert&gt;</span></pre>
+            <button class="copy-button" type="button" data-copy-target="copy-alert-start">Copy</button>
           </div>
-          <div class="toybox-screen">
-            <div class="alert-demo">
-              <pipo-alert type="success">儲存成功！</pipo-alert>
-              <pipo-alert type="warn">注意一下</pipo-alert>
-              <pipo-alert type="error">出了點問題</pipo-alert>
-            </div>
-          </div>
+          <div class="live-panel"><span class="live-label">Live preview · 實際效果</span><pipo-alert>Changes saved.</pipo-alert></div>
         </div>
       </div>
+    </header>
 
-      <!-- desc -->
-      <div class="attr" id="attr-desc">
-        <div class="attr-head">
-          <code class="attr-name">desc</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>無(只顯示標題)</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>任何文字 any text</b></span></span>
+    <section class="guide-section alt" id="common-uses">
+      <div class="guide-inner">
+        <div class="section-head">
+          <div class="section-eyebrow">Start Here</div>
+          <h2 class="section-title">Three alerts you'll use most.</h2>
+          <p class="section-desc">Start with the outcome. Add a second line only when the user needs context or a next step.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">先說結果；只有需要補充原因或下一步時，再加入 desc。</pipo-note>
         </div>
-        <h3 class="attr-title">Sub-line <span>副標題</span></h3>
-        <p class="attr-desc">A smaller, quieter line under the title. Perfect for "what happened" or "what to do next". Skip it and the alert is a single bold sentence — great for short, punchy notifications.</p>
-        <p class="attr-desc-zh">標題下面一行比較小、比較淡的文字,適合放「剛剛怎麼了」或「下一步做什麼」。不填就只有一句粗體——短而直接的時候用這種。</p>
-        <pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"success"</span> <span class="at">desc</span>=<span class="vl">"你的作品已經安全存好了。"</span><span class="tg">&gt;</span>儲存成功！<span class="tg">&lt;/pipo-alert&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">desc — with and without · 有副標題 vs 沒有</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="alert-demo">
-              <pipo-alert type="success" desc="你的作品已經安全存好了。">儲存成功！</pipo-alert>
-              <pipo-alert type="success">儲存成功！</pipo-alert>
-            </div>
-          </div>
+        <div class="recipe-grid">
+          <article class="recipe-card">
+            <div class="card-head"><span class="card-number">01</span><h3 class="card-title">Confirm a success</h3><p class="card-desc">The default type is success, so keep it short.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">確認完成：預設就是 success，簡短即可。</pipo-note></div>
+            <div class="card-code"><pre class="code"><span class="tg">&lt;pipo-alert&gt;</span>Profile updated.<span class="tg">&lt;/pipo-alert&gt;</span></pre></div>
+            <div class="card-stage stage-column"><pipo-alert>Profile updated.</pipo-alert></div>
+          </article>
+          <article class="recipe-card">
+            <div class="card-head"><span class="card-number">02</span><h3 class="card-title">Explain a warning</h3><p class="card-desc">Use a description for the action that comes next.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">提醒注意：用 desc 告訴使用者下一步。</pipo-note></div>
+            <div class="card-code"><pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"warn"</span>
+  <span class="at">desc</span>=<span class="vl">"Add a payment method to continue."</span><span class="tg">&gt;</span>Action needed<span class="tg">&lt;/pipo-alert&gt;</span></pre></div>
+            <div class="card-stage stage-column"><pipo-alert type="warn" desc="Add a payment method to continue.">Action needed</pipo-alert></div>
+          </article>
+          <article class="recipe-card">
+            <div class="card-head"><span class="card-number">03</span><h3 class="card-title">Let it be dismissed</h3><p class="card-desc">Add dismiss for temporary messages the user can close.</p><pipo-note class="card-note" color="wibble" line="thin" lang="zh-Hant">暫時訊息：加上 dismiss，讓使用者自行關閉。</pipo-note></div>
+            <div class="card-code"><pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"error"</span> <span class="at">dismiss</span><span class="tg">&gt;</span>Upload failed.<span class="tg">&lt;/pipo-alert&gt;</span></pre></div>
+            <div class="card-stage stage-column"><pipo-alert type="error" dismiss>Upload failed.</pipo-alert></div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <!-- icon -->
-      <div class="attr" id="attr-icon">
-        <div class="attr-head">
-          <code class="attr-name">icon</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>"on"</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>"on" / "off"</b></span></span>
+    <section class="guide-section" id="compare">
+      <div class="guide-inner">
+        <div class="section-head">
+          <div class="section-eyebrow">Compare</div>
+          <h2 class="section-title">See the differences at a glance.</h2>
+          <p class="section-desc">Type changes the meaning and color. Description and icon change how much detail the message carries.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">type 同時改變語意與顏色；desc 與 icon 則控制資訊量與視覺密度。</pipo-note>
         </div>
-        <h3 class="attr-title">Show or hide icon <span>icon 開關</span></h3>
-        <p class="attr-desc">The left icon is built in — a small clay badge (check / bang / cross) that matches the type. Set <code>icon="off"</code> to hide it when you want pure text, like a quiet inline message.</p>
-        <p class="attr-desc-zh">左側的 icon 是內建的——一顆小小的黏土徽章(勾 / 驚嘆 / 叉),會跟著 type 變。設 <code>icon="off"</code> 就能關掉,適合想要純文字、安靜一點的場景。</p>
-        <pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"warn"</span> <span class="at">icon</span>=<span class="vl">"off"</span><span class="tg">&gt;</span>有些小提醒,留著就好。<span class="tg">&lt;/pipo-alert&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">icon — on vs off · 開 vs 關</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="alert-demo">
-              <pipo-alert type="warn">注意一下</pipo-alert>
-              <pipo-alert type="warn" icon="off">注意一下(沒 icon)</pipo-alert>
-            </div>
-          </div>
+        <div class="compare-grid">
+          <article class="compare-card"><div class="card-head"><h3 class="card-title">Message type</h3><p class="card-desc"><code>success</code>, <code>warn</code>, and <code>error</code>.</p></div><div class="card-stage stage-column alert-list"><pipo-alert type="success">Saved</pipo-alert><pipo-alert type="warn">Check this</pipo-alert><pipo-alert type="error">Try again</pipo-alert></div></article>
+          <article class="compare-card"><div class="card-head"><h3 class="card-title">Message detail</h3><p class="card-desc">A title alone or a title with supporting text.</p></div><div class="card-stage stage-column alert-list"><pipo-alert type="success">Saved</pipo-alert><pipo-alert type="success" desc="Your latest changes are now live.">Saved</pipo-alert></div></article>
+          <article class="compare-card"><div class="card-head"><h3 class="card-title">Icon</h3><p class="card-desc">Keep the icon for quick scanning, or remove it for a quieter row.</p></div><div class="card-stage stage-column alert-list"><pipo-alert type="warn">With icon</pipo-alert><pipo-alert type="warn" icon="off">Without icon</pipo-alert></div></article>
         </div>
       </div>
+    </section>
 
-      <!-- dismiss -->
-      <div class="attr" id="attr-dismiss">
-        <div class="attr-head">
-          <code class="attr-name">dismiss</code>
-          <span class="attr-meta"><span class="meta-chip">Default <span class="zh">預設</span> <b>off</b></span><span class="meta-chip">Options <span class="zh">選項</span> <b>boolean — 寫了就有,沒寫就沒有</b></span></span>
+    <section class="guide-section alt" id="reference">
+      <div class="guide-inner">
+        <div class="section-head">
+          <div class="section-eyebrow">Reference</div>
+          <h2 class="section-title">All four attributes.</h2>
+          <p class="section-desc">Everything is optional. Open this only when you need exact values.</p>
+          <pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">四個屬性都可省略；需要查精確選項時再展開。</pipo-note>
         </div>
-        <h3 class="attr-title">Close button <span>× 關閉按鈕</span></h3>
-        <p class="attr-desc">Add the bare <code>dismiss</code> attribute and a soft × button appears on the right. Click it and the whole alert quietly disappears. (Need to bring it back? Call <code>element.show()</code> in JS.)</p>
-        <p class="attr-desc-zh">寫一個 <code>dismiss</code> 屬性(不用填值),右邊就會浮出柔和的 × 按鈕。點下去整條 alert 安靜消失。(想叫回來？在 JS 裡呼叫 <code>element.show()</code> 就行。)</p>
-        <pre class="code"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"success"</span> <span class="at">dismiss</span><span class="tg">&gt;</span>儲存成功！<span class="tg">&lt;/pipo-alert&gt;</span></pre>
-        <div class="toybox">
-          <div class="toybox-chrome">
-            <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-            <span class="toybox-label">dismiss — click the × · 點 × 試試</span>
-          </div>
-          <div class="toybox-screen">
-            <div class="alert-demo">
-              <pipo-alert type="success" dismiss>儲存成功！點 × 會消失。</pipo-alert>
-              <pipo-alert type="warn" dismiss>注意一下(也可以關)</pipo-alert>
-            </div>
-          </div>
+        <details class="reference-panel">
+          <summary><span>Show all 4 attributes<span class="reference-summary-zh" lang="zh-Hant">查看全部屬性</span></span></summary>
+          <div class="reference-body"><div class="reference-list">
+            <div class="reference-item"><code>type</code><div><p><strong>Message meaning</strong><br><code>success / warn / error</code>; default <code>success</code></p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">訊息語意；預設 success，無效值也會回到 success。</pipo-note></div></div>
+            <div class="reference-item"><code>desc</code><div><p><strong>Supporting line</strong><br>Any plain text; default none</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">標題下方的補充文字；預設不顯示。</pipo-note></div></div>
+            <div class="reference-item"><code>icon</code><div><p><strong>Left status icon</strong><br>Use <code>off</code> to hide; default on</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">左側狀態圖示；設為 off 即隱藏。</pipo-note></div></div>
+            <div class="reference-item"><code>dismiss</code><div><p><strong>Close button</strong><br>Boolean; add it to enable</p><pipo-note class="reference-note" color="wibble" line="thin" lang="zh-Hant">顯示關閉按鈕；加入屬性即可啟用。</pipo-note></div></div>
+          </div></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="guide-section" id="complete-example">
+      <div class="guide-inner">
+        <div class="section-head"><div class="section-eyebrow">Complete Example</div><h2 class="section-title">A form status area.</h2><p class="section-desc">Place the newest result near the form so the next action is obvious.</p><pipo-note class="section-note" color="wibble" line="medium" lang="zh-Hant">把最新結果放在表單附近，使用者就能立即理解狀態與下一步。</pipo-note></div>
+        <div class="complete-example">
+          <div class="code-panel"><pre class="code" id="copy-alert-complete"><span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"success"</span>
+  <span class="at">desc</span>=<span class="vl">"Your changes are now live."</span><span class="tg">&gt;</span>Settings saved<span class="tg">&lt;/pipo-alert&gt;</span>
+
+<span class="tg">&lt;pipo-alert</span> <span class="at">type</span>=<span class="vl">"warn"</span>
+  <span class="at">desc</span>=<span class="vl">"Verify your email to finish setup."</span> <span class="at">dismiss</span><span class="tg">&gt;</span>One step left<span class="tg">&lt;/pipo-alert&gt;</span></pre><button class="copy-button" type="button" data-copy-target="copy-alert-complete">Copy all</button></div>
+          <div class="live-panel"><span class="live-label">Live preview · 實際效果</span><div class="alert-list"><pipo-alert type="success" desc="Your changes are now live.">Settings saved</pipo-alert><pipo-alert type="warn" desc="Verify your email to finish setup." dismiss>One step left</pipo-alert></div></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ALL TOGETHER -->
-  <section class="alt" id="all">
-    <div class="section-inner">
-      <div class="section-eyebrow">All Together · 全部組起來</div>
-      <h2 class="section-heading">A real-world stack.</h2>
-      <p class="section-heading-zh">一個真實的堆疊場景。</p>
-
-      <p class="attr-desc">Form validation feedback, system notices, a top-of-page success banner — alerts stack naturally. Mix <code>type</code> for the mood, add <code>desc</code> for context, and let users close the ones they don't need with <code>dismiss</code>.</p>
-      <p class="attr-desc-zh">表單驗證回饋、系統通知、頁首的成功橫幅——alert 自然就能堆疊。<code>type</code> 決定語意,<code>desc</code> 補上脈絡,加上 <code>dismiss</code> 讓用戶關掉不需要的。</p>
-
-      <div class="toybox">
-        <div class="toybox-chrome">
-          <div class="toybox-dot"></div><div class="toybox-dot"></div><div class="toybox-dot"></div>
-          <span class="toybox-label">all together · 全部組起來</span>
-        </div>
-        <div class="toybox-screen">
-          <div class="alert-demo">
-            <pipo-alert type="success" desc="已寄到 your@email.com,記得收信。" dismiss>密碼重設信已寄出！</pipo-alert>
-            <pipo-alert type="warn" desc="已選 3 / 5 個主題,還差 2 個就能儲存。" dismiss>主題還沒選完</pipo-alert>
-            <pipo-alert type="error" desc="網路好像斷了,等一下再試一次。" dismiss>沒連到伺服器</pipo-alert>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOTES -->
-  <section id="notes">
-    <div class="section-inner">
-      <div class="section-eyebrow">Good to Know · 備註</div>
-      <h2 class="section-heading">Small things worth knowing.</h2>
-      <p class="section-heading-zh">幾件值得知道的小事。</p>
-
-      <div class="note-list">
-        <div class="note">
-          <div class="note-icon">🪄</div>
-          <div class="note-body">
-            <div class="note-title">Icons are baked in, not slotted</div>
-            <div class="note-desc">The three little badges (check / bang / cross) live inside the component's shadow DOM — you never write them. The same set shows up wherever you use <code>type="success"</code>, <code>warn</code>, or <code>error</code>.</div>
-            <div class="note-desc-zh">三顆小徽章(勾 / 驚嘆 / 叉)住在元件的 shadow DOM 裡——你不用寫。只要用 <code>type="success"</code>、<code>warn</code>、<code>error</code>,就會自己出現。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">🎨</div>
-          <div class="note-body">
-            <div class="note-title">Semantic types, not raw color names</div>
-            <div class="note-desc">Type uses <code>success / warn / error</code> — not <code>mibble / blonko / plobbo</code>. That way the colors stay meaning-driven and the alert still makes sense if we ever swap them out for a different palette.</div>
-            <div class="note-desc-zh">type 用的是 <code>success / warn / error</code>——不是 <code>mibble / blonko / plobbo</code>。這樣顏色保持語意導向,哪天我們換色票,alert 還是看得懂。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">🛡️</div>
-          <div class="note-body">
-            <div class="note-title">Invalid values are silent</div>
-            <div class="note-desc">An unknown <code>type</code> falls back to <code>success</code>. <code>icon</code> with anything other than <code>"off"</code> keeps the icon on. Nothing logs, nothing breaks — the alert always shows up looking sensible.</div>
-            <div class="note-desc-zh">不認得的 <code>type</code> 會退回 <code>success</code>。<code>icon</code> 只要不是 <code>"off"</code> 就會顯示 icon。不報錯、不破圖——alert 永遠看起來正常。</div>
-          </div>
-        </div>
-        <div class="note">
-          <div class="note-icon">🧩</div>
-          <div class="note-body">
-            <div class="note-title">Dismissing is a one-way trip — until you call show()</div>
-            <div class="note-desc">Clicking × sets <code>data-dismissed</code> on the host. The element is just hidden via CSS, not removed from the DOM. If you need to bring it back, grab a reference in JS and call <code>el.show()</code>.</div>
-            <div class="note-desc-zh">點 × 會在 host 上設 <code>data-dismissed</code>,元件只是用 CSS 藏起來,並沒有從 DOM 移除。需要叫回來,在 JS 抓住它、呼叫 <code>el.show()</code> 就行。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER (unified) -->
-  <footer>
-    <div class="footer-brand">Pipo<span>Toy</span></div>
-    <p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p>
-    <div class="footer-links">
-      <a class="footer-link" href="../../index.html" data-label="回首頁">Home</a>
-      <a class="footer-link" href="./components.html" data-label="元件展示">Components</a>
-      <a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a>
-      <a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a>
-    </div>
-    <p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p>
-  </footer>
-
-  <script src="../../src/version.js" defer></script>
-  <script src="../site.js" defer></script>
-  <script src="../../src/components/pipo-alert.js" defer></script>
+  <footer><div class="footer-brand">Pipo<span>Toy</span></div><p class="footer-desc">The friendliest UI Toy Kit · 拿起來就能玩的網頁玩具</p><div class="footer-links"><a class="footer-link" href="../../index.html" data-label="回首頁">Home</a><a class="footer-link" href="./components.html" data-label="元件展示">Components</a><a class="footer-link" href="../docs/pipotoy-compendium.html" data-label="Pipo 色系圖鑑">Pipo Colors</a><a class="footer-link" href="https://github.com/adlerlei/pipotoy" target="_blank" rel="noopener" data-label="程式碼倉庫">GitHub</a></div><p class="footer-copy"><span id="footer-version">v0.1.0-alpha</span> · <span id="footer-date">2026</span> · MIT License</p></footer>
+  <script src="../../src/version.js?v=16" defer></script><script src="../site.js" defer></script><script src="../../src/components/pipo-note.js?v=2" defer></script><script src="../../src/components/pipo-alert.js" defer></script>
+  <script>document.querySelectorAll('[data-copy-target]').forEach(function(button){button.addEventListener('click',function(){var target=document.getElementById(button.dataset.copyTarget);if(!target||!navigator.clipboard)return;navigator.clipboard.writeText(target.textContent.trim()).then(function(){var original=button.textContent;button.textContent='Copied';window.setTimeout(function(){button.textContent=original;},1400);});});});</script>
 </body>
 </html>
