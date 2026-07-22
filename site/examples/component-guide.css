@@ -59,7 +59,7 @@
 .starter,
 .complete-example {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  grid-template-columns: minmax(0, 1fr);
   margin-top: 34px;
   overflow: hidden;
   border: 1px solid var(--pipotoy-line);
@@ -157,7 +157,7 @@
 .recipe-grid,
 .compare-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -287,6 +287,80 @@
 .alert-list { display: grid; gap: 12px; width: 100%; }
 .stick-board { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 22px; width: 100%; }
 
+.demo-tile {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--pipotoy-line);
+  border-radius: var(--pipotoy-round-sm);
+  background: var(--pipotoy-bg);
+  box-shadow: var(--pipotoy-shadow-1);
+  color: var(--pipotoy-text);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.demo-tile.tall { min-height: 82px; }
+.demo-tile.short { padding-block: 8px; }
+.demo-tile.accent { background: var(--pipotoy-grumglo-mibble); }
+.demo-tile.cool { background: var(--pipotoy-drippus-wibble); }
+.demo-tile.warm { background: var(--pipotoy-yumblax-blonko); }
+.demo-tile.rose { background: var(--pipotoy-schmerbia-plobbo); }
+
+.demo-card-width { width: min(100%, 280px); }
+.demo-card-row { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; }
+.layout-demo { width: 100%; }
+.layout-demo pipo-cluster,
+.layout-demo pipo-stack,
+.layout-demo pipo-row { width: 100%; }
+
+.navbar-demo {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  min-height: 76px;
+}
+
+.navbar-demo pipo-navbar { width: 100%; }
+
+.navbar-guide .guide-inner { width: min(100%, 1170px); }
+
+.page-demo {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  overflow: hidden;
+  border: 1px solid var(--pipotoy-line);
+  border-radius: var(--pipotoy-round-lg);
+  box-shadow: var(--pipotoy-shadow-1);
+}
+
+.page-demo-content { max-width: 480px; }
+.page-demo-content h4 { margin: 0 0 8px; font-size: 21px; font-weight: 900; }
+.page-demo-content p { margin: 0; color: var(--pipotoy-muted); font-size: 14px; line-height: 1.65; }
+
+.page-demo-media .page-demo-content {
+  padding: 18px 20px;
+  border-radius: var(--pipotoy-round);
+  background: color-mix(in srgb, var(--pipotoy-text) 78%, transparent);
+  color: var(--pipotoy-bg);
+  text-shadow: 0 1px 2px var(--pipotoy-text);
+}
+
+.page-demo-media .page-demo-content p { color: var(--pipotoy-bg); }
+
+.field-demo {
+  padding: 13px 15px;
+  border: 1px solid var(--pipotoy-line);
+  border-radius: var(--pipotoy-round-sm);
+  background: var(--pipotoy-surface);
+  color: var(--pipotoy-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 @media (max-width: 760px) {
   .guide-hero { padding: 116px 18px 54px; }
   .starter,
@@ -294,6 +368,7 @@
   .recipe-grid,
   .compare-grid { grid-template-columns: 1fr; }
   .reference-list { grid-template-columns: 1fr; }
+  .demo-card-row { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
